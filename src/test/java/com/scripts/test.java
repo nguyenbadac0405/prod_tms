@@ -16,21 +16,7 @@ public class test {
 	WebDriver driver;
 	GetDriver link;
 	CreateExcelfile excel;
-	@Test
-	public void test() {
-		link = new GetDriver(driver);
-		login = PageFactory.initElements(driver, login.class);
-		new_case = PageFactory.initElements(driver, create_new_case_intake.class);
-		// Using get() method to open a webpage
-//		driver.get("https://anhtester.com");
-		login.URL_intake();
-		Common.waitSec(10);
-		new_case.create_new_case_MDL_intake();
-		Common.waitSec(10);
-		// Closing the browser
-//		driver.quit();
 
-	}
 	
 	@Test
 	public void test1() {
