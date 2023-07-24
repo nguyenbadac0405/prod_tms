@@ -73,7 +73,7 @@ public class approve_to_assign_follow_up {
 		chooseFile.sendKeys("C:/Users/dac/Downloads/file.pdf");
 		Common.waitSec(5);
 		//to assign follow up
-		WebElement element = driver.findElement(By.xpath("//*[@id=\"patient-dashboard\"]/div[5]/div[2]/div[7]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[1]"));
+		WebElement element = driver.findElement(By.xpath("//*[@id=\"patient-dashboard\"]/div[5]/div[2]/div[8]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[1]"));
 		action.moveToElement(element).click().build().perform();
 		Common.waitSec(1);
 		action.sendKeys(Keys.ENTER).build().perform();
