@@ -296,10 +296,12 @@ public class Genetics extends DriverFactory {
 		Common.waitSec(3);
 
 		to_approved.Genetics_to_approve1(lab, type);
-		Common.waitSec(3);
+		Common.waitSec(15);
 
 		//approve 1 to AFU
-		logout.logout();
+//		login.change_link_to_pss();
+//		Common.waitSec(10);
+		logout.provider();
 		Common.waitSec(5);
 		login.pss("111111");
 		Common.waitSec(5);
@@ -501,6 +503,16 @@ public class Genetics extends DriverFactory {
 		login.PSS_dashboard();
 		Common.waitSec(10);
 
+	}
+
+	@Test
+	public void test() throws Exception {
+		login.URL_intake();
+		Common.waitSec(10);
+		login.provider("123456");
+		Common.waitSec(30);
+		logout.logout();
+		Common.waitSec(60);
 	}
 
 }

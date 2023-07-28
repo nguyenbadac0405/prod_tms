@@ -1,9 +1,6 @@
 package com.frame;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
 import com.Common;
@@ -502,7 +499,7 @@ public class assign_to_approved {
         Common.waitSec(3);
         driver.findElement(By.xpath(".//span[text()=' No Follow Up']")).click();
         System.out.println("-------------------------Done Approve----------------------------");
-        Common.waitSec(5);
+        Common.waitSec(7);
     }
 
     public void genetic_denied(String type, String lab) {
@@ -965,9 +962,11 @@ public class assign_to_approved {
         Common.waitSec(2);
         driver.findElement(By.xpath(".//input[@placeholder='Search']")).sendKeys("a");
         Common.waitSec(3);
-        driver.findElement(By.xpath("/html/body/div[14]/div/div/div/div[1]/div[3]/div[3]/div/div[2]/div[2]/ul/li[1]")).click();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebElement icd = (WebElement) js.executeScript("return document.querySelector('body .modal-content .modal-body .content-wrapper .rc-suggest li');");
+        icd.click();
         Common.waitSec(1);
-        driver.findElement(By.xpath(".//button[text()='Done']")).click();
+        driver.findElement(By.xpath(".//span[text()='Done']")).click();
         Common.waitSec(3);
         driver.findElement(By.xpath(".//button[text()='Done']")).click();
         Common.waitSec(3);

@@ -71,7 +71,7 @@ public class login {
 
 	public void change_link_to_pss() {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.location='https://rcelive.gkim.digital/';");
+		js.executeScript("window.location='https://dashboard.tms.partners/#/';");
 	}
 
 	public void change_link_to_MDL() {
