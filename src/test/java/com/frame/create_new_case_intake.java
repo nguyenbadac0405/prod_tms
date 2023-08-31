@@ -24,7 +24,7 @@ public class create_new_case_intake {
 		System.out.println("------------------------------Create NEW case------------------------------------");
 		
 		Common.waitSec(10);
-		WebElement add_case = driver.findElement(By.xpath("//*[@id='patient-dashboard']/div[5]/div[1]/div[1]/div[1]/h2/span"));
+		WebElement add_case = driver.findElement(By.xpath(".//span[@class='rce-icon-plus']"));
 		if (add_case.isDisplayed()) {
 			add_case.click();
 		}
@@ -33,23 +33,23 @@ public class create_new_case_intake {
 		// set business
 		Common.waitSec(5);
 		System.out.println("Set Business & Vertical");
-		driver.findElement(By.id("react-select-5-input")).sendKeys(business, Keys.ENTER);
+		driver.findElement(By.id("react-select-8-input")).sendKeys(business, Keys.ENTER);
 		Common.waitSec(2);
 
 		// set medical service
-		driver.findElement(By.id("react-select-6-input")).sendKeys(vertical, Keys.ENTER);
+		driver.findElement(By.id("react-select-9-input")).sendKeys(vertical, Keys.ENTER);
 		Common.waitSec(2);
 
 		// set MG
-		driver.findElement(By.id("react-select-7-input")).sendKeys(MG, Keys.ENTER);
+		driver.findElement(By.id("react-select-10-input")).sendKeys(MG, Keys.ENTER);
 		Common.waitSec(2);
 
 		// set service type
-		driver.findElement(By.id("react-select-9-input")).sendKeys(type, Keys.ENTER);
+		driver.findElement(By.id("react-select-12-input")).sendKeys(type, Keys.ENTER);
 		Common.waitSec(3);
 
 		// set state
-		driver.findElement(By.id("react-select-10-input")).sendKeys(lab, Keys.ENTER);
+		driver.findElement(By.id("react-select-13-input")).sendKeys(lab, Keys.ENTER);
 		System.out.println("Done Business and Vertical");
 		Common.waitSec(2);
 
@@ -123,32 +123,32 @@ public class create_new_case_intake {
 				Common.waitSec(2);
 				
 				//Medical History
-				System.out.println("Check Medical History");
-				driver.findElement(By.name("data[patient_personal_history_progress_note_confirm_2_sale]")).click();
-				Common.waitSec(2);
-				driver.findElement(By.name("data[submit]")).click();
-				Common.waitSec(2);
-				
-				//Family History
-				System.out.println("Check Family History");
-				driver.findElement(By.name("data[family_history_member_1_name]")).sendKeys("daddy");
-				Common.waitSec(2);
-				driver.findElement(By.xpath(".//*[@class='form-control ui fluid selection dropdown']")).click();
-				Common.waitSec(1);
-				action.sendKeys(Keys.ENTER).build().perform();
-				Common.waitSec(1);
-				driver.findElement(By.xpath(".//input[@value='Male']")).click();
-				Common.waitSec(2);
-				driver.findElement(By.name("data[family_history_member_confirm_sale]")).click();
-				Common.waitSec(1);
-				driver.findElement(By.name("data[submit]")).click();
-				Common.waitSec(3);
-				
-				//Medication
-				System.out.println("Check Medication");
-				driver.findElement(By.xpath("//*[@id=\"patient-dashboard\"]/div[5]/div[3]/div[3]/div/div[4]/label/input")).click();
-				driver.findElement(By.xpath(".//button[text()='Save']")).click();
-				Common.waitSec(3);
+//				System.out.println("Check Medical History");
+//				driver.findElement(By.name("data[patient_personal_history_progress_note_confirm_2_sale]")).click();
+//				Common.waitSec(2);
+//				driver.findElement(By.name("data[submit]")).click();
+//				Common.waitSec(2);
+//
+//				//Family History
+//				System.out.println("Check Family History");
+//				driver.findElement(By.name("data[family_history_member_1_name]")).sendKeys("daddy");
+//				Common.waitSec(2);
+//				driver.findElement(By.xpath(".//*[@class='form-control ui fluid selection dropdown']")).click();
+//				Common.waitSec(1);
+//				action.sendKeys(Keys.ENTER).build().perform();
+//				Common.waitSec(1);
+//				driver.findElement(By.xpath(".//input[@value='Male']")).click();
+//				Common.waitSec(2);
+//				driver.findElement(By.name("data[family_history_member_confirm_sale]")).click();
+//				Common.waitSec(1);
+//				driver.findElement(By.name("data[submit]")).click();
+//				Common.waitSec(3);
+//
+//				//Medication
+//				System.out.println("Check Medication");
+//				driver.findElement(By.xpath("//*[@id=\"patient-dashboard\"]/div[6]/div[3]/div[3]/div/div[4]/label/input")).click();
+//				driver.findElement(By.xpath(".//button[text()='Save']")).click();
+//				Common.waitSec(3);
 				
 //				//Verification
 //				driver.findElement(By.name("data[sales_agent_verification_consent]")).click();

@@ -36,11 +36,12 @@ public class new_to_assign {
 		Actions action = new Actions(driver);
 		System.out.println("---------------------------------New to Assign---------------------------------------");
 		System.out.println("Check Compliance");
-		driver.findElement(By.xpath("/html/body/div[1]/div[5]/div[3]/div[2]/div/div/div/div[1]/div[10]/div[1]/div[1]/label/input")).click();
-		driver.findElement(By.xpath("/html/body/div[1]/div[5]/div[3]/div[2]/div/div/div/div[1]/div[11]/div[1]/div[1]/label/input")).click();
-		driver.findElement(By.xpath("/html/body/div[1]/div[5]/div[3]/div[2]/div/div/div/div[1]/div[12]/div[1]/div[1]/label/input")).click();
-		driver.findElement(By.xpath("/html/body/div[1]/div[5]/div[3]/div[2]/div/div/div/div[1]/div[13]/div[1]/div[1]/label/input")).click();
-		driver.findElement(By.xpath("/html/body/div[1]/div[5]/div[3]/div[2]/div/div/div/div[1]/div[14]/div[1]/div[1]/label/input")).click();
+		driver.findElement(By.xpath("/html/body/div/div[6]/div[3]/div[2]/div/div/div/div/div[1]/div[10]/div[1]/div[1]/label/input")).click();
+		driver.findElement(By.xpath("/html/body/div/div[6]/div[3]/div[2]/div/div/div/div/div[1]/div[11]/div[1]/div[1]/label/input")).click();
+		driver.findElement(By.xpath("/html/body/div/div[6]/div[3]/div[2]/div/div/div/div/div[1]/div[12]/div[1]/div[1]/label/input")).click();
+		driver.findElement(By.xpath("/html/body/div/div[6]/div[3]/div[2]/div/div/div/div/div[1]/div[13]/div[1]/div[1]/label/input")).click();
+		driver.findElement(By.xpath("/html/body/div/div[6]/div[3]/div[2]/div/div/div/div/div[1]/div[14]/div[1]/div[1]/label/input")).click();
+//		driver.findElement(By.xpath("/html/body/div/div[6]/div[3]/div[2]/div/div/div/div/div[1]/div[15]/div[1]/div[1]/label/input")).click();
 		driver.findElement(By.name("data[compliance_verification_verified_patient_fulfill_communication_41589]")).click();
 		driver.findElement(By.name("data[compliance_verification_verified_patient_willing_test_41589]")).click();
 		driver.findElement(By.name("data[compliance_verification_verified_patient_gender_41589]")).click();
@@ -72,15 +73,14 @@ public class new_to_assign {
 		action.sendKeys(Keys.ENTER).build().perform();
 		System.out.println("------------------------------Done Assign-----------------------------------");
 		Common.waitSec(5);
+
 	}
 
 	public void genetic_cancel() {
 		Actions action = new Actions(driver);
 		driver.findElement(By.xpath(".//div[text()='Cancel']")).click();
 		Common.waitSec(2);
-		driver.findElement(By.xpath(".//div[text()='Please select reason to cancel case']")).click();
-		Common.waitSec(2);
-		action.sendKeys(Keys.ENTER).build().perform();
+		driver.findElement(By.xpath(".//*[@class='form-control mt-15']")).sendKeys("test");
 		Common.waitSec(2);
 		driver.findElement(By.xpath(".//button[text()='Done']")).click();
 	}

@@ -32,7 +32,7 @@ public class login {
 		driver.get("https://mydoctorsreleaf.com/patient-profile/");
 	}
 
-	public void URL_ADMIN() { driver.get("https://rcelive.gkim.digital/admin");}
+	public void URL_ADMIN() { driver.get("https://dashboard.tms.partners/admin");}
 	
 	public void pss(String password) 
 	{
@@ -43,6 +43,18 @@ public class login {
 		System.out.println("--------------------Login PSS success.------------------------");
 		Common.waitSec(5);
 		driver.findElement(By.xpath(".//div[@class='rce-pl-20 rce-pr-20 col d-flex flex-column']/div[2]/div[2]/div/div/div[1]/div[2]/button")).click();
+	}
+
+
+
+	public void lab(String password) {
+		username.sendKeys("dac+4@gkxim.com");
+//		driver.findElement(By.xpath("//*[@id='username']")).sendKeys("dac+3@gkxim.com");
+		driver.findElement(By.xpath("//*[@id='pwd']")).sendKeys(password);
+		driver.findElement(By.xpath("//*[@id='submit_login']/div/div[4]/button")).click();
+		System.out.println("--------------------Login PSS success.------------------------");
+		Common.waitSec(5);
+//		driver.findElement(By.xpath(".//div[@class='rce-pl-20 rce-pr-20 col d-flex flex-column']/div[2]/div[2]/div/div/div[1]/div[2]/button")).click();
 	}
 
 	public void intake(String password) 
@@ -81,7 +93,7 @@ public class login {
 
 	public void change_link_to_admin() {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.location='https://rcelive.gkim.digital/admin';");
+		js.executeScript("window.location='https://dashboard.tms.partners/admin/ehealth/adminmedical/add/';");
 	}
 
 	public void MDR_patient() {
@@ -103,7 +115,7 @@ public class login {
 	public void admin() {
 		driver.findElement(By.name("username")).sendKeys("dac@gkim.vn");
 		Common.waitSec(2);
-		driver.findElement(By.name("password")).sendKeys("111111");
+		driver.findElement(By.name("password")).sendKeys("dac_admin_qc12345");
 		driver.findElement(By.xpath(".//input[@value='Log in']")).click();
 		Common.waitSec(10);
 	}

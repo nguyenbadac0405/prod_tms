@@ -11,14 +11,7 @@ public class search_case {
 	}
 	
 	public void search_from_intake(String id) {
-//		String id = new_to_assign.find_id();
-//		WebElement id_case = driver.findElement(By.xpath("//input[@class='rc-search']"));
-		driver.findElement(By.xpath("//input[@class='rc-search']")).sendKeys(id);
-//		Actions builder = new Actions(driver);
-//		builder.keyDown(id_case, Keys.CONTROL).perform();
-//		builder.sendKeys(id_case, "v").perform();
-//		builder.keyUp(id_case, Keys.CONTROL).perform();
-		
+		driver.findElement(By.xpath(".//input[@placeholder='I want to search for…']")).sendKeys(id);
 	}
 	
 	

@@ -1,9 +1,6 @@
 package com.frame;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
 import com.Common;
@@ -68,23 +65,33 @@ public class approve_to_assign_follow_up {
 
 	public void Genetics_to_AFU() {
 		//to result available
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 		Actions action = new Actions(driver);
 		WebElement chooseFile = driver.findElement(By.xpath(".//input[@type='file']"));
 		chooseFile.sendKeys("C:/Users/dac/Downloads/file.pdf");
 		Common.waitSec(5);
 		//to assign follow up
-		WebElement element = driver.findElement(By.xpath("//*[@id=\"patient-dashboard\"]/div[5]/div[2]/div[8]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[1]"));
-		action.moveToElement(element).click().build().perform();
+//		WebElement element = driver.findElement(By.xpath("//*[@id=\"patient-dashboard\"]/div[5]/div[2]/div[8]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[1]"));
+//		action.moveToElement(element).click().build().perform();
+		driver.findElement(By.xpath(".//div[text()='Select ...']")).click();
 		Common.waitSec(1);
 		action.sendKeys(Keys.ENTER).build().perform();
+		Common.waitSec(1);
+		driver.findElement(By.xpath(".//button[text()='Upload ']")).click();
 		Common.waitSec(5);
-		driver.findElement(By.xpath(".//div[text()='Submit']")).click();
-		Common.waitSec(2);
-		driver.findElement(By.xpath(".//button[text()='Yes']")).click();
+		String button = (String) js.executeScript("return document.querySelector('body .modal-content .modal-body button');");
+		System.out.println(button);
+		WebElement button_send = (WebElement) js.executeScript("return document.querySelector('body .modal-content .modal-body button');");
+//		button_send.click();
+		action.moveToElement(button_send).click().build().perform();
+//		driver.findElement(By.xpath("/html/body/div[4]/div/div/div[2]/div/div/div[1]/div[7]/button")).click();
 		Common.waitSec(3);
+		driver.findElement(By.xpath(".//button[text()='Send & Move']")).click();
+		Common.waitSec(6);
 		driver.findElement(By.xpath(".//div[text()='Forward']")).click();
 		Common.waitSec(2);
-		driver.findElement(By.xpath(".//button[text()='Yes']")).click();
+		action.sendKeys(Keys.ENTER).build().perform();
+		Common.waitSec(3);
 	}
 	
 	

@@ -45,54 +45,24 @@ public class assign_to_approved {
             if (lab.equals("CGX-Unity")) {
                 // patient infor
                 System.out.println("Check Patient Information");
-                driver.findElement(By.xpath(".//input[@value='Yes']")).click();
-                Common.waitSec(2);
+                driver.findElement(By.name("data[patient_verify_result_shipping]")).click();
                 driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
                 Common.waitSec(3);
-
-                // Medical History
-                System.out.println("Patient's Personal History");
-                driver.findElement(By.xpath(".//span[text()=\"Patient's Personal History\"]")).click();
-                Common.waitSec(2);
-                driver.findElement(By.name("data[patient_personal_history_progress_note_phmx]")).sendKeys("test");
-//                driver.findElement(By.name("data[medical_history_confirm_doctor]")).click();
-                Common.waitSec(2);
-                driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
-                Common.waitSec(3);
-
-                // Family History
-                System.out.println("Check Family History");
-                driver.findElement(By.name("data[family_history_member_1_related_health_issue]")).sendKeys("test");
-                driver.findElement(By.xpath("//*[@name='data[family_history_member_confirm_doctor]']")).click();
-                driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
-                Common.waitSec(3);
-
-                // medication
-                System.out.println("Check Medications");
-                driver.findElement(
-                                By.xpath("//*[@id=\"patient-dashboard\"]/div[5]/div[3]/div[3]/div/div[4]/label/input"))
-                        .click();
-                Common.waitSec(2);
-                driver.findElement(By.xpath(".//button[text()='Save']")).click();
-                Common.waitSec(5);
 
                 // Diagnosis
                 System.out.println("Set Diagnosis");
-                driver.findElement(By.xpath(".//div[text()='Z80.1']")).click();
-                driver.findElement(By.xpath(".//div[text()='C44.300']")).click();
+                driver.findElement(By.xpath(".//span[text()='Diagnosis']")).click();
+                Common.waitSec(3);
+                driver.findElement(By.xpath(".//div[text()='Z80.2']")).click();
+                driver.findElement(By.xpath(".//div[text()='Z86.00']")).click();
                 driver.findElement(By.xpath(".//button[text()='Save']")).click();
                 Common.waitSec(5);
 
-                // review of systems
-                System.out.println("Review of Systems");
-
-                driver.findElement(By.name("data[review_of_system_confirm]")).click();
-                driver.findElement(By.name("data[submit]")).click();
-                Common.waitSec(5);
                 // assessment & plan
                 System.out.println("Set Assessment & Plan");
-                driver.findElement(By.name("data[assessment_plan_plan]"))
-                        .sendKeys("There is all plan that the provider is setting for you.");
+                driver.findElement(By.xpath(".//span[text()='Assessment & Plan']")).click();
+                Common.waitSec(3);
+                driver.findElement(By.name("data[assessment_plan_plan]")).sendKeys("There is all plan that the provider is setting for you.");
                 Common.waitSec(2);
                 driver.findElement(By.name("data[submit]")).click();
                 Common.waitSec(3);
@@ -497,7 +467,7 @@ public class assign_to_approved {
         action.sendKeys(Keys.ENTER).build().perform();
 
         Common.waitSec(3);
-        driver.findElement(By.xpath(".//span[text()=' No Follow Up']")).click();
+//        driver.findElement(By.xpath(".//span[text()=' No Follow Up']")).click();
         System.out.println("-------------------------Done Approve----------------------------");
         Common.waitSec(7);
     }
@@ -506,55 +476,26 @@ public class assign_to_approved {
         // TYPE == CGX
         if (type.equals("CGX")) {
             if (lab.equals("CGX-Unity")) {
+                // patient infor
                 System.out.println("Check Patient Information");
-                driver.findElement(By.xpath(".//input[@value='Yes']")).click();
-                Common.waitSec(2);
+                driver.findElement(By.name("data[patient_verify_result_shipping]")).click();
                 driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
                 Common.waitSec(3);
-
-                // Medical History
-                System.out.println("Patient's Personal History");
-                driver.findElement(By.xpath(".//span[text()=\"Patient's Personal History\"]")).click();
-                Common.waitSec(2);
-                driver.findElement(By.name("data[patient_personal_history_progress_note_phmx]")).sendKeys("test");
-//                driver.findElement(By.name("data[medical_history_confirm_doctor]")).click();
-                Common.waitSec(2);
-                driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
-                Common.waitSec(3);
-
-                // Family History
-                System.out.println("Check Family History");
-                driver.findElement(By.name("data[family_history_member_1_related_health_issue]")).sendKeys("test");
-                driver.findElement(By.xpath("//*[@name='data[family_history_member_confirm_doctor]']")).click();
-                driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
-                Common.waitSec(3);
-
-                // medication
-                System.out.println("Check Medications");
-                driver.findElement(
-                                By.xpath("//*[@id=\"patient-dashboard\"]/div[5]/div[3]/div[3]/div/div[4]/label/input"))
-                        .click();
-                Common.waitSec(2);
-                driver.findElement(By.xpath(".//button[text()='Save']")).click();
-                Common.waitSec(5);
 
                 // Diagnosis
                 System.out.println("Set Diagnosis");
-                driver.findElement(By.xpath(".//div[text()='Z80.1']")).click();
-                driver.findElement(By.xpath(".//div[text()='C44.300']")).click();
+                driver.findElement(By.xpath(".//span[text()='Diagnosis']")).click();
+                Common.waitSec(3);
+                driver.findElement(By.xpath(".//div[text()='Z80.2']")).click();
+                driver.findElement(By.xpath(".//div[text()='Z86.00']")).click();
                 driver.findElement(By.xpath(".//button[text()='Save']")).click();
                 Common.waitSec(5);
 
-                // review of systems
-                System.out.println("Review of Systems");
-
-                driver.findElement(By.name("data[review_of_system_confirm]")).click();
-                driver.findElement(By.name("data[submit]")).click();
-                Common.waitSec(5);
                 // assessment & plan
                 System.out.println("Set Assessment & Plan");
-                driver.findElement(By.name("data[assessment_plan_plan]"))
-                        .sendKeys("There is all plan that the provider is setting for you.");
+                driver.findElement(By.xpath(".//span[text()='Assessment & Plan']")).click();
+                Common.waitSec(3);
+                driver.findElement(By.name("data[assessment_plan_plan]")).sendKeys("There is all plan that the provider is setting for you.");
                 Common.waitSec(2);
                 driver.findElement(By.name("data[submit]")).click();
                 Common.waitSec(3);
@@ -973,6 +914,5 @@ public class assign_to_approved {
         actions.sendKeys(Keys.ENTER).build().perform();
 
     }
-
 
 }
