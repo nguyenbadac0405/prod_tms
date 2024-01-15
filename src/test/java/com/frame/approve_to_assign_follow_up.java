@@ -71,20 +71,31 @@ public class approve_to_assign_follow_up {
 		chooseFile.sendKeys("C:/Users/dac/Downloads/file.pdf");
 		Common.waitSec(5);
 		//to assign follow up
-//		WebElement element = driver.findElement(By.xpath("//*[@id=\"patient-dashboard\"]/div[5]/div[2]/div[8]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[1]"));
-//		action.moveToElement(element).click().build().perform();
 		driver.findElement(By.xpath(".//div[text()='Select ...']")).click();
 		Common.waitSec(1);
 		action.sendKeys(Keys.ENTER).build().perform();
 		Common.waitSec(1);
 		driver.findElement(By.xpath(".//button[text()='Upload ']")).click();
 		Common.waitSec(5);
-		String button = (String) js.executeScript("return document.querySelector('body .modal-content .modal-body button');");
-		System.out.println(button);
-		WebElement button_send = (WebElement) js.executeScript("return document.querySelector('body .modal-content .modal-body button');");
+//		WebElement button_send = (WebElement) js.executeScript("return document.querySelector('body .modal-content .modal-body button');");
 //		button_send.click();
-		action.moveToElement(button_send).click().build().perform();
-//		driver.findElement(By.xpath("/html/body/div[4]/div/div/div[2]/div/div/div[1]/div[7]/button")).click();
+		try {
+			WebElement button_send = driver.findElement(By.xpath(".//button[@class='btn btn-primary btn-md']"));
+			action.moveToElement(button_send).click().build().perform();
+		}
+		catch (Exception e) {
+			driver.findElement(By.xpath(".//button[@class='rf-close-btn']")).click();
+			Common.waitSec(3);
+			driver.findElement(By.xpath(".//button[@class='rf-btn-link']")).click();
+			Common.waitSec(3);
+			driver.findElement(By.xpath(".//button[@class='btn btn-primary btn-md']")).click();
+
+		}
+
+		System.out.println("success");
+		Common.waitSec(3);
+
+//		action.moveToElement(button_send).click().build().perform();
 		Common.waitSec(3);
 		driver.findElement(By.xpath(".//button[text()='Send & Move']")).click();
 		Common.waitSec(6);
@@ -95,7 +106,19 @@ public class approve_to_assign_follow_up {
 	}
 	
 	
-	
+	public void test() {
+		driver.findElement(By.xpath(".//button[@class='rf-btn-link']")).click();
+		Common.waitSec(3);
+		try {
+			WebElement element = driver.findElement(By.xpath(".//button[@class='btn btn-primary btn-md']"));
+			System.out.println("success");
+		}
+		catch (Exception e) {
+			System.out.println("nothing");
+		}
+
+
+	}
 	
 	
 }

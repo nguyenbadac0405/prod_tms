@@ -1,5 +1,6 @@
 package com.frame;
 
+import com.Common;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -11,8 +12,12 @@ public class log_out {
 	}
 	
 	public void logout() {
-		driver.findElement(By.xpath("//*[@id='logout-menu']")).click();
-//		Common.waitSec(30);
+		driver.findElement(By.xpath("//*[@id='patient-dashboard']/div[2]/div[3]/div[2]/button")).click();
+
+		Common.waitSec(3);
+		driver.findElement(By.xpath("//*[@id='patient-dashboard']/div[2]/div[3]/div[2]/div/div/div[2]/button")).click();
+
+
 	}
 
 	public void provider() {

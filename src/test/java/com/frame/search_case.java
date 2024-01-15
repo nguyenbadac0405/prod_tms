@@ -12,6 +12,8 @@ public class search_case {
 	
 	public void search_from_intake(String id) {
 		driver.findElement(By.xpath(".//input[@placeholder='I want to search for…']")).sendKeys(id);
+
+		driver.findElement(By.className("gk-cs-top")).click();
 	}
 	
 	

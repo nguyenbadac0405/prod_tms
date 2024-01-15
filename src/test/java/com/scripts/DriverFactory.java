@@ -12,7 +12,8 @@ import org.testng.annotations.BeforeMethod;
 import com.Common;
 
 public class DriverFactory {
-	WebDriver driver;
+	WebDriver driver1;
+	WebDriver driver2;
 	
 	login pss_login;
 //	GetDriver link;
@@ -25,6 +26,8 @@ public class DriverFactory {
 	assign_provider ass;
 	billing billing;
 	FPC_Approved fpc;
+
+	intake intake;
 	public void setUpforTest() {
 	}
 	
@@ -35,9 +38,12 @@ public class DriverFactory {
 		System.setProperty("webdriver.chrome.driver","E:\\chromedriver-win32\\chromedriver.exe");
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--remote-allow-origins=*");
-		driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		driver.manage().window().maximize();	
+		driver1 = new ChromeDriver();
+		driver1.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		driver1.manage().window().maximize();
+//		driver2 = new ChromeDriver();
+//		driver2.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+//		driver2.manage().window().maximize();
 		setUpforTest();
 		RecordVideo.startRecord("test_core");
 		
@@ -46,7 +52,8 @@ public class DriverFactory {
 	@AfterMethod
 	public void tearDown() throws Exception {
 		Common.waitSec(2);
-		driver.close();
+		driver1.close();
+//		driver2.close();
 		RecordVideo.stopRecord();
 	}
 }

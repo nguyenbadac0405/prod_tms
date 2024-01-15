@@ -11,7 +11,7 @@ import java.time.Duration;
 
 public class login {
 	protected WebDriver driver;
-	private WebDriver driver1;
+
 
 	public login(WebDriver driver) {
 		this.driver = driver;	
@@ -23,7 +23,7 @@ public class login {
 	
 	
 	public void URL_intake() {
-		driver.get("https://dashboard.tms.partners/#/");
+		driver.get("https://dashboard2.tms.partners/#/");
 	}
 	public void URL_MDL() {
 		driver.get("https://mydoctorslive.com/gkim-telehealth/");

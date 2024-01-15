@@ -49,6 +49,43 @@ public class assign_to_approved {
                 driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
                 Common.waitSec(3);
 
+                // Medical History
+                System.out.println("Check Medical History");
+                driver.findElement(By.xpath(".//span[text()='Medical History']")).click();
+                Common.waitSec(2);
+                driver.findElement(By.xpath(".//input[@value='Yes']")).click();
+                Common.waitSec(2);
+                driver.findElement(By.name("data[medical_history_patient_question2]")).sendKeys("test");
+                driver.findElement(By.name("data[medical_history_patient_question3]")).sendKeys("test");
+                driver.findElement(By.name("data[patient_personal_history_progress_note_phmx]")).sendKeys("test");
+                driver.findElement(By.name("data[submit]")).click();
+                Common.waitSec(3);
+
+                //family history
+                Actions actions = new Actions(driver);
+                System.out.println("Check Family History");
+                WebElement element = driver.findElement(By.xpath(".//span[text()='Family History']"));
+                actions.moveToElement(element).click().build().perform();
+                Common.waitSec(3);
+                driver.findElement(By.name("data[family_history_member_1_related_health_issue]")).sendKeys("test");
+                driver.findElement(By.name("data[family_history_member_confirm_doctor]")).click();
+                driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
+                Common.waitSec(3);
+
+                // medication
+                System.out.println("Check Medications");
+                driver.findElement(By.xpath("//*[@id=\"patient-dashboard\"]/div[6]/div[3]/div[3]/div/div[2]/div[4]/label/input")).click();
+                Common.waitSec(2);
+                driver.findElement(By.xpath(".//button[text()='Save']")).click();
+                Common.waitSec(5);
+
+                // review of systems
+                System.out.println("Review of Systems");
+
+                driver.findElement(By.name("data[review_of_system_confirm]")).click();
+                driver.findElement(By.name("data[submit]")).click();
+                Common.waitSec(5);
+
                 // Diagnosis
                 System.out.println("Set Diagnosis");
                 driver.findElement(By.xpath(".//span[text()='Diagnosis']")).click();
@@ -56,6 +93,13 @@ public class assign_to_approved {
                 driver.findElement(By.xpath(".//div[text()='Z80.2']")).click();
                 driver.findElement(By.xpath(".//div[text()='Z86.00']")).click();
                 driver.findElement(By.xpath(".//button[text()='Save']")).click();
+                Common.waitSec(5);
+
+                // review of systems
+                System.out.println("Review of Systems");
+
+                driver.findElement(By.name("data[review_of_system_confirm]")).click();
+                driver.findElement(By.name("data[submit]")).click();
                 Common.waitSec(5);
 
                 // assessment & plan
@@ -914,5 +958,81 @@ public class assign_to_approved {
         actions.sendKeys(Keys.ENTER).build().perform();
 
     }
+
+    public void RPM_denied() throws Exception {
+
+        //medical history
+        driver.findElement(By.xpath(".//span[text()=\"Patient's Personal History\"]")).click();
+        Common.waitSec(3);
+        driver.findElement(By.name("data[patient_personal_history_progress_note_confirm_doctor]")).click();
+        driver.findElement(By.name("data[submit]")).click();
+        Common.waitSec(3);
+
+        //diagnosis
+        driver.findElement(By.xpath(".//*[text()='Diagnosis']")).click();
+        Common.waitSec(3);
+        driver.findElement(By.xpath(".//div[text()='M02']")).click();
+        driver.findElement(By.xpath(".//div[text()='I25.5']")).click();
+        Common.waitSec(1);
+        driver.findElement(By.xpath(".//div[text()='G45']")).click();
+        driver.findElement(By.xpath(".//div[text()='E08']")).click();
+        Common.waitSec(1);
+        driver.findElement(By.xpath(".//div[text()='I10']")).click();
+        driver.findElement(By.xpath(".//div[text()='Z91.83']")).click();
+        Common.waitSec(1);
+
+        driver.findElement(By.xpath(".//button[text()='Save']")).click();
+        Common.waitSec(3);
+
+        //Assessment & plan
+        System.out.println("Set Assessment & Plan");
+        driver.findElement(By.xpath(".//*[text()='Assessment & Plan']")).click();
+        Common.waitSec(3);
+        driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
+        Common.waitSec(3);
+
+        //RPM device
+        driver.findElement(By.name("data[systolic_upper_high_alert]")).sendKeys("1");
+        driver.findElement(By.name("data[systolic_upper_med_alert]")).sendKeys("1");
+        driver.findElement(By.name("data[systolic_lower_high_alert]")).sendKeys("1");
+        driver.findElement(By.name("data[systolic_lower_med_alert]")).sendKeys("1");
+        driver.findElement(By.name("data[systolic_latest]")).sendKeys("1");
+
+        driver.findElement(By.name("data[diastolic_upper_high_alert]")).sendKeys("2");
+        driver.findElement(By.name("data[diastolic_upper_med_alert]")).sendKeys("2");
+        driver.findElement(By.name("data[diastolic_lower_high_alert]")).sendKeys("2");
+        driver.findElement(By.name("data[diastolic_lower_med_alert]")).sendKeys("2");
+        driver.findElement(By.name("data[diastolic_latest]")).sendKeys("2");
+
+        driver.findElement(By.name("data[pulse_upper_high_alert]")).sendKeys("3");
+        driver.findElement(By.name("data[pulse_upper_med_alert]")).sendKeys("3");
+        driver.findElement(By.name("data[pulse_lower_high_alert]")).sendKeys("3");
+        driver.findElement(By.name("data[pulse_lower_med_alert]")).sendKeys("3");
+        driver.findElement(By.name("data[pulse_latest]")).sendKeys("3");
+
+        driver.findElement(By.name("data[submit]")).click();
+        Common.waitSec(3);
+
+        //deneid
+        driver.findElement(By.xpath(".//div[text()='Deny']")).click();
+        Common.waitSec(2);
+        Actions actions = new Actions(driver);
+        driver.findElement(By.xpath(".//div[text()='Please select reason to reject case']")).click();
+        Common.waitSec(1);
+        actions.sendKeys(Keys.ENTER).build().perform();
+        Common.waitSec(2);
+        driver.findElement(By.xpath(".//input[@placeholder='Search']")).sendKeys("a");
+        Common.waitSec(3);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebElement icd = (WebElement) js.executeScript("return document.querySelector('body .modal-content .modal-body .content-wrapper .rc-suggest li');");
+        icd.click();
+        Common.waitSec(1);
+        driver.findElement(By.xpath(".//span[text()='Done']")).click();
+        Common.waitSec(3);
+        driver.findElement(By.xpath(".//button[text()='Done']")).click();
+        Common.waitSec(3);
+        actions.sendKeys(Keys.ENTER).build().perform();
+    }
+
 
 }

@@ -19,17 +19,17 @@ public class ExportInfo extends DriverFactory {
 	
 	@Override
 	public void setUpforTest() {
-		link = new GetDriver(driver);
-		login = PageFactory.initElements(driver, login.class);
-		new_case_intake = PageFactory.initElements(driver, create_new_case_intake.class);
-		to_assign = PageFactory.initElements(driver, new_to_assign.class);
-		to_approved = PageFactory.initElements(driver, assign_to_approved.class);
-		to_complete = PageFactory.initElements(driver, approved_to_complete.class);
-		search = PageFactory.initElements(driver, search_case.class);
-		ass = PageFactory.initElements(driver, assign_provider.class);
-		logout = PageFactory.initElements(driver, log_out.class);
+		link = new GetDriver(driver1);
+		login = PageFactory.initElements(driver1, login.class);
+		new_case_intake = PageFactory.initElements(driver1, create_new_case_intake.class);
+		to_assign = PageFactory.initElements(driver1, new_to_assign.class);
+		to_approved = PageFactory.initElements(driver1, assign_to_approved.class);
+		to_complete = PageFactory.initElements(driver1, approved_to_complete.class);
+		search = PageFactory.initElements(driver1, search_case.class);
+		ass = PageFactory.initElements(driver1, assign_provider.class);
+		logout = PageFactory.initElements(driver1, log_out.class);
 		excel = new ExcelHelpers();
-		getinfo = PageFactory.initElements(driver, getInfo.class);
+		getinfo = PageFactory.initElements(driver1, getInfo.class);
 		
 	}
 	
