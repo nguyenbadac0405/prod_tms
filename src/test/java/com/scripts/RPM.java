@@ -32,6 +32,9 @@ public class RPM extends DriverFactory {
 
     provider provider;
 
+    pss pss;
+
+
 
     @Override
     public void setUpforTest() {
@@ -54,25 +57,9 @@ public class RPM extends DriverFactory {
         sendback = PageFactory.initElements(driver1, sendback.class);
         intake = PageFactory.initElements(driver1, intake.class);
         provider = PageFactory.initElements(driver1, provider.class);
+        pss = PageFactory.initElements(driver1, pss.class);
     }
 
-
-
-    @Test
-    public void RPM_new_to_assign() throws Exception {
-        excel.setExcelFile("src/test/resources/RPM.xlsx", "Sheet1");
-        login.URL_intake();
-        login.pss("111111");
-        Common.waitSec(5);
-
-        String id = excel.getCellData("id", 1);
-        search.search_from_intake(id);
-        Common.waitSec(5);
-
-        to_assign.RPM();
-        Common.waitSec(5);
-
-    }
 
     @Test
     public void RPM_complete() throws Exception {
@@ -260,8 +247,7 @@ public class RPM extends DriverFactory {
     }
 
     @Test
-    public void create_RPM() throws Exception {
-        Actions action = new Actions(driver1);
+    public void create_case() throws Exception {
         excel.setExcelFile("src/test/resources/RPM.xlsx", "Sheet1");
         String business = excel.getCellData("business", 1);
         String vertical = excel.getCellData("vertical", 1);
@@ -282,18 +268,165 @@ public class RPM extends DriverFactory {
     }
 
     @Test
-    public void RPM_SmartMed() throws Exception {
+    public void assigned() throws Exception {
+        excel.setExcelFile("src/test/resources/RPM.xlsx", "Sheet1");
+        login.URL_intake();
+        login.pss("111111");
+        Common.waitSec(10);
+
+        String id = excel.getCellData("id", 1);
+        search.search_from_intake(id);
+        Common.waitSec(11);
+
+        pss.assign_RPM();
+        Common.waitSec(10);
+
+
+    }
+
+    @Test
+    public void to_complete() throws Exception {
         excel.setExcelFile("src/test/resources/RPM.xlsx", "Sheet1");
         login.URL_intake();
         login.provider("123456");
-        Common.waitSec(5);
+        Common.waitSec(15);
 
         String id = excel.getCellData("id", 1);
         search.search_from_intake(id);
         Common.waitSec(5);
 
-        provider.to_completed();
-        Common.waitSec(30);
+        provider.complete_RPM();
+        Common.waitSec(10);
+
+
+    }
+
+    @Test
+    public void complete() throws Exception {
+        excel.setExcelFile("src/test/resources/RPM.xlsx", "Sheet1");
+        String business = excel.getCellData("business", 1);
+        String vertical = excel.getCellData("vertical", 1);
+
+        String MG = excel.getCellData("MG", 1);
+        String first_name = "test " + render.firtname();
+
+        String last_name = render.lastname();
+        String DOB = excel.getCellData("DOB", 1);
+//        String medicare_ID = render.medicare_ID();
+        String medicare_ID = "6TR7FG7RT94";
+
+        login.URL_intake();
+
+        login.intake("123456");
+        Common.waitSec(6);
+        intake.create_RPM(business, vertical, MG, first_name, last_name, DOB, medicare_ID);
+        String id = to_assign.find_id();
+        Common.waitSec(10);
+
+        logout.logout();
+
+        login.pss("111111");
+        Common.waitSec(10);
+
+        search.search_from_intake(id);
+        Common.waitSec(11);
+
+        pss.assign_RPM();
+        Common.waitSec(10);
+
+        logout.logout();
+        Common.waitSec(10);
+
+        login.provider("123456");
+        Common.waitSec(10);
+
+        search.search_from_intake(id);
+        Common.waitSec(5);
+
+        provider.complete_RPM();
+        Common.waitSec(10);
+
+    }
+
+    @Test
+    public void denied() throws Exception {
+        excel.setExcelFile("src/test/resources/RPM.xlsx", "Sheet1");
+        String business = excel.getCellData("business", 1);
+        String vertical = excel.getCellData("vertical", 1);
+
+        String MG = excel.getCellData("MG", 1);
+        String first_name = "test " + render.firtname();
+
+        String last_name = render.lastname();
+        String DOB = excel.getCellData("DOB", 1);
+//        String medicare_ID = render.medicare_ID();
+        String medicare_ID = "6TR7FG7RT95";
+
+        login.URL_intake();
+
+        login.intake("123456");
+        Common.waitSec(6);
+        intake.create_RPM(business, vertical, MG, first_name, last_name, DOB, medicare_ID);
+        String id = to_assign.find_id();
+        Common.waitSec(10);
+
+        logout.logout();
+
+        login.pss("111111");
+        Common.waitSec(10);
+
+        search.search_from_intake(id);
+        Common.waitSec(11);
+
+        pss.assign_RPM();
+        Common.waitSec(10);
+
+        logout.logout();
+        Common.waitSec(10);
+
+        login.provider("123456");
+        Common.waitSec(10);
+
+        search.search_from_intake(id);
+        Common.waitSec(5);
+
+        provider.denied();
+        Common.waitSec(10);
+
+    }
+
+    @Test
+    public void cancel() throws Exception {
+        excel.setExcelFile("src/test/resources/RPM.xlsx", "Sheet1");
+        String business = excel.getCellData("business", 1);
+        String vertical = excel.getCellData("vertical", 1);
+
+        String MG = excel.getCellData("MG", 1);
+        String first_name = "test " + render.firtname();
+
+        String last_name = render.lastname();
+        String DOB = excel.getCellData("DOB", 1);
+//        String medicare_ID = render.medicare_ID();
+        String medicare_ID = "6TR7FG7RT96";
+
+        login.URL_intake();
+
+        login.intake("123456");
+        Common.waitSec(6);
+        intake.create_RPM(business, vertical, MG, first_name, last_name, DOB, medicare_ID);
+        String id = to_assign.find_id();
+        Common.waitSec(10);
+
+        logout.logout();
+
+        login.pss("111111");
+        Common.waitSec(10);
+
+        search.search_from_intake(id);
+        Common.waitSec(11);
+
+        pss.cancel_RPM();
+        Common.waitSec(10);
     }
 
 }

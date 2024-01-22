@@ -7,14 +7,14 @@
 		<classes>
 			<class name="com.scripts.Genetics">
 				<methods>
-					<include name="genetics"></include>
+					<include name="complete"></include>
 				</methods>
 			</class>
 		</classes>
 	</test>
 
 
-	<!-- TC3: genetics cancel-->
+	<!-- TC2: genetics cancel-->
 	<test name="genetics cancel">
 		<classes>
 			<class name="com.scripts.Genetics">
@@ -25,7 +25,7 @@
 		</classes>
 	</test>
 
-	<!-- TC4: genetics denied-->
+	<!-- TC3: genetics denied-->
 	<test name="genetics denied">
 		<classes>
 			<class name="com.scripts.Genetics">
@@ -36,12 +36,34 @@
 		</classes>
 	</test>
 
-	<!-- TC4: RPM-->
-	<test name="RPM">
+	<!-- TC4: RPM Smartmed complete-->
+	<test name="RPM SmartMed complete">
 		<classes>
 			<class name="com.scripts.RPM">
 				<methods>
-					<include name="RPM"></include>
+					<include name="complete"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<!-- TC4: RPM SmartMed cancel-->
+	<test name="RPM SmartMed cancel">
+		<classes>
+			<class name="com.scripts.RPM">
+				<methods>
+					<include name="cancel"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<!-- TC4: RPM SmartMed denied-->
+	<test name="RPM SmartMed">
+		<classes>
+			<class name="com.scripts.RPM">
+				<methods>
+					<include name="denied"></include>
 				</methods>
 			</class>
 		</classes>

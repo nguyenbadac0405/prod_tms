@@ -1,16 +1,11 @@
 package com.scripts;
 
 import com.frame.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
 import com.Common;
-
-import java.awt.image.ColorModel;
-import java.io.PrintStream;
 
 public class Genetics extends DriverFactory {
 	login login;
@@ -112,7 +107,7 @@ public class Genetics extends DriverFactory {
 	public void new_case() throws Exception {
 		//create new case
 		Actions action = new Actions(driver1);
-		excel.setExcelFile("src/test/resources/RPM.xlsx", "Sheet1");
+		excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
 		String business = excel.getCellData("business", 1);
 		String vertical = excel.getCellData("vertical", 1);
 		String MG = excel.getCellData("MG", 1);
@@ -126,7 +121,7 @@ public class Genetics extends DriverFactory {
 		login.URL_intake();
 		login.intake("123456");
 		Common.waitSec(6);
-		intake.create_RPM(business, vertical, MG, first_name, last_name, DOB, medicare_ID);
+		intake.create_case_genetics(business, vertical, MG, lab, type, first_name, last_name, DOB, medicare_ID);
 		Common.waitSec(30);
 
 	}
@@ -242,20 +237,21 @@ public class Genetics extends DriverFactory {
 		String first_name = "test " + render.firtname();
 		String last_name = render.lastname();
 		String DOB = excel.getCellData("DOB", 1);
-		String medicare_ID = render.medicare_ID();
+//		String medicare_ID = render.medicare_ID();
+		String medicare_ID = "6TR7FG7RT91";
 		String zipcode = excel.getCellData("zipcode", 1);
 		login.URL_intake();
 		login.intake("123456");
 		Common.waitSec(6);
-		intake.create_RPM(business, vertical, MG, first_name, last_name, DOB, medicare_ID);
+		intake.create_case_genetics(business, vertical, MG, lab, type, first_name, last_name, DOB, medicare_ID);
 
 
 		String id = to_assign.find_id();
 		excel.setCellData(id, 1, 0);
 		System.out.println("Case-ID: " + id);
-		Common.waitSec(30);
+		Common.waitSec(10);
 		logout.logout();
-		Common.waitSec(30);
+		Common.waitSec(10);
 
 
 		//to_assign
@@ -267,14 +263,14 @@ public class Genetics extends DriverFactory {
 		Common.waitSec(5);
 
 		pss.to_pending();
-		Common.waitSec(60);
+		Common.waitSec(10);
 
 		logout.logout();
 
 		//to RTS
 
 		login.provider("123456");
-		Common.waitSec(5);
+		Common.waitSec(10);
 
 		search.search_from_intake(id);
 		Common.waitSec(5);
@@ -288,10 +284,10 @@ public class Genetics extends DriverFactory {
 
 		//to AWR
 		login.intake("123456");
-		Common.waitSec(5);
+		Common.waitSec(10);
 
 		search.search_from_intake(id);
-		Common.waitSec(10);
+		Common.waitSec(5);
 
 		intake.to_Awating_Result();
 		System.out.println("check");
@@ -301,10 +297,10 @@ public class Genetics extends DriverFactory {
 
 		//to AFU
 		login.pss("111111");
-		Common.waitSec(5);
+		Common.waitSec(10);
 
 		search.search_from_intake(id);
-		Common.waitSec(20);
+		Common.waitSec(10);
 
 		pss.to_AFU();
 		Common.waitSec(5);
@@ -313,10 +309,10 @@ public class Genetics extends DriverFactory {
 
 		//to Follow up
 		login.provider("123456");
-		Common.waitSec(5);
+		Common.waitSec(10);
 
 		search.search_from_intake(id);
-		Common.waitSec(20);
+		Common.waitSec(10);
 
 		doctor.to_approve3();
 		Common.waitSec(5);
@@ -325,10 +321,10 @@ public class Genetics extends DriverFactory {
 
 		//completed
 		login.pss("111111");
-		Common.waitSec(5);
+		Common.waitSec(10);
 
 		search.search_from_intake(id);
-		Common.waitSec(20);
+		Common.waitSec(10);
 
 		pss.complete();
 		Common.waitSec(5);
@@ -348,67 +344,12 @@ public class Genetics extends DriverFactory {
 		String first_name = "test " + render.firtname();
 		String last_name = render.lastname();
 		String DOB = excel.getCellData("DOB", 1);
-		String medicare_ID = render.medicare_ID();
+//		String medicare_ID = render.medicare_ID();
+		String medicare_ID = "6TR7FG7RT92";
 		String zipcode = excel.getCellData("zipcode", 1);
 		login.URL_intake();
 		login.intake("123456");
-		Common.waitSec(6);
-//		intake.create_case(business, vertical, MG, lab, type, first_name, last_name, DOB, medicare_ID);
-
-
-		String id = to_assign.find_id();
-		excel.setCellData(id, 1, 0);
-		System.out.println("Case-ID: " + id);
-		Common.waitSec(30);
-		logout.logout();
-		Common.waitSec(30);
-
-
-		//to_assign
-		login.pss("111111");
-		Common.waitSec(5);
-
-
-		search.search_from_intake(id);
-		Common.waitSec(5);
-
-		pss.to_pending();
-		Common.waitSec(60);
-
-		logout.logout();
-
-		//to denied
-
-		login.provider("123456");
-		Common.waitSec(5);
-
-		search.search_from_intake(id);
-		Common.waitSec(5);
-
-		Common.waitSec(30);
-
-		doctor.denied_genetics();
-		Common.waitSec(3);
-	}
-
-	@Test
-	public void cancel() throws Exception {
-		//create new case
-		Actions action = new Actions(driver1);
-		excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
-		String business = excel.getCellData("business", 1);
-		String vertical = excel.getCellData("vertical", 1);
-		String MG = excel.getCellData("MG", 1);
-		String lab = excel.getCellData("lab", 1);
-		String type = excel.getCellData("type", 1);
-		String first_name = "test " + render.firtname();
-		String last_name = render.lastname();
-		String DOB = excel.getCellData("DOB", 1);
-		String medicare_ID = render.medicare_ID();
-		String zipcode = excel.getCellData("zipcode", 1);
-		login.URL_intake();
-		login.intake("123456");
-		Common.waitSec(6);
+		Common.waitSec(20);
 		intake.create_case_genetics(business, vertical, MG, lab, type, first_name, last_name, DOB, medicare_ID);
 
 
@@ -428,7 +369,64 @@ public class Genetics extends DriverFactory {
 		search.search_from_intake(id);
 		Common.waitSec(5);
 
-		pss.cancel();
+		pss.to_pending();
+		Common.waitSec(10);
+
+		logout.logout();
+
+		//to denied
+
+		login.provider("123456");
+		Common.waitSec(15);
+
+		search.search_from_intake(id);
+		Common.waitSec(5);
+
+		Common.waitSec(10);
+
+		doctor.denied();
+		Common.waitSec(3);
+	}
+
+	@Test
+	public void cancel() throws Exception {
+		//create new case
+		Actions action = new Actions(driver1);
+		excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
+		String business = excel.getCellData("business", 1);
+		String vertical = excel.getCellData("vertical", 1);
+		String MG = excel.getCellData("MG", 1);
+		String lab = excel.getCellData("lab", 1);
+		String type = excel.getCellData("type", 1);
+		String first_name = "test " + render.firtname();
+		String last_name = render.lastname();
+		String DOB = excel.getCellData("DOB", 1);
+//		String medicare_ID = render.medicare_ID();
+		String medicare_ID = "6TR7FG7RT93";
+		String zipcode = excel.getCellData("zipcode", 1);
+		login.URL_intake();
+		login.intake("123456");
+		Common.waitSec(20);
+		intake.create_case_genetics(business, vertical, MG, lab, type, first_name, last_name, DOB, medicare_ID);
+
+
+		String id = to_assign.find_id();
+		excel.setCellData(id, 1, 0);
+		System.out.println("Case-ID: " + id);
+		Common.waitSec(30);
+		logout.logout();
+		Common.waitSec(30);
+
+
+		//to_assign
+		login.pss("111111");
+		Common.waitSec(5);
+
+
+		search.search_from_intake(id);
+		Common.waitSec(5);
+
+		pss.cancel_genetics();
 		Common.waitSec(10);
 	}
 

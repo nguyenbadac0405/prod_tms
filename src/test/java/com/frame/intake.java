@@ -49,6 +49,10 @@ public class intake {
         action.sendKeys(DOB).build().perform();
 
 
+
+        //zipcode
+        driver.findElement(By.name("data[patient_zip_code]")).sendKeys("94107");
+        Common.waitSec(1);
         // medicare
         driver.findElement(By.name("data[patient_no_secondary_insurance]")).click();
         Common.waitSec(2);
@@ -56,6 +60,11 @@ public class intake {
         Common.waitSec(2);
         driver.findElement(By.name("data[patient_primary_insurance_id]")).sendKeys(medicare_ID);
         Common.waitSec(1);
+
+
+        //submit 1
+        driver.findElement(By.name("data[submit]")).click();
+        Common.waitSec(5);
 
         //gender & ethnicity
         driver.findElement(By.xpath("//*[@value='Male']")).click();
@@ -72,8 +81,7 @@ public class intake {
         // zip code & street
         driver.findElement(By.name("data[patient_address]")).sendKeys("210 King Street");
         Common.waitSec(1);
-        driver.findElement(By.name("data[patient_zip_code]")).sendKeys("94107");
-        Common.waitSec(1);
+
 
         //phone
         driver.findElement(By.xpath("//input[@value='Cell Phone']")).click();
@@ -99,7 +107,7 @@ public class intake {
         driver.findElement(By.xpath(".//*[@name='data[pcp_no_pcp_certification]']")).click();
         Common.waitSec(2);
         driver.findElement(By.xpath(".//button[text()='Save']")).click();
-        Common.waitSec(2);
+        Common.waitSec(3);
 
         //Test Requirement
         System.out.println("Check Test Requirement");
@@ -191,16 +199,30 @@ public class intake {
         action.sendKeys(Keys.TAB).build().perform();
         action.sendKeys(DOB).build().perform();
 
+        // zip code
+        driver.findElement(By.name("data[patient_zip_code]")).sendKeys("94107");
+        Common.waitSec(1);
+
+        // medicare
+        driver.findElement(By.name("data[patient_no_secondary_insurance]")).click();
+        Common.waitSec(2);
+        driver.findElement(By.xpath(".//input[@value='Medicare']")).click();
+        Common.waitSec(3);
+        driver.findElement(By.name("data[patient_primary_insurance_id]")).sendKeys(medicare_ID);
+        Common.waitSec(1);
+
+        //submit 1
+        driver.findElement(By.name("data[submit]")).click();
+        Common.waitSec(5);
+
         //gender & ethnicity
         driver.findElement(By.xpath("//*[@value='Male']")).click();
         Common.waitSec(1);
         driver.findElement(By.xpath("//*[@value='Asian']")).click();
         Common.waitSec(1);
 
-        // zip code & street
+        //address
         driver.findElement(By.name("data[patient_address]")).sendKeys("210 King Street");
-        Common.waitSec(1);
-        driver.findElement(By.name("data[patient_zip_code]")).sendKeys("94107");
         Common.waitSec(1);
 
         //phone
@@ -213,12 +235,6 @@ public class intake {
         driver.findElement(By.xpath("//*[@value='English']")).click();
         driver.findElement(By.xpath("//*[@value='French']")).click();
         Common.waitSec(3);
-
-        // medicare
-        driver.findElement(By.name("data[patient_no_secondary_insurance]")).click();
-        Common.waitSec(2);
-        driver.findElement(By.name("data[patient_primary_insurance_id]")).sendKeys(medicare_ID);
-        Common.waitSec(1);
 
         //best time to call
         driver.findElement(By.xpath(".//div[text()='Select your answer']")).click();
@@ -240,6 +256,7 @@ public class intake {
         Common.waitSec(2);
         action.sendKeys(Keys.ENTER).build().perform();
         Common.waitSec(2);
+
 
         // submit
         driver.findElement(By.name("data[submit]")).click();

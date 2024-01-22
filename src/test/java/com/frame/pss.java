@@ -2,6 +2,7 @@ package com.frame;
 
 import com.Common;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
 public class pss {
@@ -99,7 +100,7 @@ public class pss {
         action.sendKeys(Keys.ENTER).build().perform();
     }
 
-    public void cancel() {
+    public void cancel_genetics() {
         Actions actions = new Actions(driver);
 
         driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[2]/div[1]/div[2]/label/input")).click();
@@ -130,7 +131,76 @@ public class pss {
     }
 
     public void assign_RPM() {
-        
+        driver.findElement(By.xpath("//span[text()='Compliance']")).click();
+        Common.waitSec(5);
+        Actions action = new Actions(driver);
+        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[6]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[7]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[8]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[9]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[10]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[11]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[12]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[14]/div[1]/div[2]/label/input")).click();
+
+        driver.findElement(By.name("data[compliance_verification_verified_patient_fulfill_communication_41589]")).click();
+        driver.findElement(By.name("data[compliance_verification_verified_patient_willing_test_41589]")).click();
+        driver.findElement(By.name("data[compliance_verification_verified_patient_gender_41589]")).click();
+        driver.findElement(By.name("data[compliance_verification_verified_patient_dob_41589]")).click();
+        driver.findElement(By.name("data[compliance_verification_verified_patient_state_41589]")).click();
+
+        driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
+        Common.waitSec(15);
+
+        //assign
+        driver.findElement(By.id("rec-form-select-collapse-btn")).click();
+        Common.waitSec(3);
+
+        driver.findElement(By.xpath(".//div[text()='Select ...']")).click();
+        Common.waitSec(2);
+        action.sendKeys("dac").build().perform();
+        action.sendKeys(Keys.ENTER).build().perform();
+        action.sendKeys(Keys.ENTER).build().perform();
+
+        Common.waitSec(5);
+        driver.findElement(By.xpath(".//span[text()='Assign']")).click();
+        Common.waitSec(2);
+        action.sendKeys(Keys.ENTER).build().perform();
+
+    }
+
+    public void cancel_RPM() {
+        driver.findElement(By.xpath("//span[text()='Compliance']")).click();
+        Common.waitSec(5);
+        Actions actions = new Actions(driver);
+        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[6]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[7]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[8]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[9]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[10]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[11]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[12]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[14]/div[1]/div[2]/label/input")).click();
+
+        driver.findElement(By.name("data[compliance_verification_verified_patient_fulfill_communication_41589]")).click();
+        driver.findElement(By.name("data[compliance_verification_verified_patient_willing_test_41589]")).click();
+        driver.findElement(By.name("data[compliance_verification_verified_patient_gender_41589]")).click();
+        driver.findElement(By.name("data[compliance_verification_verified_patient_dob_41589]")).click();
+        driver.findElement(By.name("data[compliance_verification_verified_patient_state_41589]")).click();
+
+        driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
+        Common.waitSec(15);
+
+        //cancel
+        driver.findElement(By.xpath("//*[@id='patient-dashboard']/div[6]/div[2]/div[4]/div[1]/div[2]/button")).click();
+        Common.waitSec(3);
+        driver.findElement(By.xpath(".//span[text()='Cancel']")).click();
+        Common.waitSec(3);
+        driver.findElement(By.xpath(".//div[text()='Please select reason to cancel case']")).click();
+        Common.waitSec(1);
+        actions.sendKeys(Keys.ENTER).build().perform();
+        Common.waitSec(2);
+        driver.findElement(By.xpath(".//button[text()='Done']")).click();
     }
 
 }
