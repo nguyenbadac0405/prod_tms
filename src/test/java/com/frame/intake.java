@@ -1,10 +1,7 @@
 package com.frame;
 
 import com.Common;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
 public class intake {
@@ -18,23 +15,23 @@ public class intake {
     public void create_case_genetics(String business, String vertical, String MG, String type, String lab, String first_name, String last_name, String DOB, String medicare_ID) {
         driver.findElement(By.xpath("//*[@id=\"patient-dashboard\"]/div[6]/div[2]/div/div[2]/div[1]/div[2]/button")).click();
         System.out.println("Set Business & Vertical");
-        driver.findElement(By.id("react-select-8-input")).sendKeys(business, Keys.ENTER);
+        driver.findElement(By.id("react-select-9-input")).sendKeys(business, Keys.ENTER);
         Common.waitSec(2);
         Actions action = new Actions(driver);
         // set medical service
-        driver.findElement(By.id("react-select-9-input")).sendKeys(vertical, Keys.ENTER);
-        Common.waitSec(10);
+        driver.findElement(By.id("react-select-10-input")).sendKeys(vertical, Keys.ENTER);
+        Common.waitSec(15);
 
         // set MG
 //        driver.findElement(By.id("react-select-14-input")).sendKeys(MG, Keys.ENTER);
 //        Common.waitSec(2);
 
         // set service type
-        driver.findElement(By.id("react-select-11-input")).sendKeys(type, Keys.ENTER);
-        Common.waitSec(3);
+        driver.findElement(By.id("react-select-12-input")).sendKeys(type, Keys.ENTER);
+        Common.waitSec(5);
 
         // set state
-        driver.findElement(By.id("react-select-12-input")).sendKeys(lab, Keys.ENTER);
+        driver.findElement(By.id("react-select-13-input")).sendKeys(lab, Keys.ENTER);
         System.out.println("Done Business and Vertical");
         Common.waitSec(2);
 
@@ -75,6 +72,8 @@ public class intake {
         // height & weight
         driver.findElement(By.name("data[patient_height]")).sendKeys("5.75");
         Common.waitSec(1);
+        driver.findElement(By.name("data[patient_height_in]")).sendKeys("5.75");
+        Common.waitSec(1);
         driver.findElement(By.name("data[patient_weight]")).sendKeys("146");
         Common.waitSec(1);
 
@@ -91,6 +90,8 @@ public class intake {
 
         //
         driver.findElement(By.name("data[patient_shipping_sms]")).click();
+        driver.findElement(By.name("data[patient_shipping_us_postal_service]")).click();
+        Common.waitSec(3);
 
         // submit
         driver.findElement(By.name("data[submit]")).click();
@@ -111,11 +112,14 @@ public class intake {
 
         //Test Requirement
         System.out.println("Check Test Requirement");
+        driver.findElement(By.xpath(".//span[text()='Test Requirements']")).click();
+        Common.waitSec(3);
         driver.findElement(By.name("data[test_requirements_checkbox]")).click();
         driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
         Common.waitSec(3);
 
         //Medical History
+        driver.findElement(By.xpath(".//span[text()='Medical History']")).click();
         driver.findElement(By.xpath(".//span[text()='Medical History']")).click();
 
         Common.waitSec(2);
@@ -178,15 +182,15 @@ public class intake {
         driver.findElement(By.xpath("//*[@id=\"patient-dashboard\"]/div[6]/div[2]/div/div[2]/div[1]/div[2]/button")).click();
         System.out.println("Set Business & Vertical");
         driver.findElement(By.id("react-select-8-input")).sendKeys(business, Keys.ENTER);
-        Common.waitSec(2);
+        Common.waitSec(6);
         Actions action = new Actions(driver);
         // set medical service
         driver.findElement(By.id("react-select-9-input")).sendKeys(vertical, Keys.ENTER);
         Common.waitSec(10);
 
         // set MG
-        driver.findElement(By.id("react-select-14-input")).sendKeys(MG, Keys.ENTER);
-        Common.waitSec(2);
+//        driver.findElement(By.id("react-select-14-input")).sendKeys(MG, Keys.ENTER);
+//        Common.waitSec(2);
 
 
         System.out.println("Input Information");
@@ -216,6 +220,8 @@ public class intake {
         Common.waitSec(5);
 
         //gender & ethnicity
+        driver.findElement(By.xpath("//*[@value='Medicare']")).click();
+        Common.waitSec(2);
         driver.findElement(By.xpath("//*[@value='Male']")).click();
         Common.waitSec(1);
         driver.findElement(By.xpath("//*[@value='Asian']")).click();
@@ -271,4 +277,29 @@ public class intake {
         System.out.println("------------------------------Done new case.-----------------------------------");
         Common.waitSec(5);
     }
+
+    public static String get_DOB() {
+
+        Common.waitSec(5);
+        WebElement elementToCheck = null;
+
+        try {
+            elementToCheck = driver.findElement(By.xpath("//span[text()='Patient Information']"));
+        } catch (NoSuchElementException e) {
+            System.out.println("Phần tử không tồn tại trên trang web.");
+        }
+
+        // Kiểm tra xem phần tử có tồn tại và hiển thị hay không
+        if (elementToCheck != null && elementToCheck.isDisplayed()) {
+            driver.findElement(By.xpath("//span[text()='Patient Information']")).click();
+            Common.waitSec(3);
+            WebElement DOB_element = driver.findElement(By.name("data[patient_dob]"));
+            String DOB = DOB_element.getAttribute("value");
+            return DOB;
+        } else {
+            return "1";
+        }
+    }
 }
+
+

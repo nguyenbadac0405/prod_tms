@@ -146,7 +146,7 @@ public class Genetics extends DriverFactory {
 		excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
 		login.URL_intake();
 		login.provider("123456");
-		Common.waitSec(5);
+		Common.waitSec(15);
 
 		String id = excel.getCellData("id", 1);
 		search.search_from_intake(id);
@@ -155,8 +155,8 @@ public class Genetics extends DriverFactory {
 
 		String lab = excel.getCellData("lab", 1);
 		String type = excel.getCellData("type", 1);
-//		billing.billing();
-		Common.waitSec(30);
+//		billing.billing();1
+		Common.waitSec(10);
 
 		doctor.to_RTS();
 		Common.waitSec(3);
@@ -168,11 +168,11 @@ public class Genetics extends DriverFactory {
 		excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
 		login.URL_intake();
 		login.intake("123456");
-		Common.waitSec(5);
+		Common.waitSec(15);
 
 		String id = excel.getCellData("id", 1);
 		search.search_from_intake(id);
-		Common.waitSec(20);
+		Common.waitSec(5);
 
 		intake.to_Awating_Result();
 		Common.waitSec(3);
@@ -199,11 +199,11 @@ public class Genetics extends DriverFactory {
 		excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
 		login.URL_intake();
 		login.provider("123456");
-		Common.waitSec(5);
+		Common.waitSec(15);
 
 		String id = excel.getCellData("id", 1);
 		search.search_from_intake(id);
-		Common.waitSec(20);
+		Common.waitSec(5);
 
 		doctor.to_approve3();
 		Common.waitSec(5);
@@ -234,11 +234,11 @@ public class Genetics extends DriverFactory {
 		String MG = excel.getCellData("MG", 1);
 		String lab = excel.getCellData("lab", 1);
 		String type = excel.getCellData("type", 1);
-		String first_name = "test " + render.firtname();
+		String first_name = "test GK " + render.firtname();
 		String last_name = render.lastname();
 		String DOB = excel.getCellData("DOB", 1);
 //		String medicare_ID = render.medicare_ID();
-		String medicare_ID = "6TR7FG7RT91";
+		String medicare_ID = "6TR7FG7RT96";
 		String zipcode = excel.getCellData("zipcode", 1);
 		login.URL_intake();
 		login.intake("123456");
@@ -428,6 +428,46 @@ public class Genetics extends DriverFactory {
 
 		pss.cancel_genetics();
 		Common.waitSec(10);
+	}
+
+	@Test
+	public void check_change_DOB() throws Exception {
+		excel.setExcelFile("src/test/resources/case_dob_not_fix_20240124.xlsx", "Sheet1");
+		login.URL_intake();
+		login.pss("111111");
+		Common.waitSec(10);
+		search.pin();
+		Common.waitSec(3);
+		for (int i= 1; i<150; i++){
+			String id = excel.getCellData("name", i);
+			String check = excel.getCellData("state_alias",i);
+			if(check.equals("INTAKE-DRAFT") || check.equals("INTAKE-FOR_CORRECTION")){
+				excel.setCellData("1", i, 8);
+			}
+			else {
+				search.search(id);
+				String DOB = intake.get_DOB();
+				excel.setCellData(DOB, i, 8);
+			}
+		}
+	}
+	@Test
+	public void check_change_DOB_intake() throws Exception {
+		excel.setExcelFile("src/test/resources/case_dob_not_fix_20240124.xlsx", "Sheet1");
+		login.URL_intake();
+		login.intake("gkim12345");
+		Common.waitSec(10);
+		search.pin();
+		Common.waitSec(3);
+		for (int i= 1; i<140; i++){
+			String id = excel.getCellData("name", i);
+			String check = excel.getCellData("state_alias",i);
+			if(check.equals("INTAKE-DRAFT") || check.equals("INTAKE-FOR_CORRECTION")){
+				search.search(id);
+				String DOB = intake.get_DOB();
+				excel.setCellData(DOB, i, 7);
+			}
+		}
 	}
 
 

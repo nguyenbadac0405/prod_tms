@@ -17,15 +17,17 @@ public class pss {
         Actions action = new Actions(driver);
         System.out.println("---------------------------------New to Assign---------------------------------------");
         System.out.println("Check Compliance");
-//        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[2]/div[1]/div[2]/label/input")).click();
-        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[2]/div[1]/div[2]/label/input")).click();
-        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[3]/div[1]/div[2]/label/input")).click();
-        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[4]/div[1]/div[2]/label/input")).click();
-        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[5]/div[1]/div[2]/label/input")).click();
-        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[6]/div[1]/div[1]/label/input")).click();
-        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[8]/div[1]/div[1]/label/input")).click();
-        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[9]/div[1]/div[2]/label/input")).click();
-        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[10]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.name("data[compliance_verification_verified_telehealth_provider]")).click();
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[4]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[5]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[6]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[7]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[8]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[9]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[10]/div[1]/div[1]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[11]/div[1]/div[1]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[12]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[13]/div[1]/div[2]/label/input")).click();
         driver.findElement(By.name("data[compliance_verification_verified_patient_gender_41589]")).click();
         driver.findElement(By.name("data[compliance_verification_verified_patient_dob_41589]")).click();
         driver.findElement(By.name("data[compliance_verification_verified_patient_state_41589]")).click();
@@ -73,10 +75,12 @@ public class pss {
         System.out.println("check");
         driver.findElement(By.xpath(".//button[text()='Send & Move']")).click();
         Common.waitSec(3);
-        action.sendKeys(Keys.ENTER).build().perform();
+//        action.sendKeys(Keys.ENTER).build().perform();
+        driver.findElement(By.xpath(".//button[text()='Got it']")).click();
         Common.waitSec(3);
 
         driver.findElement(By.xpath(".//span[text()='Forward']")).click();
+        Common.waitSec(2);
         action.sendKeys(Keys.ENTER).build().perform();
         Common.waitSec(3);
 
@@ -109,7 +113,7 @@ public class pss {
         driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[5]/div[1]/div[2]/label/input")).click();
         driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[6]/div[1]/div[1]/label/input")).click();
         driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[8]/div[1]/div[1]/label/input")).click();
-        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[9]/div[1]/div[2]/label/input")).click();
+//        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[9]/div[1]/div[2]/label/input")).click();
         driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[10]/div[1]/div[2]/label/input")).click();
         driver.findElement(By.name("data[compliance_verification_verified_patient_gender_41589]")).click();
         driver.findElement(By.name("data[compliance_verification_verified_patient_dob_41589]")).click();
@@ -137,14 +141,14 @@ public class pss {
         driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[6]/div[1]/div[2]/label/input")).click();
         driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[7]/div[1]/div[2]/label/input")).click();
         driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[8]/div[1]/div[2]/label/input")).click();
-        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[9]/div[1]/div[2]/label/input")).click();
-        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[10]/div[1]/div[2]/label/input")).click();
+//        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[9]/div[1]/div[2]/label/input")).click();
+//        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[10]/div[1]/div[2]/label/input")).click();
         driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[11]/div[1]/div[2]/label/input")).click();
         driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[12]/div[1]/div[2]/label/input")).click();
         driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[14]/div[1]/div[2]/label/input")).click();
 
-        driver.findElement(By.name("data[compliance_verification_verified_patient_fulfill_communication_41589]")).click();
-        driver.findElement(By.name("data[compliance_verification_verified_patient_willing_test_41589]")).click();
+//        driver.findElement(By.name("data[compliance_verification_verified_patient_fulfill_communication_41589]")).click();
+//        driver.findElement(By.name("data[compliance_verification_verified_patient_willing_test_41589]")).click();
         driver.findElement(By.name("data[compliance_verification_verified_patient_gender_41589]")).click();
         driver.findElement(By.name("data[compliance_verification_verified_patient_dob_41589]")).click();
         driver.findElement(By.name("data[compliance_verification_verified_patient_state_41589]")).click();
@@ -176,14 +180,14 @@ public class pss {
         driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[6]/div[1]/div[2]/label/input")).click();
         driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[7]/div[1]/div[2]/label/input")).click();
         driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[8]/div[1]/div[2]/label/input")).click();
-        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[9]/div[1]/div[2]/label/input")).click();
-        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[10]/div[1]/div[2]/label/input")).click();
+//        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[9]/div[1]/div[2]/label/input")).click();
+//        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[10]/div[1]/div[2]/label/input")).click();
         driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[11]/div[1]/div[2]/label/input")).click();
         driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[12]/div[1]/div[2]/label/input")).click();
         driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[14]/div[1]/div[2]/label/input")).click();
 
-        driver.findElement(By.name("data[compliance_verification_verified_patient_fulfill_communication_41589]")).click();
-        driver.findElement(By.name("data[compliance_verification_verified_patient_willing_test_41589]")).click();
+//        driver.findElement(By.name("data[compliance_verification_verified_patient_fulfill_communication_41589]")).click();
+//        driver.findElement(By.name("data[compliance_verification_verified_patient_willing_test_41589]")).click();
         driver.findElement(By.name("data[compliance_verification_verified_patient_gender_41589]")).click();
         driver.findElement(By.name("data[compliance_verification_verified_patient_dob_41589]")).click();
         driver.findElement(By.name("data[compliance_verification_verified_patient_state_41589]")).click();
@@ -201,6 +205,30 @@ public class pss {
         actions.sendKeys(Keys.ENTER).build().perform();
         Common.waitSec(2);
         driver.findElement(By.xpath(".//button[text()='Done']")).click();
+    }
+
+    public static String get_DOB() {
+
+        Common.waitSec(5);
+        WebElement elementToCheck = null;
+
+        try {
+            elementToCheck = driver.findElement(By.xpath("//span[text()='Patient Information']"));
+        } catch (NoSuchElementException e) {
+            System.out.println("Phần tử không tồn tại trên trang web.");
+        }
+
+        // Kiểm tra xem phần tử có tồn tại và hiển thị hay không
+        if (elementToCheck != null && elementToCheck.isDisplayed()) {
+            driver.findElement(By.xpath("//span[text()='Patient Information']")).click();
+            Common.waitSec(3);
+            WebElement DOB_element = driver.findElement(By.name("data[patient_dob]"));
+            String DOB = DOB_element.getAttribute("value");
+            return DOB;
+        } else {
+            return "1";
+        }
+
     }
 
 }

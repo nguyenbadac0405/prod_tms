@@ -25,7 +25,7 @@ public class provider {
         System.out.println("Check Medical History");
         driver.findElement(By.xpath(".//span[text()='Medical History']")).click();
         Common.waitSec(2);
-        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div[1]/div[26]/div[1]/div[1]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div[1]/div[8]/div[1]/div[2]/label/input")).click();
         Common.waitSec(2);
         driver.findElement(By.name("data[medical_history_patient_question2]")).sendKeys("test");
         driver.findElement(By.name("data[medical_history_patient_question3]")).sendKeys("test");
@@ -35,6 +35,8 @@ public class provider {
 
         // medication
         System.out.println("Check Medications");
+        driver.findElement(By.xpath(".//span[text()='Medications']")).click();
+        Common.waitSec(3);
         driver.findElement(By.xpath("//*[@id=\"patient-dashboard\"]/div[6]/div[4]/div/div[2]/div/div[3]/div/div[2]/div[4]/label/input")).click();
         driver.findElement(By.xpath(".//button[text()='Save']")).click();
         Common.waitSec(5);
@@ -42,6 +44,7 @@ public class provider {
         // Family History
         Actions actions = new Actions(driver);
         System.out.println("Check Family History");
+        driver.findElement(By.xpath(".//span[text()='Family History']")).click();
         Common.waitSec(3);
         driver.findElement(By.name("data[family_history_member_1_related_health_issue]")).sendKeys("test");
         driver.findElement(By.xpath("//*[@name='data[family_history_member_confirm_doctor]']")).click();
@@ -51,6 +54,8 @@ public class provider {
 
 
         // Diagnosis
+        driver.findElement(By.xpath(".//span[text()='Diagnosis']")).click();
+        Common.waitSec(3);
         System.out.println("Set Diagnosis");
         driver.findElement(By.xpath(".//div[text()='Z80.1']")).click();
         driver.findElement(By.xpath(".//div[text()='C44.300']")).click();
@@ -70,11 +75,21 @@ public class provider {
         driver.findElement(By.name("data[submit]")).click();
         Common.waitSec(3);
 
+        //follow up
+        driver.findElement(By.xpath(".//span[text()='Follow-up Consult']")).click();
+        Common.waitSec(3);
+        driver.findElement(By.name("data[follow_up_consult_confirm]")).click();
+        driver.findElement(By.name("data[submit]")).click();
+        Common.waitSec(10);
+
+
         // approved
         driver.findElement(By.xpath(".//span[text()='Approve']")).click();
         Common.waitSec(3);
-        actions.sendKeys(Keys.ENTER).build().perform();
+//        actions.sendKeys(Keys.ENTER).build().perform();
+        driver.findElement(By.xpath(".//button[text()='Yes']")).click();
         Common.waitSec(3);
+
         System.out.println("-------------------------Done Approve----------------------------");
         Common.waitSec(7);
 
@@ -298,9 +313,12 @@ public class provider {
 
         //aprrove
         driver.findElement(By.xpath(".//span[text()='Approve']")).click();
+
         Common.waitSec(3);
         System.out.println("check");
         action.sendKeys(Keys.ENTER).build().perform();
+        driver.findElement(By.xpath(".//button[text()='Yes']")).click();
         Common.waitSec(3);
+
     }
 }

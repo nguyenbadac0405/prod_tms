@@ -23,7 +23,7 @@ public class login {
 	
 	
 	public void URL_intake() {
-		driver.get("https://dashboard2.tms.partners/#/");
+		driver.get("https://telehealth.gkim.digital/");
 	}
 	public void URL_MDL() {
 		driver.get("https://mydoctorslive.com/gkim-telehealth/");
