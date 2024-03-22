@@ -181,16 +181,17 @@ public class intake {
     public void create_RPM(String business, String vertical, String MG, String first_name, String last_name, String DOB, String medicare_ID) {
         driver.findElement(By.xpath("//*[@id=\"patient-dashboard\"]/div[6]/div[2]/div/div[2]/div[1]/div[2]/button")).click();
         System.out.println("Set Business & Vertical");
-        driver.findElement(By.id("react-select-8-input")).sendKeys(business, Keys.ENTER);
+        driver.findElement(By.id("react-select-9-input")).sendKeys(business, Keys.ENTER);
         Common.waitSec(6);
         Actions action = new Actions(driver);
         // set medical service
-        driver.findElement(By.id("react-select-9-input")).sendKeys(vertical, Keys.ENTER);
-        Common.waitSec(10);
+        driver.findElement(By.id("react-select-10-input")).sendKeys(vertical, Keys.ENTER);
+        Common.waitSec(1);
 
         // set MG
-//        driver.findElement(By.id("react-select-14-input")).sendKeys(MG, Keys.ENTER);
-//        Common.waitSec(2);
+        driver.findElement(By.id("react-select-15-input")).sendKeys(MG, Keys.ENTER);
+        Common.waitSec(12);
+        System.out.println(MG);
 
 
         System.out.println("Input Information");
@@ -204,7 +205,7 @@ public class intake {
         action.sendKeys(DOB).build().perform();
 
         // zip code
-        driver.findElement(By.name("data[patient_zip_code]")).sendKeys("94107");
+        driver.findElement(By.name("data[patient_zip_code]")).sendKeys("94107-1231");
         Common.waitSec(1);
 
         // medicare
@@ -271,7 +272,7 @@ public class intake {
 
         //draft to new
         //submit
-        driver.findElement(By.xpath(".//span[text()='Submit']")).click();
+//        driver.findElement(By.xpath(".//span[text()='Submit']")).click();
         Common.waitSec(2);
         action.sendKeys(Keys.ENTER).build().perform();
         System.out.println("------------------------------Done new case.-----------------------------------");
