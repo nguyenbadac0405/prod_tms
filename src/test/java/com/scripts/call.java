@@ -1,6 +1,8 @@
 package com.scripts;
+import com.Common;
 import com.frame.*;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Test;
 
 public class call extends DriverFactory {
 
@@ -8,6 +10,8 @@ public class call extends DriverFactory {
     login login2;
 
     pss pss;
+
+    log_out logout;
 
     provider provider;
 
@@ -18,6 +22,7 @@ public class call extends DriverFactory {
         login2 = PageFactory.initElements(driver2, login.class);
 
         pss = PageFactory.initElements(driver1, pss.class);
+        logout = PageFactory.initElements(driver1, log_out.class);
 
         provider = PageFactory.initElements(driver2,provider.class);
     }
@@ -29,5 +34,19 @@ public class call extends DriverFactory {
 
         login2.URL_intake();
         login2.provider("123456");
+    }
+
+    @Test
+    public void login_logout() {
+        login1.URL_intake();
+        login1.pss("111111");
+        Common.waitSec(5);
+
+        logout.pss();
+        System.out.println("check");
+        login1.provider("123456");
+        Common.waitSec(5);
+        logout.provider();
+        System.out.println("done");
     }
 }

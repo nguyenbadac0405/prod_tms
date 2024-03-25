@@ -79,7 +79,7 @@ public class pss {
         driver.findElement(By.xpath(".//button[text()='Got it']")).click();
         Common.waitSec(3);
 
-        driver.findElement(By.xpath(".//span[text()='Forward']")).click();
+        driver.findElement(By.xpath(".//span[text()='Assign']")).click();
         Common.waitSec(2);
         action.sendKeys(Keys.ENTER).build().perform();
         Common.waitSec(3);
@@ -106,21 +106,26 @@ public class pss {
 
     public void cancel_genetics() {
         Actions actions = new Actions(driver);
-
-        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[2]/div[1]/div[2]/label/input")).click();
-        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[3]/div[1]/div[2]/label/input")).click();
-        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[4]/div[1]/div[2]/label/input")).click();
-        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[5]/div[1]/div[2]/label/input")).click();
-        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[6]/div[1]/div[1]/label/input")).click();
-        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[8]/div[1]/div[1]/label/input")).click();
-//        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[9]/div[1]/div[2]/label/input")).click();
-        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[10]/div[1]/div[2]/label/input")).click();
+        System.out.println("---------------------------------New to Assign---------------------------------------");
+        System.out.println("Check Compliance");
+        driver.findElement(By.name("data[compliance_verification_verified_telehealth_provider]")).click();
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[4]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[5]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[6]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[7]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[8]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[9]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[10]/div[1]/div[1]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[11]/div[1]/div[1]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[12]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[13]/div[1]/div[2]/label/input")).click();
         driver.findElement(By.name("data[compliance_verification_verified_patient_gender_41589]")).click();
         driver.findElement(By.name("data[compliance_verification_verified_patient_dob_41589]")).click();
         driver.findElement(By.name("data[compliance_verification_verified_patient_state_41589]")).click();
 
         driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
-        Common.waitSec(15);
+        Common.waitSec(10);
+
 
         driver.findElement(By.xpath("//*[@id='patient-dashboard']/div[6]/div[2]/div[4]/div[1]/div[2]/button")).click();
         Common.waitSec(3);
@@ -138,21 +143,22 @@ public class pss {
         driver.findElement(By.xpath("//span[text()='Compliance']")).click();
         Common.waitSec(5);
         Actions action = new Actions(driver);
-        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[4]/div[1]/div[2]/label/input")).click();
-        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[7]/div[1]/div[2]/label/input")).click();
-        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[10]/div[1]/div[1]/label/input")).click();
-//        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[9]/div[1]/div[2]/label/input")).click();
-//        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[10]/div[1]/div[2]/label/input")).click();
-        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[2]/div/div/div/div/div[1]/div[11]/div[1]/div[1]/label/input")).click();
-//        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[12]/div[1]/div[2]/label/input")).click();
-//        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[14]/div[1]/div[2]/label/input")).click();
 
 //        driver.findElement(By.name("data[compliance_verification_verified_patient_fulfill_communication_41589]")).click();
 //        driver.findElement(By.name("data[compliance_verification_verified_patient_willing_test_41589]")).click();
         driver.findElement(By.name("data[compliance_verification_verified_patient_gender_41589]")).click();
         driver.findElement(By.name("data[compliance_verification_verified_patient_dob_41589]")).click();
         driver.findElement(By.name("data[compliance_verification_verified_patient_state_41589]")).click();
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[4]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[7]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[10]/div[1]/div[1]/label/input")).click();
+//        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[10]/div[1]/div[1]/label/input")).click();
+        System.out.println("check 1");
 
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[11]/div[1]/div[1]/label/input")).click();
+//        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[10]/div[1]/div[1]/label/input")).click();
+        System.out.println("check 2");
+        Common.waitSec(2);
         driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
         Common.waitSec(15);
 
@@ -177,20 +183,14 @@ public class pss {
         driver.findElement(By.xpath("//span[text()='Compliance']")).click();
         Common.waitSec(5);
         Actions actions = new Actions(driver);
-        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[6]/div[1]/div[2]/label/input")).click();
-        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[7]/div[1]/div[2]/label/input")).click();
-        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[8]/div[1]/div[2]/label/input")).click();
-//        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[9]/div[1]/div[2]/label/input")).click();
-//        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[10]/div[1]/div[2]/label/input")).click();
-        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[11]/div[1]/div[2]/label/input")).click();
-        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[12]/div[1]/div[2]/label/input")).click();
-        driver.findElement(By.xpath("/html/body/div[1]/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[14]/div[1]/div[2]/label/input")).click();
-
-//        driver.findElement(By.name("data[compliance_verification_verified_patient_fulfill_communication_41589]")).click();
-//        driver.findElement(By.name("data[compliance_verification_verified_patient_willing_test_41589]")).click();
         driver.findElement(By.name("data[compliance_verification_verified_patient_gender_41589]")).click();
         driver.findElement(By.name("data[compliance_verification_verified_patient_dob_41589]")).click();
         driver.findElement(By.name("data[compliance_verification_verified_patient_state_41589]")).click();
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[4]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[7]/div[1]/div[2]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[10]/div[1]/div[1]/label/input")).click();
+        driver.findElement(By.xpath("/html/body/div/div[6]/div[4]/div/div[2]/div/div[3]/div/div/div/div/div[1]/div[11]/div[1]/div[1]/label/input")).click();
+        Common.waitSec(2);
 
         driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
         Common.waitSec(15);

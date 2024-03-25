@@ -76,7 +76,7 @@ public class Genetics extends DriverFactory {
 		Common.waitSec(10);
 
 		logout.logout();
-		Common.waitSec(5);
+
 
 		login.pss("111111");
 		Common.waitSec(10);
@@ -250,8 +250,7 @@ public class Genetics extends DriverFactory {
 		excel.setCellData(id, 1, 0);
 		System.out.println("Case-ID: " + id);
 		Common.waitSec(10);
-		logout.logout();
-		Common.waitSec(10);
+		logout.intake();
 
 
 		//to_assign
@@ -265,7 +264,7 @@ public class Genetics extends DriverFactory {
 		pss.to_pending();
 		Common.waitSec(10);
 
-		logout.logout();
+		logout.pss();
 
 		//to RTS
 
@@ -280,20 +279,20 @@ public class Genetics extends DriverFactory {
 		doctor.to_RTS();
 		Common.waitSec(3);
 
-		logout.logout();
+		logout.provider();
 
 		//to AWR
-		login.intake("123456");
-		Common.waitSec(10);
-
-		search.search_from_intake(id);
-		Common.waitSec(5);
-
-		intake.to_Awating_Result();
-		System.out.println("check");
-		Common.waitSec(3);
-
-		logout.logout();
+//		login.intake("123456");
+//		Common.waitSec(10);
+//
+//		search.search_from_intake(id);
+//		Common.waitSec(5);
+//
+//		intake.to_Awating_Result();
+//		System.out.println("check");
+//		Common.waitSec(3);
+//
+//		logout.logout();
 
 		//to AFU
 		login.pss("111111");
@@ -305,7 +304,7 @@ public class Genetics extends DriverFactory {
 		pss.to_AFU();
 		Common.waitSec(5);
 
-		logout.logout();
+		logout.pss();
 
 		//to Follow up
 		login.provider("123456");
@@ -317,17 +316,17 @@ public class Genetics extends DriverFactory {
 		doctor.to_approve3();
 		Common.waitSec(5);
 
-		logout.logout();
-
-		//completed
-		login.pss("111111");
-		Common.waitSec(10);
-
-		search.search_from_intake(id);
-		Common.waitSec(10);
-
-		pss.complete();
-		Common.waitSec(5);
+//		logout.doctor();
+//
+//		//completed
+//		login.pss("111111");
+//		Common.waitSec(10);
+//
+//		search.search_from_intake(id);
+//		Common.waitSec(10);
+//
+//		pss.complete();
+//		Common.waitSec(5);
 
 	}
 
@@ -357,8 +356,7 @@ public class Genetics extends DriverFactory {
 		excel.setCellData(id, 1, 0);
 		System.out.println("Case-ID: " + id);
 		Common.waitSec(30);
-		logout.logout();
-		Common.waitSec(30);
+		logout.intake();
 
 
 		//to_assign
@@ -372,7 +370,7 @@ public class Genetics extends DriverFactory {
 		pss.to_pending();
 		Common.waitSec(10);
 
-		logout.logout();
+		logout.pss();
 
 		//to denied
 
@@ -414,8 +412,7 @@ public class Genetics extends DriverFactory {
 		excel.setCellData(id, 1, 0);
 		System.out.println("Case-ID: " + id);
 		Common.waitSec(30);
-		logout.logout();
-		Common.waitSec(30);
+		logout.intake();
 
 
 		//to_assign

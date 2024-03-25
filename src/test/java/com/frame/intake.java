@@ -23,12 +23,14 @@ public class intake {
         Common.waitSec(15);
 
         // set MG
-//        driver.findElement(By.id("react-select-14-input")).sendKeys(MG, Keys.ENTER);
-//        Common.waitSec(2);
+        driver.findElement(By.id("react-select-15-input")).sendKeys(MG, Keys.ENTER);
+        Common.waitSec(2);
 
         // set service type
+//        driver.findElement(By.id("react-select-12-input")).click();
+        Common.waitSec(2);
         driver.findElement(By.id("react-select-12-input")).sendKeys(type, Keys.ENTER);
-        Common.waitSec(5);
+        Common.waitSec(2);
 
         // set state
         driver.findElement(By.id("react-select-13-input")).sendKeys(lab, Keys.ENTER);
@@ -48,14 +50,15 @@ public class intake {
 
 
         //zipcode
-        driver.findElement(By.name("data[patient_zip_code]")).sendKeys("94107");
+        driver.findElement(By.name("data[patient_zip_code]")).sendKeys("94107-1233");
         Common.waitSec(1);
         // medicare
         driver.findElement(By.name("data[patient_no_secondary_insurance]")).click();
         Common.waitSec(2);
         driver.findElement(By.xpath("//*[@value='Medicare']")).click();
         Common.waitSec(2);
-        driver.findElement(By.name("data[patient_primary_insurance_id]")).sendKeys(medicare_ID);
+//        driver.findElement(By.name("data[patient_primary_insurance_id]")).sendKeys(medicare_ID);
+        driver.findElement(By.name("data[patient_primary_insurance_id]")).sendKeys("8TR2FG1QT22");
         Common.waitSec(1);
 
 
@@ -90,6 +93,7 @@ public class intake {
 
         //
         driver.findElement(By.name("data[patient_shipping_sms]")).click();
+        Common.waitSec(2);
         driver.findElement(By.name("data[patient_shipping_us_postal_service]")).click();
         Common.waitSec(3);
 
@@ -214,6 +218,7 @@ public class intake {
         driver.findElement(By.xpath(".//input[@value='Medicare']")).click();
         Common.waitSec(3);
         driver.findElement(By.name("data[patient_primary_insurance_id]")).sendKeys(medicare_ID);
+//        driver.findElement(By.name("data[patient_primary_insurance_id]")).sendKeys("8TR2FG1QT22");
         Common.waitSec(1);
 
         //submit 1
@@ -233,6 +238,7 @@ public class intake {
         Common.waitSec(1);
 
         //phone
+        driver.findElement(By.xpath(".//*[@value='Cell Phone']")).click();
         driver.findElement(By.name("data[patient_home_phone]")).sendKeys("8458094618");
         Common.waitSec(3);
         driver.findElement(By.name("data[patient_phone]")).sendKeys("8458094618");
