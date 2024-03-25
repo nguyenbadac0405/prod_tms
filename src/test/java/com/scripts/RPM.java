@@ -64,7 +64,7 @@ public class RPM extends DriverFactory {
     @Test
     public void RPM_complete() throws Exception {
         excel.setExcelFile("src/test/resources/RPM.xlsx", "Sheet1");
-        login.URL_intake();
+        login.URL_telehealth();
         login.provider("123456");
         Common.waitSec(5);
 
@@ -100,7 +100,7 @@ public class RPM extends DriverFactory {
         String medicare_ID = render.medicare_ID();
         String zipcode = excel.getCellData("zipcode", 1);
 
-        login.URL_intake();
+        login.URL_telehealth();
 
         login.intake("123456");
         Common.waitSec(6);
@@ -153,7 +153,7 @@ public class RPM extends DriverFactory {
         String medicare_ID = render.medicare_ID();
         String zipcode = excel.getCellData("zipcode", 1);
 
-        login.URL_intake();
+        login.URL_telehealth();
 
         login.intake("123456");
         Common.waitSec(6);
@@ -209,7 +209,7 @@ public class RPM extends DriverFactory {
         String medicare_ID = render.medicare_ID();
         String zipcode = excel.getCellData("zipcode", 1);
 
-        login.URL_intake();
+        login.URL_telehealth();
 
         login.intake("123456");
         Common.waitSec(6);
@@ -259,7 +259,7 @@ public class RPM extends DriverFactory {
         String DOB = excel.getCellData("DOB", 1);
         String medicare_ID = render.medicare_ID();
 
-        login.URL_intake();
+        login.URL_telehealth();
 
         login.intake("123456");
         Common.waitSec(6);
@@ -270,7 +270,7 @@ public class RPM extends DriverFactory {
     @Test
     public void assigned() throws Exception {
         excel.setExcelFile("src/test/resources/RPM.xlsx", "Sheet1");
-        login.URL_intake();
+        login.URL_telehealth();
         login.pss("111111");
         Common.waitSec(10);
 
@@ -287,7 +287,7 @@ public class RPM extends DriverFactory {
     @Test
     public void to_complete() throws Exception {
         excel.setExcelFile("src/test/resources/RPM.xlsx", "Sheet1");
-        login.URL_intake();
+        login.URL_telehealth();
         login.provider("123456");
         Common.waitSec(15);
 
@@ -315,7 +315,7 @@ public class RPM extends DriverFactory {
 //        String medicare_ID = render.medicare_ID();
         String medicare_ID = "6TR7FG7RT98";
 
-        login.URL_intake();
+        login.URL_telehealth();
 
         login.intake("123456");
         Common.waitSec(6);
@@ -323,7 +323,7 @@ public class RPM extends DriverFactory {
         String id = to_assign.find_id();
         Common.waitSec(10);
 
-        logout.logout();
+        logout.intake();
 
         login.pss("111111");
         Common.waitSec(10);
@@ -334,7 +334,7 @@ public class RPM extends DriverFactory {
         pss.assign_RPM();
         Common.waitSec(10);
 
-        logout.logout();
+        logout.pss();
         Common.waitSec(10);
 
         login.provider("123456");
@@ -362,7 +362,7 @@ public class RPM extends DriverFactory {
 //        String medicare_ID = render.medicare_ID();
         String medicare_ID = "6TR7FG7RT95";
 
-        login.URL_intake();
+        login.URL_telehealth();
 
         login.intake("123456");
         Common.waitSec(6);
@@ -370,7 +370,7 @@ public class RPM extends DriverFactory {
         String id = to_assign.find_id();
         Common.waitSec(10);
 
-        logout.logout();
+        logout.intake();
 
         login.pss("111111");
         Common.waitSec(10);
@@ -381,7 +381,7 @@ public class RPM extends DriverFactory {
         pss.assign_RPM();
         Common.waitSec(10);
 
-        logout.logout();
+        logout.pss();
         Common.waitSec(10);
 
         login.provider("123456");
@@ -409,7 +409,7 @@ public class RPM extends DriverFactory {
 //        String medicare_ID = render.medicare_ID();
         String medicare_ID = "6TR7FG7RT96";
 
-        login.URL_intake();
+        login.URL_telehealth();
 
         login.intake("123456");
         Common.waitSec(6);
@@ -417,7 +417,7 @@ public class RPM extends DriverFactory {
         String id = to_assign.find_id();
         Common.waitSec(10);
 
-        logout.logout();
+        logout.intake();
 
         login.pss("111111");
         Common.waitSec(10);

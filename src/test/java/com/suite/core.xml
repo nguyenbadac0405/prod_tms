@@ -47,7 +47,7 @@
 		</classes>
 	</test>
 
-	<!-- TC4: RPM SmartMed cancel-->
+	<!-- TC5: RPM SmartMed cancel-->
 	<test name="RPM SmartMed cancel">
 		<classes>
 			<class name="com.scripts.RPM">
@@ -58,7 +58,7 @@
 		</classes>
 	</test>
 
-	<!-- TC4: RPM SmartMed denied-->
+	<!-- TC6: RPM SmartMed denied-->
 	<test name="RPM SmartMed">
 		<classes>
 			<class name="com.scripts.RPM">

@@ -58,7 +58,7 @@ public class migrate_data extends DriverFactory {
     }
     @Test
     public void check_migrate_data() {
-        login.URL_intake();
+        login.URL_TMS();
         login.provider("123456");
     }
 }

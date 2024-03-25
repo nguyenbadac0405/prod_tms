@@ -29,16 +29,16 @@ public class call extends DriverFactory {
 
 
     public void make_call() {
-        login1.URL_intake();
+        login1.URL_TMS();
         login1.pss("111111");
 
-        login2.URL_intake();
+        login2.URL_TMS();
         login2.provider("123456");
     }
 
     @Test
     public void login_logout() {
-        login1.URL_intake();
+        login1.URL_TMS();
         login1.pss("111111");
         Common.waitSec(5);
 

@@ -63,7 +63,7 @@ public class Genetics extends DriverFactory {
 	@Test
 	public void MG_PSS_dashboard() throws Exception {
 		//login intake
-		login.URL_intake();
+		login.URL_TMS();
 		Common.waitSec(5);
 		login.intake("123456");
 		Common.waitSec(5);
@@ -118,7 +118,7 @@ public class Genetics extends DriverFactory {
 		String DOB = excel.getCellData("DOB", 1);
 		String medicare_ID = render.medicare_ID();
 		String zipcode = excel.getCellData("zipcode", 1);
-		login.URL_intake();
+		login.URL_TMS();
 		login.intake("123456");
 		Common.waitSec(6);
 		intake.create_case_genetics(business, vertical, MG, lab, type, first_name, last_name, DOB, medicare_ID);
@@ -129,7 +129,7 @@ public class Genetics extends DriverFactory {
 	@Test
 	public void assign() throws Exception {
 		excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
-		login.URL_intake();
+		login.URL_TMS();
 		login.pss("111111");
 		Common.waitSec(5);
 
@@ -144,7 +144,7 @@ public class Genetics extends DriverFactory {
 	@Test
 	public void to_RTS() throws Exception {
 		excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
-		login.URL_intake();
+		login.URL_TMS();
 		login.provider("123456");
 		Common.waitSec(15);
 
@@ -166,7 +166,7 @@ public class Genetics extends DriverFactory {
 	@Test
 	public void to_Awaiting_Result() throws Exception {
 		excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
-		login.URL_intake();
+		login.URL_TMS();
 		login.intake("123456");
 		Common.waitSec(15);
 
@@ -182,7 +182,7 @@ public class Genetics extends DriverFactory {
 	@Test
 	public void to_AFU() throws Exception {
 		excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
-		login.URL_intake();
+		login.URL_TMS();
 		login.pss("111111");
 		Common.waitSec(5);
 
@@ -197,7 +197,7 @@ public class Genetics extends DriverFactory {
 	@Test
 	public void to_approved3() throws Exception {
 		excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
-		login.URL_intake();
+		login.URL_TMS();
 		login.provider("123456");
 		Common.waitSec(15);
 
@@ -212,7 +212,7 @@ public class Genetics extends DriverFactory {
 	@Test
 	public void to_completed() throws Exception {
 		excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
-		login.URL_intake();
+		login.URL_TMS();
 		login.pss("111111");
 		Common.waitSec(5);
 
@@ -240,7 +240,7 @@ public class Genetics extends DriverFactory {
 //		String medicare_ID = render.medicare_ID();
 		String medicare_ID = "6TR7FG7RT96";
 		String zipcode = excel.getCellData("zipcode", 1);
-		login.URL_intake();
+		login.URL_TMS();
 		login.intake("123456");
 		Common.waitSec(6);
 		intake.create_case_genetics(business, vertical, MG, lab, type, first_name, last_name, DOB, medicare_ID);
@@ -346,7 +346,7 @@ public class Genetics extends DriverFactory {
 //		String medicare_ID = render.medicare_ID();
 		String medicare_ID = "6TR7FG7RT92";
 		String zipcode = excel.getCellData("zipcode", 1);
-		login.URL_intake();
+		login.URL_TMS();
 		login.intake("123456");
 		Common.waitSec(20);
 		intake.create_case_genetics(business, vertical, MG, lab, type, first_name, last_name, DOB, medicare_ID);
@@ -402,7 +402,7 @@ public class Genetics extends DriverFactory {
 //		String medicare_ID = render.medicare_ID();
 		String medicare_ID = "6TR7FG7RT93";
 		String zipcode = excel.getCellData("zipcode", 1);
-		login.URL_intake();
+		login.URL_TMS();
 		login.intake("123456");
 		Common.waitSec(20);
 		intake.create_case_genetics(business, vertical, MG, lab, type, first_name, last_name, DOB, medicare_ID);
@@ -430,7 +430,7 @@ public class Genetics extends DriverFactory {
 	@Test
 	public void check_change_DOB() throws Exception {
 		excel.setExcelFile("src/test/resources/case_dob_not_fix_20240124.xlsx", "Sheet1");
-		login.URL_intake();
+		login.URL_TMS();
 		login.pss("111111");
 		Common.waitSec(10);
 		search.pin();
@@ -451,7 +451,7 @@ public class Genetics extends DriverFactory {
 	@Test
 	public void check_change_DOB_intake() throws Exception {
 		excel.setExcelFile("src/test/resources/case_dob_not_fix_20240124.xlsx", "Sheet1");
-		login.URL_intake();
+		login.URL_TMS();
 		login.intake("gkim12345");
 		Common.waitSec(10);
 		search.pin();

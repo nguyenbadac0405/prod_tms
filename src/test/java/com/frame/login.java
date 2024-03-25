@@ -22,7 +22,10 @@ public class login {
 	
 	
 	
-	public void URL_intake() {
+	public void URL_telehealth() {
+		driver.get("https://telehealth.gkim.digital/");
+	}
+	public void URL_TMS() {
 		driver.get("https://dashboard.tms.partners/#/");
 	}
 	public void URL_MDL() {
@@ -70,7 +73,7 @@ public class login {
 		driver.findElement(By.xpath("//*[@id='pwd']")).sendKeys(password);
 		driver.findElement(By.xpath("//*[@id='submit_login']/div/div[4]/button")).click();
 		System.out.println("-------------------Provider login success---------------------");
-		Common.waitSec(5);
+		Common.waitSec(10);
 		driver.findElement(By.xpath(".//*[text()='Dismiss']")).click();
 	}
 
