@@ -2,19 +2,19 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="test_core">
-	<!-- TC1: genetics complete-->
-	<test name="genetics complete">
-		<classes>
-			<class name="com.scripts.Genetics">
-				<methods>
-					<include name="complete"></include>
-				</methods>
-			</class>
-		</classes>
-	</test>
+	<!--TC1: genetics complete -->
+   <test name="genetics complete">
+       <classes>
+           <class name="com.scripts.Genetics">
+               <methods>
+                   <include name="complete"></include>
+               </methods>
+           </class>
+       </classes>
+   </test>
 
 
-	<!-- TC2: genetics cancel-->
+    <!-- TC2: genetics cancel -->
 	<test name="genetics cancel">
 		<classes>
 			<class name="com.scripts.Genetics">
@@ -58,7 +58,7 @@
 		</classes>
 	</test>
 
-	<!-- TC6: RPM SmartMed denied-->
+	<!-- TC6: RPM SmartMed denied -->
 	<test name="RPM SmartMed">
 		<classes>
 			<class name="com.scripts.RPM">

@@ -308,7 +308,7 @@ public class RPM extends DriverFactory {
         String vertical = excel.getCellData("vertical", 1);
 
         String MG = excel.getCellData("MG", 1);
-        String first_name = "test " + render.firtname();
+        String first_name = "GK test " + render.firtname();
 
         String last_name = render.lastname();
         String DOB = excel.getCellData("DOB", 1);

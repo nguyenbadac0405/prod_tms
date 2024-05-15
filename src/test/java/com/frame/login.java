@@ -46,6 +46,10 @@ public class login {
 		System.out.println("--------------------Login PSS success.------------------------");
 		Common.waitSec(5);
 //		driver.findElement(By.xpath(".//div[@class='rce-pl-20 rce-pr-20 col d-flex flex-column']/div[2]/div[2]/div/div/div[1]/div[2]/button")).click();
+		try {
+			driver.findElement(By.xpath(".//button[text()='Close']")).click();
+		}
+		catch (Exception e) {}
 	}
 
 
@@ -67,6 +71,10 @@ public class login {
 		driver.findElement(By.xpath("//*[@id='pwd']")).sendKeys(password);
 		driver.findElement(By.xpath("//*[@id='submit_login']/div/div[4]/button")).click();
 		System.out.println("--------------------Login Intake success.------------------------");
+		try {
+			driver.findElement(By.xpath(".//button[text()='Close']")).click();
+		}
+		catch (Exception e) {}
 	}
 	public void provider(String password) {
 		driver.findElement(By.xpath("//*[@id='username']")).sendKeys("dac+2@gkxim.com");
@@ -75,6 +83,11 @@ public class login {
 		System.out.println("-------------------Provider login success---------------------");
 		Common.waitSec(10);
 		driver.findElement(By.xpath(".//*[text()='Dismiss']")).click();
+//		Common.waitSec(5);
+		try {
+			driver.findElement(By.xpath(".//button[text()='Close']")).click();
+		}
+		catch (Exception e) {}
 	}
 
 	public void MDL_patient() {

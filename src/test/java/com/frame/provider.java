@@ -4,12 +4,34 @@ import com.Common;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
+import java.util.List;
+
 public class provider {
 
     protected static WebDriver driver;
+    Actions action = new Actions(driver);
+    JavascriptExecutor js = (JavascriptExecutor) driver;
+
+    protected static String medical_history = "document.querySelectorAll('[name*=\"medical_history_patient_question1\"')";
 
     public provider(WebDriver driver) {
         this.driver = driver;
+    }
+
+    public static void setDriver(WebDriver driver) {
+        provider.driver = driver;
+    }
+
+    public static void setMedical_history(String medical_history) {
+        provider.medical_history = medical_history;
+    }
+
+    public static WebDriver getDriver() {
+        return driver;
+    }
+
+    public static String getMedical_history() {
+        return medical_history;
     }
 
     public void to_RTS() {
@@ -26,7 +48,8 @@ public class provider {
         System.out.println("Check Medical History");
         driver.findElement(By.xpath(".//span[text()='Medical History']")).click();
         Common.waitSec(2);
-        driver.findElement(By.xpath("/html/body/div[1]/div[7]/div[4]/div/div[2]/div/div[3]/div/div/div/div[1]/div[26]/div[1]/div[1]/label/input")).click();
+        List<WebElement> history_medical = (List<WebElement>) js.executeScript(medical_history);
+        action.moveToElement(history_medical.get(0)).click().build().perform();
         Common.waitSec(2);
         driver.findElement(By.name("data[medical_history_patient_question2]")).sendKeys("test");
         driver.findElement(By.name("data[medical_history_patient_question3]")).sendKeys("test");
@@ -60,6 +83,7 @@ public class provider {
         System.out.println("Set Diagnosis");
         driver.findElement(By.xpath(".//div[text()='Z80.1']")).click();
         driver.findElement(By.xpath(".//div[text()='C44.300']")).click();
+        driver.findElement(By.xpath(".//div[text()='Z86.3']")).click();
         driver.findElement(By.xpath(".//button[text()='Save']")).click();
         Common.waitSec(5);
 
@@ -226,6 +250,12 @@ public class provider {
     }
 
     public void denied() {
+        try {
+            driver.findElement(By.xpath(".//button[text()='Got It']")).click();
+            Common.waitSec(3);
+        }
+        catch (Exception e) {}
+
         driver.findElement(By.xpath(".//span[text()='Deny']")).click();
         Common.waitSec(2);
         Actions actions = new Actions(driver);
@@ -241,6 +271,11 @@ public class provider {
     }
 
     public void complete_RPM() {
+        try {
+            driver.findElement(By.xpath(".//button[text()='Got It']")).click();
+            Common.waitSec(3);
+        }
+        catch (Exception e) {}
         Actions action = new Actions(driver);
         //Patient's Personal History
         driver.findElement(By.xpath(".//span[text()='Medical History']")).click();
@@ -254,25 +289,17 @@ public class provider {
         Common.waitSec(3);
 
         //family history
-        driver.findElement(By.name("data[family_history_member_confirm_doctor_if_null]")).click();
-        Common.waitSec(1);
-
-        driver.findElement(By.name("data[submit]")).click();
-        Common.waitSec(3);
+//        driver.findElement(By.name("data[family_history_member_confirm_doctor_if_null]")).click();
+//        Common.waitSec(1);
+//
+//        driver.findElement(By.name("data[submit]")).click();
+//        Common.waitSec(3);
 
         //review of systems
 //        driver.findElement(By.xpath(".//input[@name='data[review_of_system_confirm]']")).click();
         Common.waitSec(2);
-        driver.findElement(By.name("data[submit]")).click();
-        Common.waitSec(3);
-
-        // medication
-        System.out.println("Check Medications");
-        driver.findElement(By.xpath(".//input[@name='shipped']")).click();
-        Common.waitSec(2);
-        driver.findElement(By.xpath(".//button[text()='Save']")).click();
-        Common.waitSec(5);
-        System.out.println("check");
+//        driver.findElement(By.name("data[submit]")).click();
+//        Common.waitSec(3);
 
         //diagnosis
         driver.findElement(By.xpath(".//*[text()='Diagnosis']")).click();
@@ -289,10 +316,20 @@ public class provider {
 
         driver.findElement(By.xpath(".//button[text()='Save']")).click();
         Common.waitSec(3);
+        // medication
+        System.out.println("Check Medications");
+        driver.findElement(By.xpath(".//input[@name='shipped']")).click();
+        Common.waitSec(2);
+        driver.findElement(By.xpath(".//button[text()='Save']")).click();
+        Common.waitSec(5);
+        System.out.println("check");
 
 
         //Assessment & plan
         System.out.println("Set Assessment & Plan");
+        Common.waitSec(4);
+        driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
+        Common.waitSec(3);
         driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
         Common.waitSec(3);
 

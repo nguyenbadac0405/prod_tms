@@ -13,7 +13,14 @@ public class intake {
     }
 
     public void create_case_genetics(String business, String vertical, String MG, String type, String lab, String first_name, String last_name, String DOB, String medicare_ID) {
-        driver.findElement(By.xpath("//*[@id=\"patient-dashboard\"]/div[6]/div[2]/div/div[2]/div[1]/div[2]/button")).click();
+        try {
+            System.out.println(driver.findElement(By.xpath("//*[@id=\"patient-dashboard\"]/div[6]/div[2]/div/div[2]/div[1]/div[2]/button")).isDisplayed());
+            driver.findElement(By.xpath("//*[@id=\"patient-dashboard\"]/div[6]/div[2]/div/div[2]/div[1]/div[2]/button")).click();
+        }
+        catch(Exception e) {
+            driver.findElement(By.xpath("//*[@id=\"patient-dashboard\"]/div[6]/div[2]/div/div[2]/div[1]/div[2]/button")).click();
+        }
+
         System.out.println("Set Business & Vertical");
         driver.findElement(By.id("react-select-9-input")).sendKeys(business, Keys.ENTER);
         Common.waitSec(2);
@@ -28,12 +35,21 @@ public class intake {
 
         // set service type
 //        driver.findElement(By.id("react-select-12-input")).click();
-        Common.waitSec(2);
+        Common.waitSec(5);
         driver.findElement(By.id("react-select-12-input")).sendKeys(type, Keys.ENTER);
         Common.waitSec(2);
 
         // set state
-        driver.findElement(By.id("react-select-13-input")).sendKeys(lab, Keys.ENTER);
+        try {
+            if(driver.findElement(By.id("react-select-13-input")).isEnabled()){
+                driver.findElement(By.id("react-select-13-input")).sendKeys(lab, Keys.ENTER);
+            }
+        }
+        catch (Exception e) {
+            Common.waitSec(2);
+            driver.findElement(By.id("react-select-13-input")).sendKeys(lab, Keys.ENTER);
+        }
+
         System.out.println("Done Business and Vertical");
         Common.waitSec(2);
 
@@ -97,6 +113,7 @@ public class intake {
         driver.findElement(By.name("data[patient_shipping_us_postal_service]")).click();
         Common.waitSec(3);
 
+
         // submit
         driver.findElement(By.name("data[submit]")).click();
         System.out.println("-----------------Done draft case------------------");
@@ -134,14 +151,6 @@ public class intake {
         driver.findElement(By.name("data[submit]")).click();
         Common.waitSec(2);
 
-        //Medication
-        driver.findElement(By.xpath(".//span[text()='Medications']")).click();
-        Common.waitSec(3);
-        System.out.println("Check Medication");
-        driver.findElement(By.xpath("//*[@id=\"patient-dashboard\"]/div[6]/div[4]/div/div[2]/div/div[3]/div/div[2]/div[4]/label/input")).click();
-        driver.findElement(By.xpath(".//button[text()='Save']")).click();
-        Common.waitSec(3);
-
         //Family History
         driver.findElement(By.xpath(".//span[text()='Family History']")).click();
         System.out.println("Check Family History");
@@ -157,6 +166,17 @@ public class intake {
         Common.waitSec(1);
         driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
         Common.waitSec(3);
+
+
+        //Medication
+//        driver.findElement(By.xpath(".//span[text()='Medications']")).click();
+//        driver.findElement(By.name("data[submit]")).click();
+        Common.waitSec(3);
+        System.out.println("Check Medication");
+        driver.findElement(By.xpath("//*[@id=\"patient-dashboard\"]/div[6]/div[4]/div/div[2]/div/div[3]/div/div[2]/div[4]/label/input")).click();
+        driver.findElement(By.xpath(".//button[text()='Save']")).click();
+        Common.waitSec(3);
+
 
         //submit
         driver.findElement(By.xpath(".//span[text()='Submit']")).click();
@@ -215,7 +235,7 @@ public class intake {
         // medicare
         driver.findElement(By.name("data[patient_no_secondary_insurance]")).click();
         Common.waitSec(2);
-        driver.findElement(By.xpath(".//input[@value='Medicare']")).click();
+//        driver.findElement(By.xpath(".//input[@value='Medicare']")).click();
         Common.waitSec(3);
         driver.findElement(By.name("data[patient_primary_insurance_id]")).sendKeys(medicare_ID);
 //        driver.findElement(By.name("data[patient_primary_insurance_id]")).sendKeys("8TR2FG1QT22");
@@ -226,7 +246,7 @@ public class intake {
         Common.waitSec(5);
 
         //gender & ethnicity
-        driver.findElement(By.xpath("//*[@value='Medicare']")).click();
+//        driver.findElement(By.xpath("//*[@value='Medicare']")).click();
         Common.waitSec(2);
         driver.findElement(By.xpath("//*[@value='Male']")).click();
         Common.waitSec(1);
@@ -271,10 +291,11 @@ public class intake {
         Common.waitSec(2);
 
 
+
         // submit
         driver.findElement(By.name("data[submit]")).click();
         System.out.println("-----------------Done draft case------------------");
-        Common.waitSec(10);
+        Common.waitSec(5);
 
         //draft to new
         //submit

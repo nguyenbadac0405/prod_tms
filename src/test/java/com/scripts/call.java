@@ -39,9 +39,10 @@ public class call extends DriverFactory {
     @Test
     public void login_logout() {
         login1.URL_TMS();
+        login1.intake("123456");
+        Common.waitSec(5);
         login1.pss("111111");
         Common.waitSec(5);
-
         logout.pss();
         System.out.println("check");
         login1.provider("123456");

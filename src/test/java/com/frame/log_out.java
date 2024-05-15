@@ -61,4 +61,32 @@ public class log_out {
 		js.executeScript("document.getElementById('logout-menu').click();");
 
 	}
+
+	public void test_logout() {
+		//intake
+		try {
+			//intake
+			if(driver.findElement(By.xpath("//*[@id='patient-dashboard']/div[2]/div[3]/div[2]/button")).isDisplayed()) {
+				driver.findElement(By.xpath("//*[@id='patient-dashboard']/div[2]/div[3]/div[2]/button")).click();
+				Common.waitSec(2);
+				driver.findElement(By.xpath("//*[@id='patient-dashboard']/div[2]/div[3]/div[2]/div/div/div[2]/button")).click();
+			}
+			//pss
+			if(driver.findElement(By.xpath("//*[@id='patient-dashboard']/div[2]/div[3]/div[3]/button")).isDisplayed()) {
+				driver.findElement(By.xpath("//*[@id='patient-dashboard']/div[2]/div[3]/div[3]/button")).click();
+				Common.waitSec(2);
+				driver.findElement(By.xpath("//*[@id='patient-dashboard']/div[2]/div[3]/div[3]/div/div/div[2]/button")).click();
+			}
+			//provider
+			if(driver.findElement(By.xpath("//*[@id='patient-dashboard']/div[3]/div[3]/div[3]/button")).isDisplayed()){
+				driver.findElement(By.xpath("//*[@id='patient-dashboard']/div[3]/div[3]/div[3]/button")).click();
+				Common.waitSec(2);
+				driver.findElement(By.xpath("//*[@id='patient-dashboard']/div[3]/div[3]/div[3]/div/div/div[2]/button")).click();
+			}
+		}
+		catch (Exception e) {
+			System.out.println("The element of logout button is changed");
+		}
+
+	}
 }
