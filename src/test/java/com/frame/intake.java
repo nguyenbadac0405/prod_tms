@@ -1,12 +1,113 @@
 package com.frame;
 
 import com.Common;
+import org.checkerframework.checker.signature.qual.FieldDescriptor;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 
 public class intake {
 
     protected static WebDriver driver;
+
+    //patient information
+    @FindBy(xpath = "//*[@id=\"patient-dashboard\"]/div[6]/div[2]/div/div[2]/div[1]/div[2]/button")
+    public WebElement btnCreatecase;
+
+    @FindBy(id = "react-select-9-input")
+    public WebElement fBusiness;
+
+    @FindBy(id = "react-select-10-input")
+    public WebElement fVertical;
+
+    @FindBy(id = "react-select-15-input")
+    public WebElement fMg;
+
+    @FindBy(id = "react-select-12-input")
+    public WebElement fTesttype;
+
+    @FindBy(id = "react-select-13-input")
+    public WebElement fLab;
+
+    @FindBy(name = "data[patient_first_name]")
+    public WebElement fFirstname;
+    @FindBy(name = "data[patient_last_name]")
+    public WebElement fLastname;
+
+    @FindBy(name = "data[patient_zip_code]")
+    public WebElement fZipcode;
+
+    @FindBy(name = "data[patient_no_secondary_insurance]")
+    public WebElement ckNo2ndInsurance;
+
+    @FindBy(xpath = "//*[@value='Medicare']")
+    public WebElement ckMedicare;
+
+    @FindBy(name = "data[patient_primary_insurance_id")
+    public WebElement fPrimaryInsurance;
+
+    @FindBy(name = "data[submit]")
+    public WebElement btnSubmit;
+
+    @FindBy(xpath = "//*[@value='Male']")
+    public WebElement ckGender;
+
+    @FindBy(xpath = "//*[@value='Asian']")
+    public WebElement ckEthnicity;
+
+    @FindBy(name = "data[patient_height")
+    public WebElement fHeight;
+
+    @FindBy(name = "data[patient_height_in")
+    public WebElement fHeightIn;
+
+    @FindBy(name = "data[patient_weight]")
+    public WebElement fWeight;
+
+    @FindBy(name = "data[patient_address]")
+    public WebElement fAddress;
+
+    @FindBy(xpath = "//input[@value='Cell Phone']")
+    public WebElement ckPhoneType;
+
+    @FindBy(name = "data[patient_phone]")
+    public WebElement fPhoneNumber;
+
+    @FindBy(name = "data[patient_shipping_sms]")
+    public WebElement ckShippingSms;
+
+    @FindBy(name = "data[patient_shipping_us_postal_service]")
+    public WebElement ckShippingAddress;
+
+
+    //pcp
+    @FindBy(xpath = ".//span[text()='Primary Care Provider']")
+    public WebElement sectPcp;
+
+    @FindBy(name = "data[pcp_no_pcp_certification]")
+    public WebElement btnNoPcp;
+
+    @FindBy(xpath = ".//button[text()='Save']")
+    public WebElement btnSave;
+
+    //Test Requirements
+    @FindBy(xpath = ".//span[text()='Test Requirements']")
+    public WebElement sectTestRes;
+
+    @FindBy(name = "data[test_requirements_checkbox]")
+    public WebElement ckCgxBioRes;
+
+    //Medical History
+    @FindBy(xpath = ".//span[text()='Medical History']")
+    public WebElement sectMedicalHis;
+
+    @FindBy(name = "data[medical_history_patient_cancer1]")
+    public WebElement fCancerType;
+
+
+
+
+
 
     public intake(WebDriver driver) {
         this.driver = driver;
@@ -140,7 +241,6 @@ public class intake {
         Common.waitSec(3);
 
         //Medical History
-        driver.findElement(By.xpath(".//span[text()='Medical History']")).click();
         driver.findElement(By.xpath(".//span[text()='Medical History']")).click();
 
         Common.waitSec(2);
