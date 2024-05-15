@@ -9,8 +9,7 @@ import java.util.List;
 public class provider {
 
     protected static WebDriver driver;
-    Actions action = new Actions(driver);
-    JavascriptExecutor js = (JavascriptExecutor) driver;
+
 
     protected static String medical_history = "document.querySelectorAll('[name*=\"medical_history_patient_question1\"')";
 
@@ -35,6 +34,8 @@ public class provider {
     }
 
     public void to_RTS() {
+        Actions action = new Actions(driver);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         // patient infor
         System.out.println("Check Patient Information");
         driver.findElement(By.xpath(".//span[text()='Patient Information']")).click();

@@ -10,8 +10,6 @@ import java.util.List;
 public class pss {
     protected static WebDriver driver;
 
-    Actions action = new Actions(driver);
-    JavascriptExecutor js = (JavascriptExecutor) driver;
 
     //Are you able to make your own medical decisions or does someone else make them for you?
     protected static String medical_decision = "return document.querySelectorAll('[name*=\"compliance_verification_verified_medical_decision_41589\"')";
@@ -140,6 +138,7 @@ public class pss {
 
     public void to_pending() {
         Actions action = new Actions(driver);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         System.out.println("---------------------------------New to Assign---------------------------------------");
         System.out.println("Check Compliance");
         driver.findElement(By.name("data[compliance_verification_verified_telehealth_provider]")).click();
@@ -258,6 +257,7 @@ public class pss {
 
     public void complete() {
         Actions action = new Actions(driver);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         driver.findElement(By.xpath(".//span[text()='Close Case']")).click();
         Common.waitSec(3);
         action.sendKeys(Keys.ENTER).build().perform();
@@ -265,6 +265,8 @@ public class pss {
 
     public void cancel_genetics() {
 
+        Actions action = new Actions(driver);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         System.out.println("---------------------------------New to Assign---------------------------------------");
         driver.findElement(By.xpath("//span[text()='Compliance']")).click();
         Common.waitSec(5);
@@ -339,6 +341,8 @@ public class pss {
     }
 
     public void assign_RPM() {
+        Actions action = new Actions(driver);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         driver.findElement(By.xpath("//span[text()='Compliance']")).click();
         Common.waitSec(5);
 
@@ -418,6 +422,8 @@ public class pss {
     }
 
     public void cancel_RPM() {
+        Actions action = new Actions(driver);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         driver.findElement(By.xpath("//span[text()='Compliance']")).click();
         Common.waitSec(5);
 
