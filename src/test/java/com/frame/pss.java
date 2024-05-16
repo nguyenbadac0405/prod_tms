@@ -4,12 +4,15 @@ import com.Common;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.testng.annotations.Factory;
 
 import java.util.List;
 
 public class pss {
     protected static WebDriver driver;
 
+    //COMPLIANCE SECTION
 
     //Are you able to make your own medical decisions or does someone else make them for you?
     protected static String medical_decision = "return document.querySelectorAll('[name*=\"compliance_verification_verified_medical_decision_41589\"')";
@@ -41,94 +44,19 @@ public class pss {
     //Do you confirm all the above information is true and accurate?
     protected static String confirm_all = "return document.querySelectorAll('[name*=\"compliance_verification_verified_confirm_all\"')";
 
+    //CASE DETAIL
+    @FindBy(id = "rec-form-select-collapse-btn")
+    public WebElement fCaseDetail;
 
-    public static WebDriver getDriver() {
-        return driver;
-    }
+    @FindBy(id = "react-select-14-input")
+    public WebElement fSelectProvider;
 
-    public static void setDriver(WebDriver driver) {
-        pss.driver = driver;
-    }
+    @FindBy(xpath = ".//span[text()='Assign']")
+    public WebElement btnAssign;
 
-    public static String getMedical_decision() {
-        return medical_decision;
-    }
 
-    public static void setMedical_decision(String medical_decision) {
-        pss.medical_decision = medical_decision;
-    }
 
-    public static String getConsent_to_bill() {
-        return consent_to_bill;
-    }
 
-    public static void setConsent_to_bill(String consent_to_bill) {
-        pss.consent_to_bill = consent_to_bill;
-    }
-
-    public static String getCurrently_hospice() {
-        return currently_hospice;
-    }
-
-    public static void setCurrently_hospice(String currently_hospice) {
-        pss.currently_hospice = currently_hospice;
-    }
-
-    public static String getPreviously_taken_genetic_test() {
-        return previously_taken_genetic_test;
-    }
-
-    public static void setPreviously_taken_genetic_test(String previously_taken_genetic_test) {
-        pss.previously_taken_genetic_test = previously_taken_genetic_test;
-    }
-
-    public static String getVerified_money() {
-        return verified_money;
-    }
-
-    public static void setVerified_money(String verified_money) {
-        pss.verified_money = verified_money;
-    }
-
-    public static String getWith_medical() {
-        return with_medical;
-    }
-
-    public static void setWith_medical(String with_medical) {
-        pss.with_medical = with_medical;
-    }
-
-    public static String getWellness_completed() {
-        return wellness_completed;
-    }
-
-    public static void setWellness_completed(String wellness_completed) {
-        pss.wellness_completed = wellness_completed;
-    }
-
-    public static String getWellness_past() {
-        return wellness_past;
-    }
-
-    public static void setWellness_past(String wellness_past) {
-        pss.wellness_past = wellness_past;
-    }
-
-    public static String getAdditional_health() {
-        return additional_health;
-    }
-
-    public static void setAdditional_health(String additional_health) {
-        pss.additional_health = additional_health;
-    }
-
-    public static String getConfirm_all() {
-        return confirm_all;
-    }
-
-    public static void setConfirm_all(String confirm_all) {
-        pss.confirm_all = confirm_all;
-    }
 
     public pss(WebDriver driver) {
 

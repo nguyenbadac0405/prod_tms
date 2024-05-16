@@ -6,6 +6,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class intake {
 
     protected static WebDriver driver;
@@ -47,7 +49,7 @@ public class intake {
     public WebElement fPrimaryInsurance;
 
     @FindBy(name = "data[submit]")
-    public WebElement btnSubmit;
+    public WebElement btnSubmitsect;
 
     @FindBy(xpath = "//*[@value='Male']")
     public WebElement ckGender;
@@ -90,6 +92,9 @@ public class intake {
     @FindBy(xpath = ".//button[text()='Save']")
     public WebElement btnSave;
 
+//    @FindBy(css = "button[class='btn rce-btn btn-primary btn-md']")
+//    public WebElement btnSave;
+
     //Test Requirements
     @FindBy(xpath = ".//span[text()='Test Requirements']")
     public WebElement sectTestRes;
@@ -104,6 +109,28 @@ public class intake {
     @FindBy(name = "data[medical_history_patient_cancer1]")
     public WebElement fCancerType;
 
+    //family history
+    @FindBy(xpath = ".//span[text()='Family History']")
+    public WebElement sectFamilyHis;
+
+    @FindBy(name = "data[family_history_member_1_name]")
+    public WebElement fNameMember1;
+
+    @FindBy(css = "div[class='form-control ui fluid selection dropdown']")
+    public WebElement fRelation1;
+
+    @FindBy(css = "input[value='Male']")
+    public WebElement fGender1;
+
+    @FindBy(name = "data[family_history_member_1_cancer_type]")
+    public WebElement fCancertype1;
+
+    //medication
+    @FindBy(name = "shipped")
+    public List<WebElement> ckMedicationConf;
+
+    @FindBy(xpath = ".//span[text()='Submit']")
+    public WebElement btnSubmit;
 
 
 
