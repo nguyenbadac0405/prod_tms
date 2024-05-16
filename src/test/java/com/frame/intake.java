@@ -104,6 +104,8 @@ public class intake {
     @FindBy(name = "data[medical_history_patient_cancer1]")
     public WebElement fCancerType;
 
+    //family history
+
 
 
 
@@ -363,6 +365,8 @@ public class intake {
         Common.waitSec(3);
         driver.findElement(By.name("data[patient_phone]")).sendKeys("8458094618");
         Common.waitSec(3);
+//        driver.findElement(By.name("data[phone_number_alternative]")).sendKeys("8458094618");
+//        Common.waitSec(3);
 
         //language
         driver.findElement(By.xpath("//*[@value='English']")).click();

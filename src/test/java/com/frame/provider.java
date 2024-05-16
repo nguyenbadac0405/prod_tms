@@ -50,7 +50,12 @@ public class provider {
         driver.findElement(By.xpath(".//span[text()='Medical History']")).click();
         Common.waitSec(2);
         List<WebElement> history_medical = (List<WebElement>) js.executeScript(medical_history);
-        action.moveToElement(history_medical.get(0)).click().build().perform();
+        try {
+            action.moveToElement(history_medical.get(0)).click().build().perform();
+        }
+        catch (Exception e) {
+            driver.findElement(By.xpath("/html/body/div/div[7]/div[4]/div/div[2]/div/div[3]/div/div/div/div[1]/div[8]/div[1]/div[1]/label/input")).click();
+        }
         Common.waitSec(2);
         driver.findElement(By.name("data[medical_history_patient_question2]")).sendKeys("test");
         driver.findElement(By.name("data[medical_history_patient_question3]")).sendKeys("test");
