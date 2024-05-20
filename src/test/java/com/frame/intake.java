@@ -5,7 +5,10 @@ import org.checkerframework.checker.signature.qual.FieldDescriptor;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 public class intake {
@@ -134,11 +137,21 @@ public class intake {
 
 
 
-
-
     public intake(WebDriver driver) {
         this.driver = driver;
     }
+
+    public void enterText(WebElement fElement, String testText) {
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(
+                ExpectedConditions.visibilityOf(fElement)
+        ).sendKeys(testText);
+    }
+    public void clickBtnCheckbox(WebElement btnckElement, String testText) {
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(
+                ExpectedConditions.visibilityOf(btnckElement)
+        ).sendKeys(testText);
+    }
+
 
     public void create_case_genetics(String business, String vertical, String MG, String type, String lab, String first_name, String last_name, String DOB, String medicare_ID) {
         try {

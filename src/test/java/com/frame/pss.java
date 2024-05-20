@@ -5,8 +5,11 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Factory;
 
+import java.time.Duration;
 import java.util.List;
 
 public class pss {
@@ -54,6 +57,34 @@ public class pss {
     @FindBy(xpath = ".//span[text()='Assign']")
     public WebElement btnAssign;
 
+    protected static String btnAssigned = "return document.querySelectorAll('[class*=\"rce-btn btn-minw-120\"]')";
+
+    @FindBy(className = "card-header")
+    public WebElement btnResult;
+
+    @FindBy(css = "input[type='file']")
+    public WebElement fUploadFile;
+
+    protected static String fleSelectResultStt = "return document.querySelectorAll('[class*=\"sp-select__placeholder\"]')";
+
+    protected static String btnUploadResult = "return document.querySelectorAll('[class=\"rce-btn btn-main\"]')";
+
+    protected static String btnSendResult = "return document.querySelectorAll('[class=\"btn btn-primary btn-md\"]')";
+
+    protected static String btnSendandMove = "return document.querySelectorAll('[class=\"swal-button swal-button--confirm\"]')";
+
+    protected static String btnGotIt = "return document.querySelectorAll('[class=\"swal2-confirm swal2-styled\"]')";
+
+    public void enterText(WebElement fElement, String testText) {
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(
+                ExpectedConditions.visibilityOf(fElement)
+        ).sendKeys(testText);
+    }
+    public void clickBtnCheckbox(WebElement btnckElement, String testText) {
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(
+                ExpectedConditions.visibilityOf(btnckElement)
+        ).sendKeys(testText);
+    }
 
 
 
@@ -170,17 +201,6 @@ public class pss {
         action.sendKeys(Keys.ENTER).build().perform();
         Common.waitSec(3);
 
-//        try {
-//            WebElement button_send = driver.findElement(By.xpath(".//button[@class='btn btn-primary btn-md']"));
-//            action.moveToElement(button_send).click().build().perform();
-//        } catch (Exception e) {
-//            driver.findElement(By.xpath(".//button[@class='rf-close-btn']")).click();
-//            Common.waitSec(3);
-//            driver.findElement(By.xpath(".//button[@class='rf-btn-link']")).click();
-//            Common.waitSec(3);
-//            driver.findElement(By.xpath(".//button[@class='btn btn-primary btn-md']")).click();
-//
-//        }
     }
 
     public void complete() {

@@ -39,7 +39,7 @@ public class DriverFactory {
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--remote-allow-origins=*");
 		driver1 = new ChromeDriver();
-		driver1.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		driver1.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver1.manage().window().maximize();
 //		driver2 = new ChromeDriver();
 //		driver2.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
