@@ -4,12 +4,18 @@ import com.Common;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Factory;
 
+import java.time.Duration;
 import java.util.List;
 
 public class pss {
     protected static WebDriver driver;
 
+    //COMPLIANCE SECTION
 
     //Are you able to make your own medical decisions or does someone else make them for you? => qs1
     protected static String medical_decision = "return document.querySelectorAll('[name*=\"compliance_verification_verified_medical_decision_41589\"')";
@@ -41,94 +47,47 @@ public class pss {
     //Do you confirm all the above information is true and accurate? => qs10
     protected static String confirm_all = "return document.querySelectorAll('[name*=\"compliance_verification_verified_confirm_all\"')";
 
+    //CASE DETAIL
+    @FindBy(id = "rec-form-select-collapse-btn")
+    public WebElement fCaseDetail;
 
-    public static WebDriver getDriver() {
-        return driver;
+    @FindBy(id = "react-select-14-input")
+    public WebElement fSelectProvider;
+
+    @FindBy(xpath = ".//span[text()='Assign']")
+    public WebElement btnAssign;
+
+    protected static String btnAssigned = "return document.querySelectorAll('[class*=\"rce-btn btn-minw-120\"]')";
+
+    @FindBy(className = "card-header")
+    public WebElement btnResult;
+
+    @FindBy(css = "input[type='file']")
+    public WebElement fUploadFile;
+
+    protected static String fleSelectResultStt = "return document.querySelectorAll('[class*=\"sp-select__placeholder\"]')";
+
+    protected static String btnUploadResult = "return document.querySelectorAll('[class=\"rce-btn btn-main\"]')";
+
+    protected static String btnSendResult = "return document.querySelectorAll('[class=\"btn btn-primary btn-md\"]')";
+
+    protected static String btnSendandMove = "return document.querySelectorAll('[class=\"swal-button swal-button--confirm\"]')";
+
+    protected static String btnGotIt = "return document.querySelectorAll('[class=\"swal2-confirm swal2-styled\"]')";
+
+    public void enterText(WebElement fElement, String testText) {
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(
+                ExpectedConditions.visibilityOf(fElement)
+        ).sendKeys(testText);
+    }
+    public void clickBtnCheckbox(WebElement btnckElement, String testText) {
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(
+                ExpectedConditions.visibilityOf(btnckElement)
+        ).sendKeys(testText);
     }
 
-    public static void setDriver(WebDriver driver) {
-        pss.driver = driver;
-    }
 
-    public static String getMedical_decision() {
-        return medical_decision;
-    }
 
-    public static void setMedical_decision(String medical_decision) {
-        pss.medical_decision = medical_decision;
-    }
-
-    public static String getConsent_to_bill() {
-        return consent_to_bill;
-    }
-
-    public static void setConsent_to_bill(String consent_to_bill) {
-        pss.consent_to_bill = consent_to_bill;
-    }
-
-    public static String getCurrently_hospice() {
-        return currently_hospice;
-    }
-
-    public static void setCurrently_hospice(String currently_hospice) {
-        pss.currently_hospice = currently_hospice;
-    }
-
-    public static String getPreviously_taken_genetic_test() {
-        return previously_taken_genetic_test;
-    }
-
-    public static void setPreviously_taken_genetic_test(String previously_taken_genetic_test) {
-        pss.previously_taken_genetic_test = previously_taken_genetic_test;
-    }
-
-    public static String getVerified_money() {
-        return verified_money;
-    }
-
-    public static void setVerified_money(String verified_money) {
-        pss.verified_money = verified_money;
-    }
-
-    public static String getWith_medical() {
-        return with_medical;
-    }
-
-    public static void setWith_medical(String with_medical) {
-        pss.with_medical = with_medical;
-    }
-
-    public static String getWellness_completed() {
-        return wellness_completed;
-    }
-
-    public static void setWellness_completed(String wellness_completed) {
-        pss.wellness_completed = wellness_completed;
-    }
-
-    public static String getWellness_past() {
-        return wellness_past;
-    }
-
-    public static void setWellness_past(String wellness_past) {
-        pss.wellness_past = wellness_past;
-    }
-
-    public static String getAdditional_health() {
-        return additional_health;
-    }
-
-    public static void setAdditional_health(String additional_health) {
-        pss.additional_health = additional_health;
-    }
-
-    public static String getConfirm_all() {
-        return confirm_all;
-    }
-
-    public static void setConfirm_all(String confirm_all) {
-        pss.confirm_all = confirm_all;
-    }
 
     public pss(WebDriver driver) {
 
@@ -242,17 +201,6 @@ public class pss {
         action.sendKeys(Keys.ENTER).build().perform();
         Common.waitSec(3);
 
-//        try {
-//            WebElement button_send = driver.findElement(By.xpath(".//button[@class='btn btn-primary btn-md']"));
-//            action.moveToElement(button_send).click().build().perform();
-//        } catch (Exception e) {
-//            driver.findElement(By.xpath(".//button[@class='rf-close-btn']")).click();
-//            Common.waitSec(3);
-//            driver.findElement(By.xpath(".//button[@class='rf-btn-link']")).click();
-//            Common.waitSec(3);
-//            driver.findElement(By.xpath(".//button[@class='btn btn-primary btn-md']")).click();
-//
-//        }
     }
 
     public void complete() {

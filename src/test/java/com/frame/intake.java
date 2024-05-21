@@ -5,6 +5,11 @@ import org.checkerframework.checker.signature.qual.FieldDescriptor;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.List;
 
 public class intake {
 
@@ -47,7 +52,7 @@ public class intake {
     public WebElement fPrimaryInsurance;
 
     @FindBy(name = "data[submit]")
-    public WebElement btnSubmit;
+    public WebElement btnSubmitsect;
 
     @FindBy(xpath = "//*[@value='Male']")
     public WebElement ckGender;
@@ -90,6 +95,9 @@ public class intake {
     @FindBy(xpath = ".//button[text()='Save']")
     public WebElement btnSave;
 
+//    @FindBy(css = "button[class='btn rce-btn btn-primary btn-md']")
+//    public WebElement btnSave;
+
     //Test Requirements
     @FindBy(xpath = ".//span[text()='Test Requirements']")
     public WebElement sectTestRes;
@@ -106,14 +114,46 @@ public class intake {
 
     //family history
 
+    @FindBy(xpath = ".//span[text()='Family History']")
+    public WebElement sectFamilyHis;
 
 
+    @FindBy(name = "data[family_history_member_1_name]")
+    public WebElement fNameMember1;
+
+    @FindBy(css = "div[class='form-control ui fluid selection dropdown']")
+    public WebElement fRelation1;
+
+    @FindBy(css = "input[value='Male']")
+    public WebElement fGender1;
+
+    @FindBy(name = "data[family_history_member_1_cancer_type]")
+    public WebElement fCancertype1;
+
+    //medication
+    @FindBy(name = "shipped")
+    public List<WebElement> ckMedicationConf;
+
+    @FindBy(xpath = ".//span[text()='Submit']")
+    public WebElement btnSubmit;
 
 
 
     public intake(WebDriver driver) {
         this.driver = driver;
     }
+
+    public void enterText(WebElement fElement, String testText) {
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(
+                ExpectedConditions.visibilityOf(fElement)
+        ).sendKeys(testText);
+    }
+    public void clickBtnCheckbox(WebElement btnckElement, String testText) {
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(
+                ExpectedConditions.visibilityOf(btnckElement)
+        ).sendKeys(testText);
+    }
+
 
     public void create_case_genetics(String business, String vertical, String MG, String type, String lab, String first_name, String last_name, String DOB, String medicare_ID) {
         try {

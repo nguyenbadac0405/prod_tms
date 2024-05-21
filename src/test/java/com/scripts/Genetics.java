@@ -61,6 +61,20 @@ public class Genetics extends DriverFactory {
 	}
 
 	@Test
+	public void testEle() throws Exception {
+		excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
+		login.URL_TMS();
+		login.provider("123456");
+		Common.waitSec(5);
+
+		String id = excel.getCellData("id", 1);
+		search.search_from_intake(id);
+		Common.waitSec(5);
+
+		doctor.testEle();
+		Common.waitSec(30);
+	}
+	@Test
 	public void MG_PSS_dashboard() throws Exception {
 		//login intake
 		login.URL_TMS();

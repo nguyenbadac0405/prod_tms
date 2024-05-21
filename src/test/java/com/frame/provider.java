@@ -3,15 +3,53 @@ package com.frame;
 import com.Common;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 public class provider {
 
     protected static WebDriver driver;
 
+    @FindBy(className = "card-header")
+    public List<WebElement> listSectionName;
 
+    // Patient Information
+    @FindBy(xpath = ".//span[text()='Patient Information']")
+    public WebElement sectPatientInfor;
+
+    @FindBy(name = "data[patient_information_provider_check_shipping]")
+    public WebElement ckShippingCheck;
+
+    @FindBy(xpath = ".//span[text()='Submit']")
+    public WebElement btnSubmit;
+
+    @FindBy(xpath = ".//button[text()='Save']")
+    public WebElement btnSave;
+
+    @FindBy(name = "data[patient_personal_history_progress_note_phmx]")
+    public WebElement fPhmx;
+
+    //Medical History
     protected static String medical_history = "document.querySelectorAll('[name*=\"medical_history_patient_question1\"')";
+
+
+    public void enterText(WebElement fElement, String testText) {
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(
+                ExpectedConditions.visibilityOf(fElement)
+        ).sendKeys(testText);
+    }
+    public void clickBtnCheckbox(WebElement btnckElement, String testText) {
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(
+                ExpectedConditions.visibilityOf(btnckElement)
+        ).sendKeys(testText);
+    }
+
+
+
 
     public provider(WebDriver driver) {
         this.driver = driver;
@@ -19,6 +57,41 @@ public class provider {
 
 
 
+    public void testEle() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        //patient information
+        listSectionName.get(4).click();
+
+        try {
+            if(ckShippingCheck.isDisplayed()) {
+                ckShippingCheck.click();
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println("no such element");
+        }
+
+        btnSave.click();
+>>>>>>> 5e961ade0bab16ba766077ad46dc7f4301b2cb72
+
+        //medical history
+        listSectionName.get(7).click();
+
+        List<WebElement> history_medical = (List<WebElement>) js.executeScript(medical_history);
+        history_medical.get(1).click();
+
+        fPhmx.sendKeys("test");
+
+        btnSubmit.click();
+
+
+
+
+
+
+
+    }
     public void to_RTS() {
         Actions action = new Actions(driver);
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -155,18 +228,6 @@ public class provider {
         driver.findElement(By.name("data[submit]")).click();
         Common.waitSec(3);
 
-        //family history
-//        driver.findElement(By.name("data[family_history_member_1_name]")).sendKeys("daddy");
-//        Common.waitSec(2);
-//        driver.findElement(By.xpath(".//*[@class='form-control ui fluid selection dropdown']")).click();
-//        Common.waitSec(1);
-//        action.sendKeys(Keys.ENTER).build().perform();
-//        Common.waitSec(1);
-//        driver.findElement(By.xpath(".//input[@value='Male']")).click();
-//        Common.waitSec(2);
-//
-//        driver.findElement(By.name("data[family_history_member_1_related_health_issue]")).sendKeys("test");
-
         driver.findElement(By.name("data[family_history_member_confirm_doctor]")).click();
         Common.waitSec(1);
 
@@ -196,9 +257,7 @@ public class provider {
         driver.findElement(By.xpath(".//div[text()='G45']")).click();
         driver.findElement(By.xpath(".//div[text()='E08']")).click();
         Common.waitSec(1);
-//        driver.findElement(By.xpath(".//div[text()='I10']")).click();
-//        driver.findElement(By.xpath(".//div[text()='Z91.83']")).click();
-//        Common.waitSec(1);
+
 
         driver.findElement(By.xpath(".//button[text()='Save']")).click();
         Common.waitSec(3);
@@ -296,14 +355,10 @@ public class provider {
         //diagnosis
         driver.findElement(By.xpath(".//*[text()='Diagnosis']")).click();
         Common.waitSec(3);
-//        driver.findElement(By.xpath(".//div[text()='M02']")).click();
+
         driver.findElement(By.xpath(".//div[text()='I129']")).click();
         Common.waitSec(1);
-//        driver.findElement(By.xpath(".//div[text()='G45']")).click();
-//        driver.findElement(By.xpath(".//div[text()='E08']")).click();
-        Common.waitSec(1);
         driver.findElement(By.xpath(".//div[text()='I10']")).click();
-//        driver.findElement(By.xpath(".//div[text()='I129']")).click();
         Common.waitSec(1);
 
         driver.findElement(By.xpath(".//button[text()='Save']")).click();
