@@ -17,21 +17,7 @@ public class provider {
         this.driver = driver;
     }
 
-    public static void setDriver(WebDriver driver) {
-        provider.driver = driver;
-    }
 
-    public static void setMedical_history(String medical_history) {
-        provider.medical_history = medical_history;
-    }
-
-    public static WebDriver getDriver() {
-        return driver;
-    }
-
-    public static String getMedical_history() {
-        return medical_history;
-    }
 
     public void to_RTS() {
         Actions action = new Actions(driver);
@@ -324,6 +310,7 @@ public class provider {
         Common.waitSec(3);
         // medication
         System.out.println("Check Medications");
+        driver.findElement(By.xpath(".//span[text()='Medications']")).click();
         driver.findElement(By.xpath(".//input[@name='shipped']")).click();
         Common.waitSec(2);
         driver.findElement(By.xpath(".//button[text()='Save']")).click();
@@ -334,7 +321,7 @@ public class provider {
         //Assessment & plan
         System.out.println("Set Assessment & Plan");
         Common.waitSec(4);
-        driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
+        driver.findElement(By.xpath(".//span[text()='Assessment & Plan']")).click();
         Common.waitSec(3);
         driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
         Common.waitSec(3);
