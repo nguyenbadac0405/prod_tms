@@ -58,6 +58,7 @@ public class provider {
     }
 
 
+
     public void testEle() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         //patient information
@@ -73,7 +74,12 @@ public class provider {
             System.out.println("no such element");
         }
 
+<<<<<<< HEAD
         btnSubmit.click();
+=======
+        btnSave.click();
+>>>>>>> 5e961ade0bab16ba766077ad46dc7f4301b2cb72
+>>>>>>> d0c87371afce4dfa0a13718b7b00e7f42b745625
 
         //medical history
         listSectionName.get(7).click();
@@ -109,7 +115,12 @@ public class provider {
         driver.findElement(By.xpath(".//span[text()='Medical History']")).click();
         Common.waitSec(2);
         List<WebElement> history_medical = (List<WebElement>) js.executeScript(medical_history);
-        action.moveToElement(history_medical.get(0)).click().build().perform();
+        try {
+            action.moveToElement(history_medical.get(0)).click().build().perform();
+        }
+        catch (Exception e) {
+            driver.findElement(By.xpath("/html/body/div/div[7]/div[4]/div/div[2]/div/div[3]/div/div/div/div[1]/div[8]/div[1]/div[1]/label/input")).click();
+        }
         Common.waitSec(2);
         driver.findElement(By.name("data[medical_history_patient_question2]")).sendKeys("test");
         driver.findElement(By.name("data[medical_history_patient_question3]")).sendKeys("test");
@@ -360,6 +371,7 @@ public class provider {
         Common.waitSec(3);
         // medication
         System.out.println("Check Medications");
+        driver.findElement(By.xpath(".//span[text()='Medications']")).click();
         driver.findElement(By.xpath(".//input[@name='shipped']")).click();
         Common.waitSec(2);
         driver.findElement(By.xpath(".//button[text()='Save']")).click();
@@ -370,7 +382,7 @@ public class provider {
         //Assessment & plan
         System.out.println("Set Assessment & Plan");
         Common.waitSec(4);
-        driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
+        driver.findElement(By.xpath(".//span[text()='Assessment & Plan']")).click();
         Common.waitSec(3);
         driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
         Common.waitSec(3);
