@@ -4,6 +4,7 @@ import com.Common;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -53,6 +54,7 @@ public class provider {
 
     public provider(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
 
@@ -71,7 +73,7 @@ public class provider {
             System.out.println("no such element");
         }
 
-        btnSave.click();
+        btnSubmit.click();
 
         //medical history
         listSectionName.get(7).click();

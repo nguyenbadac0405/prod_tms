@@ -481,5 +481,12 @@ public class Genetics extends DriverFactory {
 		}
 	}
 
+	@Test
+	public void newflow() throws Exception {
+		excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
+		login.URL_TMS();
+
+
+	}
 
 }
