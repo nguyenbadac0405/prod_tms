@@ -74,12 +74,10 @@ public class provider {
             System.out.println("no such element");
         }
 
-<<<<<<< HEAD
+
         btnSubmit.click();
-=======
         btnSave.click();
->>>>>>> 5e961ade0bab16ba766077ad46dc7f4301b2cb72
->>>>>>> d0c87371afce4dfa0a13718b7b00e7f42b745625
+
 
         //medical history
         listSectionName.get(7).click();
