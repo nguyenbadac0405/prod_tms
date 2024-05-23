@@ -4,6 +4,7 @@ import com.Common;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -14,12 +15,70 @@ public class login {
 
 
 	public login(WebDriver driver) {
-		this.driver = driver;	
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
 	}
 	
-	@FindBy(name="username")
-	public WebElement username;
-	
+	@FindBy(id ="username")
+	public WebElement fUsername;
+
+	@FindBy(id = "pwd")
+	public WebElement fPassword;
+
+	@FindBy(css = "button[type='submit']")
+	public WebElement btnSignIn;
+
+	@FindBy(css = "div[class='text-error sp-mt-10']")
+	public WebElement errorMessage;
+
+
+
+	public void enterText(WebElement fElement, String testText) {
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(
+				ExpectedConditions.visibilityOf(fElement)
+		).sendKeys(testText);
+	}
+	public void clickBtnCheckbox(WebElement btnckElement) {
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(
+				ExpectedConditions.visibilityOf(btnckElement)
+		).click();
+	}
+
+	public String getLoginPageTitle () {
+		String pageTitle = driver.getTitle();
+		return pageTitle;
+	}
+
+	public boolean verifyLoginPageTitle() {
+		String expectedTitle = "Login | TMS Dashboard";
+		return getLoginPageTitle().equals(expectedTitle);
+	}
+
+	public void signin (String role)
+	{
+		if (role.equals("Intake")) {
+			enterText(fUsername, "dac+1@gkxim.com");
+			enterText(fPassword, "123456");
+		}
+		if (role.equals("PSS")) {
+			enterText(fUsername, "dac+3@gkxim.com");
+			enterText(fPassword, "111111");
+		}
+		if (role.equals("Provider")) {
+			enterText(fUsername, "dac+2@gkxim.com");
+			enterText(fPassword, "123456");
+		}
+		clickBtnCheckbox(btnSignIn);
+	}
+
+	public String getErrorMessage() {
+		String strErrorMsg = null;
+		if(errorMessage.isDisplayed() && errorMessage.isEnabled())
+		{
+			strErrorMsg = (String) errorMessage.getText();
+		}
+		return strErrorMsg;
+	}
 	
 	
 	public void URL_telehealth() {
@@ -39,7 +98,7 @@ public class login {
 	
 	public void pss(String password) 
 	{
-		username.sendKeys("dac+3@gkxim.com");
+		fUsername.sendKeys("dac+3@gkxim.com");
 //		driver.findElement(By.xpath("//*[@id='username']")).sendKeys("dac+3@gkxim.com");
 		driver.findElement(By.xpath("//*[@id='pwd']")).sendKeys(password);
 		driver.findElement(By.xpath("//*[@id='submit_login']/div/div[4]/button")).click();
@@ -55,7 +114,7 @@ public class login {
 
 
 	public void lab(String password) {
-		username.sendKeys("dac+4@gkxim.com");
+		fUsername.sendKeys("dac+4@gkxim.com");
 //		driver.findElement(By.xpath("//*[@id='username']")).sendKeys("dac+3@gkxim.com");
 		driver.findElement(By.xpath("//*[@id='pwd']")).sendKeys(password);
 		driver.findElement(By.xpath("//*[@id='submit_login']/div/div[4]/button")).click();
@@ -66,7 +125,7 @@ public class login {
 
 	public void intake(String password) 
 	{
-		username.sendKeys("dac+1@gkxim.com");
+		fUsername.sendKeys("dac+1@gkxim.com");
 //		driver.findElement(By.xpath("//*[@id='username']")).sendKeys("dac+3@gkxim.com");
 		driver.findElement(By.xpath("//*[@id='pwd']")).sendKeys(password);
 		driver.findElement(By.xpath("//*[@id='submit_login']/div/div[4]/button")).click();
