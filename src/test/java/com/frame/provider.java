@@ -73,7 +73,6 @@ public class provider {
         }
 
         btnSave.click();
->>>>>>> 5e961ade0bab16ba766077ad46dc7f4301b2cb72
 
         //medical history
         listSectionName.get(7).click();
@@ -108,16 +107,6 @@ public class provider {
         System.out.println("Check Medical History");
         driver.findElement(By.xpath(".//span[text()='Medical History']")).click();
         Common.waitSec(2);
-        List<WebElement> history_medical = (List<WebElement>) js.executeScript(medical_history);
-        try {
-            action.moveToElement(history_medical.get(0)).click().build().perform();
-        }
-        catch (Exception e) {
-            driver.findElement(By.xpath("/html/body/div/div[7]/div[4]/div/div[2]/div/div[3]/div/div/div/div[1]/div[8]/div[1]/div[1]/label/input")).click();
-        }
-        Common.waitSec(2);
-        driver.findElement(By.name("data[medical_history_patient_question2]")).sendKeys("test");
-        driver.findElement(By.name("data[medical_history_patient_question3]")).sendKeys("test");
         driver.findElement(By.name("data[patient_personal_history_progress_note_phmx]")).sendKeys("test");
         driver.findElement(By.name("data[submit]")).click();
         Common.waitSec(3);
@@ -146,15 +135,16 @@ public class provider {
         driver.findElement(By.xpath(".//span[text()='Diagnosis']")).click();
         Common.waitSec(3);
         System.out.println("Set Diagnosis");
-        driver.findElement(By.xpath(".//div[text()='Z80.1']")).click();
-        driver.findElement(By.xpath(".//div[text()='C44.300']")).click();
-        driver.findElement(By.xpath(".//div[text()='Z86.3']")).click();
+        driver.findElement(By.xpath(".//div[text()='Z13.79']")).click();
+//        driver.findElement(By.xpath(".//div[text()='Z13.89']")).click();
+        driver.findElement(By.xpath(".//div[text()='I25.9']")).click();
         driver.findElement(By.xpath(".//button[text()='Save']")).click();
         Common.waitSec(5);
 
         // review of systems
         System.out.println("Review of Systems");
-
+        driver.findElement(By.xpath(".//span[text()='Review of Systems']")).click();
+        Common.waitSec(3);
         driver.findElement(By.name("data[review_of_system_confirm]")).click();
         driver.findElement(By.name("data[submit]")).click();
         Common.waitSec(5);

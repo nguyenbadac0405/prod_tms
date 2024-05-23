@@ -278,7 +278,7 @@ public class intake {
         System.out.println("Check Test Requirement");
         driver.findElement(By.xpath(".//span[text()='Test Requirements']")).click();
         Common.waitSec(3);
-        driver.findElement(By.name("data[test_requirements_checkbox]")).click();
+//        driver.findElement(By.name("data[test_requirements_checkbox]")).click();
         driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
         Common.waitSec(3);
 
@@ -287,7 +287,7 @@ public class intake {
 
         Common.waitSec(2);
         System.out.println("Check Medical History");
-        driver.findElement((By.name("data[medical_history_patient_cancer1]"))).sendKeys("test");
+//        driver.findElement((By.name("data[medical_history_patient_cancer1]"))).sendKeys("test");
         driver.findElement(By.name("data[patient_personal_history_progress_note_confirm_2_sale]")).click();
         Common.waitSec(1);
         driver.findElement(By.name("data[submit]")).click();
@@ -303,7 +303,7 @@ public class intake {
         action.sendKeys(Keys.ENTER).build().perform();
         Common.waitSec(1);
         driver.findElement(By.xpath(".//input[@value='Male']")).click();
-        driver.findElement(By.name("data[family_history_member_1_cancer_type]")).sendKeys("test");
+//        driver.findElement(By.name("data[family_history_member_1_cancer_type]")).sendKeys("test");
         driver.findElement(By.xpath("//input[@name='data[family_history_member_confirm_sale]']")).click();
         Common.waitSec(1);
         driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
@@ -311,7 +311,7 @@ public class intake {
 
 
         //Medication
-//        driver.findElement(By.xpath(".//span[text()='Medications']")).click();
+        driver.findElement(By.xpath(".//span[text()='Medications']")).click();
 //        driver.findElement(By.name("data[submit]")).click();
         Common.waitSec(3);
         System.out.println("Check Medication");
@@ -322,7 +322,7 @@ public class intake {
 
         //submit
         driver.findElement(By.xpath(".//span[text()='Submit']")).click();
-        Common.waitSec(2);
+        Common.waitSec(3);
         action.sendKeys(Keys.ENTER).build().perform();
         System.out.println("------------------------------Done new case.-----------------------------------");
         Common.waitSec(5);
