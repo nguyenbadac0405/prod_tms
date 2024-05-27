@@ -77,10 +77,7 @@ public class provider {
 
         btnSubmit.click();
         btnSave.click();
-<<<<<<< HEAD
-=======
 
->>>>>>> a0298f3f81a1e0facac71ec2b68bfbfa9d47fa3a
 
         //medical history
         listSectionName.get(7).click();
