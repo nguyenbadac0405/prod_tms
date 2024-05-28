@@ -35,6 +35,14 @@ public class Genetics extends DriverFactory {
 
 	pss pss;
 
+	Section section;
+	patientInformation paInfor;
+	PCP pcp;
+	testRequirement testRes;
+	medicalHistory medHis;
+	medication medication;
+	familyHistory famHis;
+
 
 	@Override
 	public void setUpforTest() {
@@ -58,21 +66,31 @@ public class Genetics extends DriverFactory {
 		intake = PageFactory.initElements(driver1, intake.class);
 		doctor = PageFactory.initElements(driver1, provider.class);
 		pss = PageFactory.initElements(driver1, pss.class);
+		section = PageFactory.initElements(driver1, Section.class);
+		paInfor = PageFactory.initElements(driver1, patientInformation.class);
+		pcp = PageFactory.initElements(driver1, PCP.class);
+		testRes = PageFactory.initElements(driver1, testRequirement.class);
+		medHis = PageFactory.initElements(driver1, medicalHistory.class);
+		medication = PageFactory.initElements(driver1, medication.class);
+		famHis = PageFactory.initElements(driver1, familyHistory.class);
+
 	}
 
 	@Test
 	public void testEle() throws Exception {
 		excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
 		login.URL_TMS();
-		login.provider("123456");
+		login.intake("123456");
 		Common.waitSec(5);
 
 		String id = excel.getCellData("id", 1);
 		search.search_from_intake(id);
 		Common.waitSec(5);
 
-		doctor.testEle();
-		Common.waitSec(30);
+		section.openSection("Primary Care Provider");
+		Common.waitSec(10);
+		pcp.intakeSubmit();
+
 	}
 	@Test
 	public void MG_PSS_dashboard() throws Exception {

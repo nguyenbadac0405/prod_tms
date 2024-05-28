@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class testRequirement {
+public class testRequirement extends Section {
     protected WebDriver driver;
 
     public testRequirement(WebDriver driver)
@@ -22,33 +22,9 @@ public class testRequirement {
     @FindBy(css = "div[class='btn btn-primary btn-md test_requirements-formio-submit-button']")
     public WebElement btnSave;
 
-    @FindBy(className = "rf-text")
-    public WebElement sectionTitle;
 
-    public void clickBtnCheckbox(WebElement btnckElement) {
-        new WebDriverWait(driver, Duration.ofSeconds(10)).until(
-                ExpectedConditions.visibilityOf(btnckElement)
-        ).click();
-    }
-
-    public void enterText(WebElement fElement, String testText) {
-        new WebDriverWait(driver, Duration.ofSeconds(10)).until(
-                ExpectedConditions.visibilityOf(fElement)
-        ).sendKeys(testText);
-    }
-
-
-    public void intakeSubmit() throws Exception {
+    public void intakeSubmit() {
         clickBtnCheckbox(btnSave);
     }
 
-    public String getTitle() {
-        String title = sectionTitle.getText();
-        return title;
-    }
-
-    public boolean verifyTitleSection() {
-        String expectedTitle = "Test Requirements";
-        return getTitle().equals(expectedTitle);
-    }
 }

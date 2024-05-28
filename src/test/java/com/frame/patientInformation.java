@@ -11,11 +11,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class patientInformation {
+public class patientInformation extends Section {
     protected WebDriver driver;
 
-    public patientInformation (WebDriver driver)
-    {
+    public patientInformation (WebDriver driver) {
         this.driver = driver;
     }
 
@@ -94,23 +93,6 @@ public class patientInformation {
     public WebElement fEcRelation1;
 
 
-    public void enterText(WebElement fElement, String testText) {
-        new WebDriverWait(driver, Duration.ofSeconds(10)).until(
-                ExpectedConditions.visibilityOf(fElement)
-        ).sendKeys(testText);
-    }
-    public void clickBtnCheckbox(WebElement btnckElement) {
-        new WebDriverWait(driver, Duration.ofSeconds(10)).until(
-                ExpectedConditions.visibilityOf(btnckElement)
-        ).click();
-    }
-
-    public void keyEnter()
-    {
-        Actions actions = new Actions(driver);
-        Common.waitSec(2);
-        actions.sendKeys(Keys.ENTER).build().perform();
-    }
 
     public void inputPatientInfor(String vertical) throws Exception {
 
