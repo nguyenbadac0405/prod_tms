@@ -3,6 +3,7 @@ package com.scripts;
 import java.time.Duration;
 
 import com.frame.*;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -35,10 +36,12 @@ public class DriverFactory {
 	@BeforeMethod
 	public void setUp() throws Exception {
 
-		System.setProperty("webdriver.chrome.driver","E:\\chromedriver-win32\\chromedriver.exe");
+		WebDriverManager.chromedriver().setup();
+		driver1 = new ChromeDriver();
+//		System.setProperty("webdriver.chrome.driver","E:\\chromedriver-win32\\chromedriver.exe");
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--remote-allow-origins=*");
-		driver1 = new ChromeDriver();
+
 		driver1.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver1.manage().window().maximize();
 //		driver2 = new ChromeDriver();
@@ -53,7 +56,6 @@ public class DriverFactory {
 	public void tearDown() throws Exception {
 		Common.waitSec(2);
 		driver1.close();
-//		driver2.close();
 		RecordVideo.stopRecord();
 	}
 }
