@@ -60,42 +60,6 @@ public class provider {
 
 
     public void testEle() {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        //patient information
-        listSectionName.get(4).click();
-
-        try {
-            if(ckShippingCheck.isDisplayed()) {
-                ckShippingCheck.click();
-            }
-        }
-        catch (Exception e)
-        {
-            System.out.println("no such element");
-        }
-
-
-        btnSubmit.click();
-        btnSave.click();
-<<<<<<< HEAD
-=======
-
->>>>>>> a0298f3f81a1e0facac71ec2b68bfbfa9d47fa3a
-
-        //medical history
-        listSectionName.get(7).click();
-
-        List<WebElement> history_medical = (List<WebElement>) js.executeScript(medical_history);
-        history_medical.get(1).click();
-
-        fPhmx.sendKeys("test");
-
-        btnSubmit.click();
-
-
-
-
-
 
 
     }
