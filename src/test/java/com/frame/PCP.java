@@ -19,9 +19,13 @@ public class PCP extends Section {
     //find button no pcp
     @FindBy(name = "data[pcp_no_pcp_certification]")
     WebElement btnNoPcp;
+
+//    private By btnNoPcp = By.name("data[pcp_no_pcp_certification]");
+
     //find button save
     @FindBy(css = "button[class='btn rce-btn mb-3']")
     WebElement btnSave;
+
     public PCP(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -30,12 +34,12 @@ public class PCP extends Section {
     @Override
     public void intakeSubmit() {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            System.out.println(btnNoPcp.isDisplayed());
+            btnNoPcp.click();
+//            clickBtnCheckbox(btnNoPcp);
             System.out.println("check");
-            wait.until(ExpectedConditions.visibilityOf(btnNoPcp));
+            clickBtnCheckbox(btnSave);
             System.out.println("check");
-            System.out.println(btnNoPcp.isEnabled());
+
         }
         catch (Exception e)
         {
