@@ -372,7 +372,7 @@ public class Genetics extends DriverFactory {
 		String MG = excel.getCellData("MG", 1);
 		String lab = excel.getCellData("lab", 1);
 		String type = excel.getCellData("type", 1);
-		String first_name = "test " + render.firtname();
+		String first_name = "test GK" + render.firtname();
 		String last_name = render.lastname();
 		String DOB = excel.getCellData("DOB", 1);
 //		String medicare_ID = render.medicare_ID();
@@ -428,7 +428,7 @@ public class Genetics extends DriverFactory {
 		String MG = excel.getCellData("MG", 1);
 		String lab = excel.getCellData("lab", 1);
 		String type = excel.getCellData("type", 1);
-		String first_name = "test " + render.firtname();
+		String first_name = "test GK" + render.firtname();
 		String last_name = render.lastname();
 		String DOB = excel.getCellData("DOB", 1);
 //		String medicare_ID = render.medicare_ID();
