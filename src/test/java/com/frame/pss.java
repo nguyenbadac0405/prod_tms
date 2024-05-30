@@ -155,7 +155,9 @@ public class pss {
         driver.findElement(By.xpath(".//div[text()='Select ...']")).click();
         Common.waitSec(2);
         action.sendKeys("dac").build().perform();
+        Common.waitSec(2);
         action.sendKeys(Keys.ENTER).build().perform();
+        Common.waitSec(2);
         action.sendKeys(Keys.ENTER).build().perform();
 
         Common.waitSec(5);
@@ -361,7 +363,9 @@ public class pss {
         driver.findElement(By.xpath(".//div[text()='Select ...']")).click();
         Common.waitSec(2);
         action.sendKeys("dac").build().perform();
+        Common.waitSec(2);
         action.sendKeys(Keys.ENTER).build().perform();
+        Common.waitSec(2);
         action.sendKeys(Keys.ENTER).build().perform();
 
         Common.waitSec(5);

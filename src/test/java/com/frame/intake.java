@@ -401,6 +401,7 @@ public class intake {
 
         //phone
         driver.findElement(By.xpath(".//*[@value='Cell Phone']")).click();
+        Common.waitSec(2);
         driver.findElement(By.name("data[patient_home_phone]")).sendKeys("8458094618");
         Common.waitSec(3);
         driver.findElement(By.name("data[patient_phone]")).sendKeys("8458094618");

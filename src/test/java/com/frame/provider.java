@@ -60,6 +60,7 @@ public class provider {
 
 
     public void testEle() {
+<<<<<<< HEAD
         JavascriptExecutor js = (JavascriptExecutor) driver;
         //patient information
         listSectionName.get(4).click();
@@ -93,6 +94,8 @@ public class provider {
 
 
 
+=======
+>>>>>>> core
 
 
     }
