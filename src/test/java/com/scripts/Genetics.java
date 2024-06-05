@@ -1,8 +1,10 @@
 package com.scripts;
 
 import com.frame.*;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.Common;
@@ -138,7 +140,7 @@ public class Genetics extends DriverFactory {
 	@Test
 	public void new_case() throws Exception {
 		//create new case
-		Actions action = new Actions(driver1);
+//		Actions action = new Actions(driver1);
 		excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
 		String business = excel.getCellData("business", 1);
 		String vertical = excel.getCellData("vertical", 1);
@@ -149,7 +151,7 @@ public class Genetics extends DriverFactory {
 		String last_name = render.lastname();
 		String DOB = excel.getCellData("DOB", 1);
 		String medicare_ID = render.medicare_ID();
-		String zipcode = excel.getCellData("zipcode", 1);
+//		String zipcode = excel.getCellData("zipcode", 1);
 		login.URL_TMS();
 		login.intake("123456");
 		Common.waitSec(6);
@@ -185,8 +187,8 @@ public class Genetics extends DriverFactory {
 		Common.waitSec(5);
 
 
-		String lab = excel.getCellData("lab", 1);
-		String type = excel.getCellData("type", 1);
+//		String lab = excel.getCellData("lab", 1);
+//		String type = excel.getCellData("type", 1);
 //		billing.billing();1
 		Common.waitSec(10);
 
@@ -271,17 +273,25 @@ public class Genetics extends DriverFactory {
 		String DOB = excel.getCellData("DOB", 1);
 //		String medicare_ID = render.medicare_ID();
 		String medicare_ID = "6TR7FG7RT96";
-		String zipcode = excel.getCellData("zipcode", 1);
+//		String zipcode = excel.getCellData("zipcode", 1);
 		login.URL_TMS();
 		login.intake("123456");
 		Common.waitSec(6);
 		intake.create_case_genetics(business, vertical, MG, lab, type, first_name, last_name, DOB, medicare_ID);
 
-
 		String id = to_assign.find_id();
 		excel.setCellData(id, 1, 0);
 		System.out.println("Case-ID: " + id);
-		Common.waitSec(10);
+
+		if (search.compareStatus("Draft") ){
+			action.sendKeys(Keys.ENTER).build().perform();
+			Common.waitSec(10);
+		}
+		if (search.compareStatus("New (Not Yet Called)")) {
+			Assert.assertTrue(search.compareStatus("New (Not Yet Called)"), "------------------Done new case.-----------------------");
+			excel.setCellData("Pass", 7, 3);
+			excel.setCellData("Pass", 8, 3);
+		}
 		logout.intake();
 
 
@@ -294,7 +304,18 @@ public class Genetics extends DriverFactory {
 		Common.waitSec(5);
 
 		pss.to_pending();
-		Common.waitSec(10);
+
+		//input status result
+
+		if (search.compareStatus("Pending (Not Yet Called)") ){
+			action.sendKeys(Keys.ENTER).build().perform();
+			Common.waitSec(10);
+		}
+		if (search.compareStatus("Assigned (Not Yet Called)")) {
+			Assert.assertTrue(search.compareStatus("New (Not Yet Called)"), "------------------Done Assigned.-----------------------");
+			excel.setCellData("Pass", 9, 3);
+			excel.setCellData("Pass", 10, 3);
+		}
 
 		logout.pss();
 
@@ -304,27 +325,20 @@ public class Genetics extends DriverFactory {
 		Common.waitSec(10);
 
 		search.search_from_intake(id);
-		Common.waitSec(5);
+		Common.waitSec(10);
 
-		Common.waitSec(30);
+//		Common.waitSec(30);
 
 		doctor.to_RTS();
 		Common.waitSec(3);
+		if (search.compareStatus("Ready to send")) {
+			Assert.assertTrue(search.compareStatus("Ready to send"), "------------------Done Approved.-----------------------");
+			excel.setCellData("Pass", 11, 3);
+
+		}
 
 		logout.provider();
 
-		//to AWR
-//		login.intake("123456");
-//		Common.waitSec(10);
-//
-//		search.search_from_intake(id);
-//		Common.waitSec(5);
-//
-//		intake.to_Awating_Result();
-//		System.out.println("check");
-//		Common.waitSec(3);
-//
-//		logout.logout();
 
 		//to AFU
 		login.pss("111111");
@@ -336,6 +350,13 @@ public class Genetics extends DriverFactory {
 		pss.to_AFU();
 		Common.waitSec(5);
 
+		if (search.compareStatus("Pending Results Follow Up")) {
+			Assert.assertTrue(search.compareStatus("Pending Results Follow Up"), "------------------Done Upload result.-----------------------");
+			excel.setCellData("Pass", 14, 3);
+			excel.setCellData("Pass", 12, 3);
+			excel.setCellData("Pass", 13, 3);
+		}
+
 		logout.pss();
 
 		//to Follow up
@@ -345,20 +366,16 @@ public class Genetics extends DriverFactory {
 		search.search_from_intake(id);
 		Common.waitSec(10);
 
+
 		doctor.to_approve3();
+
 		Common.waitSec(5);
 
-//		logout.doctor();
-//
-//		//completed
-//		login.pss("111111");
-//		Common.waitSec(10);
-//
-//		search.search_from_intake(id);
-//		Common.waitSec(10);
-//
-//		pss.complete();
-//		Common.waitSec(5);
+		if (search.compareStatus("Completed By Provider")) {
+			Assert.assertTrue(search.compareStatus("Ready to Send"), "------------------Done Case.-----------------------");
+			excel.setCellData("Pass", 15, 3);
+
+		}
 
 	}
 
@@ -377,7 +394,7 @@ public class Genetics extends DriverFactory {
 		String DOB = excel.getCellData("DOB", 1);
 //		String medicare_ID = render.medicare_ID();
 		String medicare_ID = "6TR7FG7RT92";
-		String zipcode = excel.getCellData("zipcode", 1);
+//		String zipcode = excel.getCellData("zipcode", 1);
 		login.URL_TMS();
 		login.intake("123456");
 		Common.waitSec(20);
@@ -387,7 +404,17 @@ public class Genetics extends DriverFactory {
 		String id = to_assign.find_id();
 		excel.setCellData(id, 1, 0);
 		System.out.println("Case-ID: " + id);
-		Common.waitSec(30);
+
+
+		if (search.compareStatus("Draft") ){
+			action.sendKeys(Keys.ENTER).build().perform();
+			Common.waitSec(10);
+		}
+		if (search.compareStatus("New (Not Yet Called)")) {
+			Assert.assertTrue(search.compareStatus("New (Not Yet Called)"), "------------------Done new case.-----------------------");
+//			excel.setCellData("Pass", 7, 3);
+			excel.setCellData("Pass", 18, 3);
+		}
 		logout.intake();
 
 
@@ -400,7 +427,15 @@ public class Genetics extends DriverFactory {
 		Common.waitSec(5);
 
 		pss.to_pending();
-		Common.waitSec(10);
+		if (search.compareStatus("Pending (Not Yet Called)") ){
+			action.sendKeys(Keys.ENTER).build().perform();
+			Common.waitSec(10);
+		}
+		if (search.compareStatus("Assigned (Not Yet Called)")) {
+			Assert.assertTrue(search.compareStatus("New (Not Yet Called)"), "------------------Done Assigned.-----------------------");
+			excel.setCellData("Pass", 19, 3);
+			excel.setCellData("Pass", 210, 3);
+		}
 
 		logout.pss();
 
@@ -416,6 +451,11 @@ public class Genetics extends DriverFactory {
 
 		doctor.denied();
 		Common.waitSec(3);
+		if (search.compareStatus("Denial Approved")) {
+			Assert.assertTrue(search.compareStatus("Denial Approved"), "------------------Done Denied.-----------------------");
+			excel.setCellData("Pass", 21, 3);
+
+		}
 	}
 
 	@Test
@@ -433,10 +473,10 @@ public class Genetics extends DriverFactory {
 		String DOB = excel.getCellData("DOB", 1);
 //		String medicare_ID = render.medicare_ID();
 		String medicare_ID = "6TR7FG7RT93";
-		String zipcode = excel.getCellData("zipcode", 1);
+//		String zipcode = excel.getCellData("zipcode", 1);
 		login.URL_TMS();
 		login.intake("123456");
-		Common.waitSec(20);
+		Common.waitSec(10);
 		intake.create_case_genetics(business, vertical, MG, lab, type, first_name, last_name, DOB, medicare_ID);
 
 
@@ -444,6 +484,14 @@ public class Genetics extends DriverFactory {
 		excel.setCellData(id, 1, 0);
 		System.out.println("Case-ID: " + id);
 		Common.waitSec(30);
+		if (search.compareStatus("Draft") ){
+			action.sendKeys(Keys.ENTER).build().perform();
+		}
+		if (search.compareStatus("New (Not Yet Called)")) {
+			Assert.assertTrue(search.compareStatus("New (Not Yet Called)"), "------------------Done new case.-----------------------");
+			excel.setCellData("Pass", 24, 3);
+			excel.setCellData("Pass", 25, 3);
+		}
 		logout.intake();
 
 
@@ -456,7 +504,13 @@ public class Genetics extends DriverFactory {
 		Common.waitSec(5);
 
 		pss.cancel_genetics();
-		Common.waitSec(10);
+
+		if (search.compareStatus("Cancelled")) {
+			Assert.assertTrue(search.compareStatus("Cancelled"), "------------------Done Cancel.-----------------------");
+			excel.setCellData("Pass", 26, 3);
+			excel.setCellData("Pass", 27, 3);
+		}
+
 	}
 
 	@Test
@@ -484,7 +538,7 @@ public class Genetics extends DriverFactory {
 	public void check_change_DOB_intake() throws Exception {
 		excel.setExcelFile("src/test/resources/case_dob_not_fix_20240124.xlsx", "Sheet1");
 		login.URL_TMS();
-		login.intake("gkim12345");
+		login.intake("123456");
 		Common.waitSec(10);
 		search.pin();
 		Common.waitSec(3);

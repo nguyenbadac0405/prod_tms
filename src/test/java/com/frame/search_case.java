@@ -1,9 +1,9 @@
 package com.frame;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
+
+import java.util.List;
 
 public class search_case {
 	protected WebDriver driver;
@@ -38,6 +38,23 @@ public class search_case {
 
 	public void pin() {
 		driver.findElement(By.xpath("//*[@id=\"patient-dashboard\"]/div[6]/div[2]/div/div[1]/div[1]/div[2]/button")).click();
+	}
+
+	public boolean compareStatus(String expectedStatus) {
+		Actions action = new Actions(driver);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		//get list element status follow class
+		String eleStatus = "return document.querySelectorAll('[class*=\"rc-status fs-10\"')";
+		List <WebElement> status = (List<WebElement>) js.executeScript(eleStatus);
+
+		//compare with expected status
+		if (eleStatus.equals(status.get(0).getText())) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 }

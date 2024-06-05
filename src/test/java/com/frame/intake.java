@@ -259,9 +259,10 @@ public class intake {
 
         // submit
         driver.findElement(By.name("data[submit]")).click();
+
         System.out.println("-----------------Done draft case------------------");
         System.out.println(lab);
-        Common.waitSec(30);
+        Common.waitSec(15);
 
         //draft to new
         //pcp
@@ -445,9 +446,8 @@ public class intake {
         //draft to new
         //submit
 //        driver.findElement(By.xpath(".//span[text()='Submit']")).click();
-        Common.waitSec(2);
+        Common.waitSec(5);
         action.sendKeys(Keys.ENTER).build().perform();
-        System.out.println("------------------------------Done new case.-----------------------------------");
         Common.waitSec(5);
     }
 
