@@ -19,7 +19,7 @@ public class medication extends Section {
     public WebElement btnSave;
 
     @Override
-    public void intakeSubmit() {
+    public void intakeSubmit(String verical) {
         clickBtnCheckbox(btnConfirm);
         clickBtnCheckbox(btnSave);
     }

@@ -1,15 +1,8 @@
 package com.frame;
 
-import com.Common;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class patientInformation extends Section {
     protected WebDriver driver;
@@ -92,9 +85,11 @@ public class patientInformation extends Section {
     @FindBy(xpath = ".//div[text()='Select your answer']")
     public WebElement fEcRelation1;
 
+    @FindBy(name = "data[patient_information_provider_check_shipping]")
+    public WebElement ckConfirmShipping;
 
 
-    public void inputPatientInfor(String vertical) throws Exception {
+    public void intakeSubmit(String vertical) {
 
         if(vertical.equals("Genetics")) {
             enterText(fFirstname, "firstname" );
@@ -157,8 +152,10 @@ public class patientInformation extends Section {
             clickBtnCheckbox(btnSubmitsect);
 
         }
-
-
-
+    }
+    @Override
+    public void providerSubmit(String vertical) {
+        clickBtnCheckbox(ckConfirmShipping);
+        clickBtnCheckbox(btnSubmitsect);
     }
 }

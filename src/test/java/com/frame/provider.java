@@ -60,7 +60,7 @@ public class provider {
 
 
     public void testEle() {
-<<<<<<< HEAD
+
         JavascriptExecutor js = (JavascriptExecutor) driver;
         //patient information
         listSectionName.get(4).click();
@@ -89,13 +89,6 @@ public class provider {
         fPhmx.sendKeys("test");
 
         btnSubmit.click();
-
-
-
-
-
-=======
->>>>>>> core
 
 
     }
@@ -179,7 +172,7 @@ public class provider {
         actions.sendKeys(Keys.ENTER).build().perform();
         Common.waitSec(3);
 
-        System.out.println("-------------------------Done Approve----------------------------");
+
         Common.waitSec(7);
 
         driver.findElement(By.className("rf-btn-close")).click();

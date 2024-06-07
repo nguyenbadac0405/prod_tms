@@ -32,13 +32,10 @@ public class PCP extends Section {
     }
 
     @Override
-    public void intakeSubmit() {
+    public void intakeSubmit(String verical) {
         try {
             btnNoPcp.click();
-//            clickBtnCheckbox(btnNoPcp);
-            System.out.println("check");
             clickBtnCheckbox(btnSave);
-            System.out.println("check");
 
         }
         catch (Exception e)

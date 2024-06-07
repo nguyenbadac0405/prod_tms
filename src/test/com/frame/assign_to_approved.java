@@ -89,7 +89,7 @@ public class assign_to_approved {
 		driver.findElement(By.xpath("//*[@id='patient-dashboard']/div[5]/div[2]/div[1]/div[3]/div[1]/div[3]/button")).click();
 		Common.waitSec(3);
 		driver.findElement(By.xpath(".//button[text()='Yes']")).click();
-		System.out.println("-------------------------Done Approve----------------------------");
+
 		Common.waitSec(5);
 
 	}

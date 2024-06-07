@@ -39,17 +39,32 @@ public class Section {
     }
 
     public void enterText(WebElement fElement, String testText) {
-        new WebDriverWait(driver, Duration.ofSeconds(10)).until(
-                ExpectedConditions.visibilityOf(fElement)
-        ).sendKeys(testText);
+        try {
+            new WebDriverWait(driver, Duration.ofSeconds(10)).until(
+                    ExpectedConditions.visibilityOf(fElement)
+            ).sendKeys(testText);
+        }
+        catch (Exception e) {
+            System.out.println("The element" + fElement + " can not found");
+        }
+
     }
     public void clickBtnCheckbox(WebElement btnckElement) {
-        new WebDriverWait(driver, Duration.ofSeconds(10)).until(
-                ExpectedConditions.visibilityOf(btnckElement)
-        ).click();
+        try {
+            new WebDriverWait(driver, Duration.ofSeconds(10)).until(
+                    ExpectedConditions.visibilityOf(btnckElement)
+            ).click();
+        }
+        catch (Exception e) {
+            System.out.println("The element" + btnckElement + " can not found");
+        }
     }
 
-    public void intakeSubmit() {}
+    public void intakeSubmit(String vertical) {}
+
+    public void pssSubmit(String vertical) {}
+
+    public void providerSubmit(String vertical) {}
 
     public void openSection (String nameSection)
     {

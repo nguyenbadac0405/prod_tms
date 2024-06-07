@@ -23,7 +23,7 @@ public class medicalHistory extends Section {
 
 
     @Override
-    public void intakeSubmit()  {
+    public void intakeSubmit(String vetical)  {
         clickBtnCheckbox(ckConfirm);
         clickBtnCheckbox(btnSave);
     }

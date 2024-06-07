@@ -47,19 +47,28 @@ public class caseDetail {
     }
 
     public void createCase(String business, String vertical, String MG, String testtype, String lab) throws Exception {
-        clickBtnCheckbox(btnPin);
+        clickBtnCheckbox(btnPin);   //pin case list
 
-        clickBtnCheckbox(btnCreatecase);
+        clickBtnCheckbox(btnCreatecase); //click create case button
 
-        enterText(fBusiness, business);
+        //check vertical
+        if (vertical.equals("Genetics")){
+            enterText(fBusiness, business); //select business
 
-        enterText(fVertical, vertical);
+            enterText(fVertical, vertical); //select vertical
 
-        enterText(fMg, MG);
+            enterText(fMg, MG); //select MG
 
-        enterText(fTesttype, testtype);
+            enterText(fTesttype, testtype); //select test type
 
-        enterText(fLab, lab);
+            enterText(fLab, lab);   //select lab
+        }
+        else {
+            enterText(fBusiness, business);
 
+            enterText(fVertical, vertical);
+
+            enterText(fMg, MG);
+        }
     }
 }

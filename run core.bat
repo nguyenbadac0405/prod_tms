@@ -1,0 +1,1 @@
+java -cp "testng.jar;bin" org.testng.TestNG testng/core.xml

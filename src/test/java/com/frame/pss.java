@@ -174,7 +174,7 @@ public class pss {
         driver.findElement(By.xpath("//*[@id=\"patient-dashboard\"]/div[6]/div[4]/div/div[1]/div[6]/div/div/div[1]")).click();
         Common.waitSec(3);
         WebElement chooseFile = driver.findElement(By.xpath(".//input[@type='file']"));
-        chooseFile.sendKeys("C:/Users/dac/Downloads/file.pdf");
+        chooseFile.sendKeys("C:/Users/antes/Downloads/file.pdf");
         Common.waitSec(5);
         //to assign follow up
         driver.findElement(By.xpath(".//div[text()='Select ...']")).click();

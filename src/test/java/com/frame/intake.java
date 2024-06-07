@@ -325,7 +325,7 @@ public class intake {
         driver.findElement(By.xpath(".//span[text()='Submit']")).click();
         Common.waitSec(3);
         action.sendKeys(Keys.ENTER).build().perform();
-        System.out.println("------------------------------Done new case.-----------------------------------");
+
         Common.waitSec(5);
     }
 

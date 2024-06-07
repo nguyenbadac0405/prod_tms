@@ -28,7 +28,7 @@ public class familyHistory extends Section {
     public WebElement btnSave;
 
     @Override
-    public void intakeSubmit() {
+    public void intakeSubmit(String vertical) {
         enterText(fNameMember1, "test");
         clickBtnCheckbox(fRelation1);keyEnter();
         clickBtnCheckbox(fGender1);
