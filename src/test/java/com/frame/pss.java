@@ -128,11 +128,11 @@ public class pss {
 
         //qs7
         List<WebElement> completed_wellness = (List<WebElement>) js.executeScript(wellness_completed);
-        action.moveToElement(completed_wellness.get(0)).click().build().perform();
+        action.moveToElement(completed_wellness.get(1)).click().build().perform();
 
         //qs8
         List<WebElement> past_wellness = (List<WebElement>) js.executeScript(wellness_past);
-        action.moveToElement(past_wellness.get(0)).click().build().perform();
+        action.moveToElement(past_wellness.get(1)).click().build().perform();
 
         //qs9
         List<WebElement> health_additional = (List<WebElement>) js.executeScript(additional_health);

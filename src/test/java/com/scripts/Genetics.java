@@ -299,7 +299,7 @@ public class Genetics extends DriverFactory {
 			excel.setCellData("Pass", 8, 3);
 		}
 		else {
-			System.out.println("It is not New ");
+			System.out.println("Status is "+ search.getStatus());
 		}
 		logout.intake();
 
@@ -329,7 +329,7 @@ public class Genetics extends DriverFactory {
 			excel.setCellData("Pass", 10, 3);
 		}
 		else {
-			System.out.println("It is not Assigned");
+			System.out.println("Status is "+ search.getStatus());
 		}
 
 		logout.pss();
@@ -340,7 +340,7 @@ public class Genetics extends DriverFactory {
 		Common.waitSec(10);
 
 		search.search_from_intake(id);
-		Common.waitSec(10);
+		Common.waitSec(5);
 
 		doctor.to_RTS();
 		Common.waitSec(10);
@@ -349,7 +349,7 @@ public class Genetics extends DriverFactory {
 			excel.setCellData("Pass", 11, 3);
 		}
 		else {
-			System.out.println("It is not Ready to send");
+			System.out.println("Status is "+ search.getStatus());
 		}
 
 		logout.provider();
@@ -372,7 +372,7 @@ public class Genetics extends DriverFactory {
 			excel.setCellData("Pass", 13, 3);
 		}
 		else {
-			System.out.println("It is not Assigned Results Follow Up");
+			System.out.println("Status is "+ search.getStatus());
 		}
 
 		logout.pss();
@@ -394,7 +394,7 @@ public class Genetics extends DriverFactory {
 			excel.setCellData("Pass", 15, 3);
 		}
 		else {
-			System.out.println("It is not Completed By Provider");
+			System.out.println("Status is "+ search.getStatus());
 		}
 
 	}
@@ -439,7 +439,7 @@ public class Genetics extends DriverFactory {
 			excel.setCellData("Pass", 18, 3);
 		}
 		else {
-			System.out.println("It is not New");
+			System.out.println("Status is "+ search.getStatus());
 		}
 		logout.intake();
 
@@ -467,7 +467,7 @@ public class Genetics extends DriverFactory {
 			excel.setCellData("Pass", 20, 3);
 		}
 		else {
-			System.out.println("It is not Assigned");
+			System.out.println("Status is "+ search.getStatus());
 		}
 
 		logout.pss();
@@ -490,7 +490,7 @@ public class Genetics extends DriverFactory {
 
 		}
 		else {
-			System.out.println("It is not Deny");
+			System.out.println("Status is "+ search.getStatus());
 		}
 	}
 
@@ -532,7 +532,7 @@ public class Genetics extends DriverFactory {
 			excel.setCellData("Pass", 25, 3);
 		}
 		else {
-			System.out.println("It is not New");
+			System.out.println("Status is "+ search.getStatus());
 		}
 		logout.intake();
 
@@ -554,7 +554,7 @@ public class Genetics extends DriverFactory {
 			excel.setCellData("Pass", 27, 3);
 		}
 		else {
-			System.out.println("It is not Cancel");
+			System.out.println("Status is "+ search.getStatus());
 		}
 
 	}
@@ -645,4 +645,144 @@ public class Genetics extends DriverFactory {
 
 	}
 
+	@Test
+	public void completeGeneticsWithWellness() throws Exception {
+		//create new case
+		Actions action = new Actions(driver1);
+		excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
+		String business = excel.getCellData("business", 1);
+		String vertical = excel.getCellData("vertical", 1);
+		String MG = excel.getCellData("MG", 1);
+		String lab = excel.getCellData("lab", 1);
+		String type = excel.getCellData("type", 1);
+		String first_name = "test GK " + render.firtname();
+		String last_name = render.lastname();
+		String DOB = excel.getCellData("DOB", 1);
+//		String medicare_ID = render.medicare_ID();
+		String medicare_ID = "6TR7FG7RT96";
+//		String zipcode = excel.getCellData("zipcode", 1);
+		login.URL_TMS();
+		login.intake("123456");
+		Common.waitSec(6);
+		intake.create_case_genetics(business, vertical, MG, lab, type, first_name, last_name, DOB, medicare_ID);
+
+		String id = to_assign.find_id();
+		excel.setCellData(id, 1, 0);
+		System.out.println("Case-ID: " + id);
+
+		Common.waitSec(10);
+		if (search.compareStatus("Draft") ){
+			action.sendKeys(Keys.ENTER).build().perform();
+		}
+		else {
+			System.out.println("It is not Draft");
+		}
+		if (search.compareStatus("New (Not Yet Called)")) {
+			System.out.println("------------------Done new case.-----------------------");
+			excel.setCellData("Pass", 7, 3);
+			excel.setCellData("Pass", 8, 3);
+		}
+		else {
+			System.out.println("Status is "+ search.getStatus());
+		}
+		logout.intake();
+
+
+		//to_assign
+		login.pss("111111");
+		Common.waitSec(5);
+
+
+		search.search_from_intake(id);
+		Common.waitSec(5);
+
+		pss.to_pending();
+		Common.waitSec(10);
+		//input status result
+
+		if (search.compareStatus("Pending (Not Yet Called)") ){
+			action.sendKeys(Keys.ENTER).build().perform();
+		}
+		else {
+			System.out.println("It is not Pending");
+		}
+		if (search.compareStatus("Assigned (Not Yet Called)")) {
+			System.out.println("------------------Done Assigned.-----------------------");
+			excel.setCellData("Pass", 9, 3);
+			excel.setCellData("Pass", 10, 3);
+		}
+		else {
+			System.out.println("Status is "+ search.getStatus());
+		}
+		logout.pss();
+
+		//to RTS
+
+		login.provider("123456");
+		Common.waitSec(10);
+
+//		search.pin();
+		Common.waitSec(3);
+		search.search_from_intake(id);
+		Common.waitSec(5);
+
+		doctor.complete_wellness();
+		Common.waitSec(3);
+		doctor.to_RTS();
+		Common.waitSec(5);
+		if (search.compareStatus("Ready to send")) {
+			System.out.println("------------------Done Approved.-----------------------");
+			excel.setCellData("Pass", 11, 3);
+		}
+		else {
+			System.out.println("Status is "+ search.getStatus());
+		}
+
+		logout.provider();
+
+
+		//to AFU
+		login.pss("111111");
+		Common.waitSec(10);
+
+		search.search_from_intake(id);
+		Common.waitSec(10);
+
+		pss.to_AFU();
+		Common.waitSec(5);
+
+		if (search.compareStatus("Assigned Follow Up")) {
+			System.out.println( "------------------Done Upload result.-----------------------");
+			excel.setCellData("Pass", 14, 3);
+			excel.setCellData("Pass", 12, 3);
+			excel.setCellData("Pass", 13, 3);
+		}
+		else {
+			System.out.println("Status is "+ search.getStatus());
+		}
+
+		logout.pss();
+
+		//to Follow up
+		login.provider("123456");
+		Common.waitSec(10);
+
+		search.search_from_intake(id);
+		Common.waitSec(10);
+
+
+		doctor.to_approve3();
+
+		Common.waitSec(5);
+
+		if (search.compareStatus("Completed By Provider")) {
+			System.out.println( "------------------Done Case.-----------------------");
+			excel.setCellData("Pass", 15, 3);
+		}
+		else {
+			System.out.println("Status is "+ search.getStatus());
+		}
+
+
+	}
 }

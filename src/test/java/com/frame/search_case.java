@@ -56,5 +56,14 @@ public class search_case {
 			return false;
 		}
 	}
+
+	public String getStatus()
+	{
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		//get list element status follow class
+		String eleStatus = "return document.querySelectorAll('[class*=\"rc-status fs-10\"')";
+		List <WebElement> status = (List<WebElement>) js.executeScript(eleStatus);
+		return (String) status.get(0).getText();
+	}
 	
 }

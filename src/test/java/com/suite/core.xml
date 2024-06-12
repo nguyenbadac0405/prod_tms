@@ -7,7 +7,7 @@
        <classes>
            <class name="com.scripts.Genetics">
                <methods>
-                   <include name="complete"></include>
+                   <include name="completeGeneticsWithWellness"></include>
                </methods>
            </class>
        </classes>
