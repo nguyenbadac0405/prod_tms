@@ -2,17 +2,27 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="test_core">
-	<!--TC1: genetics complete -->
-   <test name="genetics complete">
-       <classes>
-           <class name="com.scripts.Genetics">
-               <methods>
-                   <include name="completeGeneticsWithWellness"></include>
-               </methods>
-           </class>
-       </classes>
-   </test>
+	<!--TC0: genetics complete -->
+	<test name="genetics complete with wellness">
+		<classes>
+			<class name="com.scripts.Genetics">
+				<methods>
+					<include name="completeGeneticsWithWellness"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
 
+	<!--TC1: genetics complete -->
+	<test name="genetics complete without wellness">
+		<classes>
+			<class name="com.scripts.Genetics">
+				<methods>
+					<include name="completeGeneticNoWellness"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
 
     <!-- TC2: genetics cancel -->
 	<test name="genetics cancel">
@@ -31,6 +41,17 @@
 			<class name="com.scripts.Genetics">
 				<methods>
 					<include name="denied"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<!-- : Delete case-->
+	<test name="Delete case">
+		<classes>
+			<class name="com.scripts.Genetics">
+				<methods>
+					<include name="deleteCase"></include>
 				</methods>
 			</class>
 		</classes>
@@ -68,6 +89,4 @@
 			</class>
 		</classes>
 	</test>
-
-
 </suite>

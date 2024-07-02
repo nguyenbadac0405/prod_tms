@@ -49,7 +49,7 @@ public class search_case {
 		List <WebElement> status = (List<WebElement>) js.executeScript(eleStatus);
 
 		//compare with expected status
-		if (eleStatus.equals(status.get(0).getText())) {
+		if (expectedStatus.equals(status.get(0).getText())) {
 			return true;
 		}
 		else {

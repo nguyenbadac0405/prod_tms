@@ -1,14 +1,18 @@
 package com.frame;
 
+import com.Common;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class caseDetail {
+public class caseDetail extends Section {
     protected WebDriver driver;
 
     public caseDetail (WebDriver driver){
@@ -35,33 +39,35 @@ public class caseDetail {
     @FindBy(id = "react-select-13-input")
     public WebElement fLab;
 
-    public void enterText(WebElement fElement, String testText) {
-        new WebDriverWait(driver, Duration.ofSeconds(10)).until(
-                ExpectedConditions.visibilityOf(fElement)
-        ).sendKeys(testText);
-    }
-    public void clickBtnCheckbox(WebElement btnckElement) {
-        new WebDriverWait(driver, Duration.ofSeconds(10)).until(
-                ExpectedConditions.visibilityOf(btnckElement)
-        ).click();
-    }
-
     public void createCase(String business, String vertical, String MG, String testtype, String lab) throws Exception {
-        clickBtnCheckbox(btnPin);   //pin case list
+        Actions action = new Actions(driver);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        //        clickBtnCheckbox(btnPin);   //pin case list
 
         clickBtnCheckbox(btnCreatecase); //click create case button
 
+        System.out.println(vertical.equals("Genetics"));
+        System.out.println(vertical);
         //check vertical
-        if (vertical.equals("Genetics")){
+        if (vertical.equals("Genetic Testing")){
             enterText(fBusiness, business); //select business
-
+            action.sendKeys(Keys.ENTER).build().perform();
+//            action.moveToElement(fBusiness).click().sendKeys(business).sendKeys(Keys.ENTER).build().perform();
             enterText(fVertical, vertical); //select vertical
+            action.sendKeys(Keys.ENTER).build().perform();
 
+//            action.moveToElement(fVertical).click().sendKeys(vertical).sendKeys(Keys.ENTER).build().perform();
             enterText(fMg, MG); //select MG
-
+            action.sendKeys(Keys.ENTER).build().perform();
+//            action.moveToElement(fMg).click().sendKeys(MG).sendKeys(Keys.ENTER).build().perform();
             enterText(fTesttype, testtype); //select test type
-
+            Common.waitSec(1);
+            action.sendKeys(Keys.ENTER).build().perform();
+            Common.waitSec(3);
+//            action.moveToElement(fTesttype).click().sendKeys(testtype).sendKeys(Keys.ENTER).build().perform();
             enterText(fLab, lab);   //select lab
+            action.sendKeys(Keys.ENTER).build().perform();
+//            action.moveToElement(fLab).click().sendKeys(lab).sendKeys(Keys.ENTER).build().perform();
         }
         else {
             enterText(fBusiness, business);

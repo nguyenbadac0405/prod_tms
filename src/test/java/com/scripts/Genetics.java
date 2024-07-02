@@ -1,6 +1,7 @@
 package com.scripts;
 
 import com.frame.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
@@ -262,13 +263,13 @@ public class Genetics extends DriverFactory {
 	}
 
 	@Test
-	public void complete() throws Exception {
+	public void completeGeneticNoWellness() throws Exception {
 		//create new case
 		Actions action = new Actions(driver1);
 		excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
 		String business = excel.getCellData("business", 1);
 		String vertical = excel.getCellData("vertical", 1);
-		String MG = excel.getCellData("MG", 1);
+		String MG = excel.getCellData("MG", 2);
 		String lab = excel.getCellData("lab", 1);
 		String type = excel.getCellData("type", 1);
 		String first_name = "test GK " + render.firtname();
@@ -295,8 +296,8 @@ public class Genetics extends DriverFactory {
 		}
 		if (search.compareStatus("New (Not Yet Called)")) {
 			System.out.println("------------------Done new case.-----------------------");
+			excel.setCellData("Pass", 6, 3);
 			excel.setCellData("Pass", 7, 3);
-			excel.setCellData("Pass", 8, 3);
 		}
 		else {
 			System.out.println("Status is "+ search.getStatus());
@@ -312,7 +313,7 @@ public class Genetics extends DriverFactory {
 		search.search_from_intake(id);
 		Common.waitSec(5);
 
-		pss.to_pending();
+		pss.assignNoWellness();
 		Common.waitSec(10);
 
 		//input status result
@@ -325,8 +326,8 @@ public class Genetics extends DriverFactory {
 		}
 		if (search.compareStatus("Assigned (Not Yet Called)")) {
 			System.out.println("------------------Done Assigned.-----------------------");
+			excel.setCellData("Pass", 8, 3);
 			excel.setCellData("Pass", 9, 3);
-			excel.setCellData("Pass", 10, 3);
 		}
 		else {
 			System.out.println("Status is "+ search.getStatus());
@@ -344,9 +345,9 @@ public class Genetics extends DriverFactory {
 
 		doctor.to_RTS();
 		Common.waitSec(10);
-		if (search.compareStatus("Ready to send")) {
-			System.out.println("------------------Done Approved.-----------------------");
-			excel.setCellData("Pass", 11, 3);
+		if (search.compareStatus("Ready To Send")) {
+			System.out.println("Done Approved.");
+			excel.setCellData("Pass", 10, 3);
 		}
 		else {
 			System.out.println("Status is "+ search.getStatus());
@@ -366,8 +367,8 @@ public class Genetics extends DriverFactory {
 		Common.waitSec(5);
 
 		if (search.compareStatus("Assigned Follow Up")) {
-			System.out.println( "------------------Done Upload result.-----------------------");
-			excel.setCellData("Pass", 14, 3);
+			System.out.println( "Done Upload result.");
+			excel.setCellData("Pass", 11, 3);
 			excel.setCellData("Pass", 12, 3);
 			excel.setCellData("Pass", 13, 3);
 		}
@@ -390,8 +391,8 @@ public class Genetics extends DriverFactory {
 		Common.waitSec(5);
 
 		if (search.compareStatus("Completed By Provider")) {
-			System.out.println( "------------------Done Case.-----------------------");
-			excel.setCellData("Pass", 15, 3);
+			System.out.println( "Done Case.");
+			excel.setCellData("Pass", 14, 3);
 		}
 		else {
 			System.out.println("Status is "+ search.getStatus());
@@ -434,9 +435,9 @@ public class Genetics extends DriverFactory {
 			System.out.println("It is not Draft");
 		}
 		if (search.compareStatus("New (Not Yet Called)")) {
-			System.out.println("------------------Done new case.-----------------------");
+			System.out.println("Done new case.");
 //			excel.setCellData("Pass", 7, 3);
-			excel.setCellData("Pass", 18, 3);
+			excel.setCellData("Pass", 17, 3);
 		}
 		else {
 			System.out.println("Status is "+ search.getStatus());
@@ -462,9 +463,9 @@ public class Genetics extends DriverFactory {
 			System.out.println("It is not Pending");
 		}
 		if (search.compareStatus("Assigned (Not Yet Called)")) {
-			System.out.println( "------------------Done Assigned.-----------------------");
+			System.out.println( "Done Assigned.");
+			excel.setCellData("Pass", 18, 3);
 			excel.setCellData("Pass", 19, 3);
-			excel.setCellData("Pass", 20, 3);
 		}
 		else {
 			System.out.println("Status is "+ search.getStatus());
@@ -485,8 +486,8 @@ public class Genetics extends DriverFactory {
 		doctor.denied();
 		Common.waitSec(10);
 		if (search.compareStatus("Denial Approved")) {
-			System.out.println( "------------------Done Denied.-----------------------");
-			excel.setCellData("Pass", 21, 3);
+			System.out.println( "Done Denied.");
+			excel.setCellData("Pass", 20, 3);
 
 		}
 		else {
@@ -527,9 +528,9 @@ public class Genetics extends DriverFactory {
 			System.out.println("It is not Draft");
 		}
 		if (search.compareStatus("New (Not Yet Called)")) {
-			System.out.println( "------------------Done new case.-----------------------");
+			System.out.println( "Done new case.");
 			excel.setCellData("Pass", 24, 3);
-			excel.setCellData("Pass", 25, 3);
+			excel.setCellData("Pass", 23, 3);
 		}
 		else {
 			System.out.println("Status is "+ search.getStatus());
@@ -549,9 +550,9 @@ public class Genetics extends DriverFactory {
 
 		Common.waitSec(10);
 		if (search.compareStatus("Cancelled")) {
-			System.out.println( "------------------Done Cancel.-----------------------");
+			System.out.println( "Done Cancel.");
 			excel.setCellData("Pass", 26, 3);
-			excel.setCellData("Pass", 27, 3);
+			excel.setCellData("Pass", 25, 3);
 		}
 		else {
 			System.out.println("Status is "+ search.getStatus());
@@ -640,9 +641,6 @@ public class Genetics extends DriverFactory {
 		//submit to new
 
 
-
-
-
 	}
 
 	@Test
@@ -727,10 +725,29 @@ public class Genetics extends DriverFactory {
 		Common.waitSec(5);
 
 		doctor.complete_wellness();
+		System.out.println("Waiting time config");
+		Common.waitSec(60);
+		System.out.println("Done waiting time config");
+
+		//
+		logout.provider();
+		login.pss("111111");
+		Common.waitSec(5);
+
+		//assign case again
+		search.search_from_intake(id);
+		Common.waitSec(5);
+		pss.assignProvider();
 		Common.waitSec(3);
+
+		logout.pss();
+		login.provider("123456");
+		Common.waitSec(5);
+		search.search_from_intake(id);
+		Common.waitSec(5);
 		doctor.to_RTS();
 		Common.waitSec(5);
-		if (search.compareStatus("Ready to send")) {
+		if (search.compareStatus("Ready To Send")) {
 			System.out.println("------------------Done Approved.-----------------------");
 			excel.setCellData("Pass", 11, 3);
 		}
@@ -785,4 +802,26 @@ public class Genetics extends DriverFactory {
 
 
 	}
+	@Test
+	public void deleteCase() throws Exception {
+		Actions action = new Actions(driver1);
+		login.URL_ADMIN();
+		login.admin();
+
+		driver1.findElement(By.id("searchbar")).sendKeys("8TR2FG1QT22", Keys.ENTER);
+		Common.waitSec(5);
+		driver1.findElement(By.id("action-toggle")).click();
+		Common.waitSec(2);
+		driver1.findElement(By.name("action")).click();
+		Common.waitSec(2);
+		action.sendKeys(Keys.DOWN, Keys.ENTER).build().perform();
+		Common.waitSec(2);
+		driver1.findElement(By.name("index")).click();
+		Common.waitSec(2);
+		driver1.findElement(By.xpath(".//*[@value=\"Yes, I’m sure\"]")).click();
+		Common.waitSec(10);
+
+	}
 }
+
+

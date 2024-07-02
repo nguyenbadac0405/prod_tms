@@ -191,6 +191,7 @@ public class pss {
         }
         catch (Exception e) {}
 
+        Common.waitSec(3);
         System.out.println("check");
         driver.findElement(By.xpath(".//button[text()='Send & Move']")).click();
         Common.waitSec(3);
@@ -474,6 +475,125 @@ public class pss {
         } else {
             return "1";
         }
+
+    }
+
+    public void assignNoWellness() {
+        Actions action = new Actions(driver);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        System.out.println("---------------------------------New to Assign---------------------------------------");
+        System.out.println("Check Compliance");
+        driver.findElement(By.name("data[compliance_verification_verified_telehealth_provider]")).click();
+
+        //qs1
+        List<WebElement> medical_decisions = (List<WebElement>) js.executeScript(medical_decision);
+        action.moveToElement(medical_decisions.get(1)).click().build().perform();
+
+        //qs2
+        List<WebElement> consent_bill = (List<WebElement>) js.executeScript(consent_to_bill);
+        action.moveToElement(consent_bill.get(1)).click().build().perform();
+
+        //qs3
+        List<WebElement> currently_hopital = (List<WebElement>) js.executeScript(currently_hospice);
+        action.moveToElement(currently_hopital.get(1)).click().build().perform();
+
+        //qs4
+        List<WebElement> taken_genetics = (List<WebElement>) js.executeScript(previously_taken_genetic_test);
+        action.moveToElement(taken_genetics.get(1)).click().build().perform();
+
+        //qs5
+        List<WebElement> money = (List<WebElement>) js.executeScript(verified_money);
+        action.moveToElement(money.get(1)).click().build().perform();
+
+        //qs6
+        List<WebElement> medical = (List<WebElement>) js.executeScript(with_medical);
+        action.moveToElement(medical.get(1)).click().build().perform();
+
+        //qs7
+        List<WebElement> completed_wellness = (List<WebElement>) js.executeScript(wellness_completed);
+        action.moveToElement(completed_wellness.get(0)).click().build().perform();
+
+        //qs8
+        List<WebElement> past_wellness = (List<WebElement>) js.executeScript(wellness_past);
+        action.moveToElement(past_wellness.get(0)).click().build().perform();
+
+        //qs9
+        List<WebElement> health_additional = (List<WebElement>) js.executeScript(additional_health);
+        action.moveToElement(health_additional.get(1)).click().build().perform();
+
+        //qs10
+        List<WebElement> confirm = (List<WebElement>) js.executeScript(confirm_all);
+        action.moveToElement(confirm.get(1)).click().build().perform();
+
+        driver.findElement(By.name("data[compliance_verification_verified_patient_gender_41589]")).click();
+        driver.findElement(By.name("data[compliance_verification_verified_patient_dob_41589]")).click();
+        driver.findElement(By.name("data[compliance_verification_verified_patient_state_41589]")).click();
+        driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
+        Common.waitSec(5);
+
+        //assign
+        driver.findElement(By.id("rec-form-select-collapse-btn")).click();
+        Common.waitSec(3);
+
+        driver.findElement(By.xpath(".//div[text()='Select ...']")).click();
+        Common.waitSec(2);
+        action.sendKeys("dac").build().perform();
+        Common.waitSec(2);
+        action.sendKeys(Keys.ENTER).build().perform();
+        Common.waitSec(2);
+        action.sendKeys(Keys.ENTER).build().perform();
+
+        Common.waitSec(5);
+        driver.findElement(By.xpath(".//span[text()='Assign']")).click();
+        Common.waitSec(2);
+        action.sendKeys(Keys.ENTER).build().perform();
+    }
+
+    public void assignProvider() {
+
+        Actions action = new Actions(driver);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        Common.waitSec(5);
+        driver.findElement(By.xpath(".//span[text()='Assign']")).click();
+        Common.waitSec(2);
+        action.sendKeys(Keys.ENTER).build().perform();
+
+
+    }
+
+    public void completeOnboarding() {
+        //to result available
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        Actions action = new Actions(driver);
+        driver.findElement(By.xpath("//*[@id=\"patient-dashboard\"]/div[6]/div[4]/div/div[1]/div[6]/div/div/div[1]")).click();
+        Common.waitSec(3);
+        WebElement chooseFile = driver.findElement(By.xpath(".//input[@type='file']"));
+        chooseFile.sendKeys("C:/Users/antes/Downloads/file.pdf");
+        Common.waitSec(5);
+        //to assign follow up
+        driver.findElement(By.xpath(".//div[text()='Select ...']")).click();
+        Common.waitSec(1);
+        action.sendKeys(Keys.ENTER).build().perform();
+        Common.waitSec(1);
+        driver.findElement(By.xpath(".//button[text()='Upload ']")).click();
+        Common.waitSec(10);
+        System.out.println("chekc");
+        try {
+            WebElement button_send = driver.findElement(By.xpath(".//button[@class='btn btn-primary btn-md']"));
+            Common.waitSec(3);
+            action.moveToElement(button_send).click().build().perform();
+        }
+        catch (Exception e) {}
+
+        Common.waitSec(3);
+        System.out.println("check");
+        driver.findElement(By.xpath(".//button[text()='Send']")).click();
+        Common.waitSec(3);
+//        action.sendKeys(Keys.ENTER).build().perform();
+        driver.findElement(By.xpath(".//button[text()='Got it']")).click();
+        Common.waitSec(3);
+
 
     }
 

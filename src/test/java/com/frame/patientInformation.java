@@ -1,8 +1,12 @@
 package com.frame;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
 
 public class patientInformation extends Section {
     protected WebDriver driver;
@@ -15,7 +19,7 @@ public class patientInformation extends Section {
     public WebElement fFirstname;
     @FindBy(name = "data[patient_last_name]")
     public WebElement fLastname;
-    @FindBy(name = "data[patient_dob]")
+    @FindBy(xpath = ".//input[@class='form-control input active']")
     public WebElement fDOB;
     @FindBy(name = "data[patient_zip_code]")
     public WebElement fZipcode;
@@ -23,8 +27,10 @@ public class patientInformation extends Section {
     @FindBy(name = "data[patient_no_secondary_insurance]")
     public WebElement ckNo2ndInsurance;
 
-    @FindBy(xpath = "//*[@value='Medicare']")
-    public WebElement ckMedicare;
+    protected static String Medicare = "return document.querySelectorAll('[name*=\"data[patient_primary_type]\"')";
+
+//    @FindBy(xpath = "//*[@value='Medicare']")
+//    public WebElement ckMedicare;
 
     @FindBy(name = "data[patient_primary_insurance_id")
     public WebElement fPrimaryInsurance;
@@ -91,13 +97,17 @@ public class patientInformation extends Section {
 
     public void intakeSubmit(String vertical) {
 
-        if(vertical.equals("Genetics")) {
+        Actions action = new Actions(driver);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        if(vertical.equals("Genetic Testing")) {
             enterText(fFirstname, "firstname" );
             enterText(fLastname, "lastname" );
             enterText(fDOB, "DOB" );
             enterText(fZipcode, "zipcode" );
             clickBtnCheckbox(ckNo2ndInsurance);
-            clickBtnCheckbox(ckMedicare);
+            List<WebElement> ckMedicare = (List<WebElement>) js.executeScript(Medicare);
+            clickBtnCheckbox(ckMedicare.get(0));
             enterText(fPrimaryInsurance, "medicare");
             clickBtnCheckbox(btnSubmitsect);
 
@@ -123,7 +133,9 @@ public class patientInformation extends Section {
             enterText(fLastname, "lastname" );
             enterText(fDOB, "DOB" );
             enterText(fZipcode, "94107" );
-            clickBtnCheckbox(ckMedicare);
+            List<WebElement> ckMedicare = (List<WebElement>) js.executeScript(Medicare);
+            clickBtnCheckbox(ckMedicare.get(0));
+//            clickBtnCheckbox(ckMedicare);
             clickBtnCheckbox(btnSubmitsect);
 
             clickBtnCheckbox(ckGender);

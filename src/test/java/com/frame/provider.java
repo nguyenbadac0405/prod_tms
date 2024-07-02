@@ -389,6 +389,8 @@ public class provider {
         Common.waitSec(3);
 
         //RPM device
+        driver.findElement(By.xpath(".//span[text()='RPM Device']")).click();
+        Common.waitSec(3);
         driver.findElement(By.name("data[vital_blood_pressure_1]")).click();
         Common.waitSec(2);
 //        driver.findElement(By.name("data[systolic_upper_high_alert]")).sendKeys("1");
@@ -526,9 +528,136 @@ public class provider {
         Common.waitSec(3);
         action.sendKeys(Keys.ENTER).build().perform();
         Common.waitSec(3);
-        driver.findElement(By.xpath(".//button[@class='rce-btn btn-outline btn-main btn-md']")).click();
+
+        //open the genetic case
+//        driver.findElement(By.xpath(".//button[@class='rce-btn btn-outline btn-main btn-md']")).click();
+//        Common.waitSec(3);
+        //close service option popup
+        driver.findElement(By.className("rf-btn-close")).click();
         Common.waitSec(3);
 
-        driver.findElement(By.xpath(".//div[@class='sp-close']")).click();
+        //close the popup hidden the approve button
+//        driver.findElement(By.xpath(".//div[@class='sp-close']")).click();
+    }
+
+    public void approveOnboarding() {
+        Actions action = new Actions(driver);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        // patient infor
+        System.out.println("Check Patient Information");
+        driver.findElement(By.xpath(".//span[text()='Patient Information']")).click();
+        Common.waitSec(3);
+        driver.findElement(By.name("data[patient_information_provider_check_shipping]")).click();
+        Common.waitSec(2);
+        driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
+        Common.waitSec(3);
+
+        // Medical History
+        System.out.println("Check Medical History");
+        driver.findElement(By.xpath(".//span[text()='Medical History']")).click();
+        Common.waitSec(2);
+        List<WebElement> history_medical = (List<WebElement>) js.executeScript(medical_history);
+        try {
+            action.moveToElement(history_medical.get(0)).click().build().perform();
+        }
+        catch (Exception e) {
+            driver.findElement(By.xpath("/html/body/div/div[7]/div[4]/div/div[2]/div/div[3]/div/div/div/div[1]/div[8]/div[1]/div[1]/label/input")).click();
+        }
+        Common.waitSec(2);
+        driver.findElement(By.name("data[medical_history_patient_question2]")).sendKeys("test");
+        driver.findElement(By.name("data[medical_history_patient_question3]")).sendKeys("test");
+        driver.findElement(By.name("data[patient_personal_history_progress_note_phmx]")).sendKeys("test");
+        driver.findElement(By.name("data[submit]")).click();
+        Common.waitSec(3);
+
+        // medication
+        System.out.println("Check Medications");
+        driver.findElement(By.xpath(".//span[text()='Medications']")).click();
+        Common.waitSec(3);
+        driver.findElement(By.xpath("//*[@id=\"patient-dashboard\"]/div[7]/div[4]/div/div[2]/div/div[3]/div/div[2]/div[4]/label/input")).click();
+        driver.findElement(By.xpath(".//button[text()='Save']")).click();
+        Common.waitSec(5);
+
+        // Family History
+        Actions actions = new Actions(driver);
+        System.out.println("Check Family History");
+        driver.findElement(By.xpath(".//span[text()='Family History']")).click();
+        Common.waitSec(3);
+        driver.findElement(By.name("data[family_history_member_1_related_health_issue]")).sendKeys("test");
+        driver.findElement(By.xpath("//*[@name='data[family_history_member_confirm_doctor]']")).click();
+        driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
+        Common.waitSec(3);
+
+
+
+        // Diagnosis
+        driver.findElement(By.xpath(".//span[text()='Diagnosis']")).click();
+        Common.waitSec(3);
+        System.out.println("Set Diagnosis");
+        driver.findElement(By.xpath(".//div[text()='Z80.1']")).click();
+        driver.findElement(By.xpath(".//div[text()='C44.300']")).click();
+        driver.findElement(By.xpath(".//div[text()='Z86.3']")).click();
+        driver.findElement(By.xpath(".//button[text()='Save']")).click();
+        Common.waitSec(5);
+
+        // review of systems
+        System.out.println("Review of Systems");
+
+        driver.findElement(By.name("data[review_of_system_confirm]")).click();
+        driver.findElement(By.name("data[submit]")).click();
+        Common.waitSec(5);
+        // assessment & plan
+        System.out.println("Set Assessment & Plan");
+        driver.findElement(By.name("data[assessment_plan_plan]")).sendKeys("There is all plan that the provider is setting for you.");
+        Common.waitSec(2);
+        driver.findElement(By.name("data[submit]")).click();
+        Common.waitSec(3);
+
+        //follow up
+        driver.findElement(By.xpath(".//span[text()='Follow-up Consult']")).click();
+        Common.waitSec(3);
+        driver.findElement(By.name("data[follow_up_consult_confirm]")).click();
+        driver.findElement(By.name("data[submit]")).click();
+        Common.waitSec(10);
+
+
+        // approved
+        driver.findElement(By.xpath(".//span[text()='Approve']")).click();
+        Common.waitSec(3);
+//        actions.sendKeys(Keys.ENTER).build().perform();
+        driver.findElement(By.xpath(".//button[text()='Yes']")).click();
+        actions.sendKeys(Keys.ENTER).build().perform();
+        Common.waitSec(3);
+
+        System.out.println("-------------------------Done Approve----------------------------");
+        Common.waitSec(7);
+
+        driver.findElement(By.className("rf-btn-close")).click();
+        Common.waitSec(3);
+    }
+
+    public void approvedCounseling() {
+        Actions action = new Actions(driver);
+        // assessment & plan
+        driver.findElement(By.xpath(".//span[text()='Assessment & Plan']")).click();
+        Common.waitSec(3);
+        System.out.println("Set Assessment & Plan");
+        driver.findElement(By.name("data[assessment_plan_plan]")).sendKeys("There is all plan that the provider is setting for you.");
+        Common.waitSec(2);
+        driver.findElement(By.name("data[submit]")).click();
+        Common.waitSec(3);
+        // approved
+        driver.findElement(By.xpath(".//span[text()='Approve']")).click();
+        Common.waitSec(3);
+//        actions.sendKeys(Keys.ENTER).build().perform();
+        driver.findElement(By.xpath(".//button[text()='Yes']")).click();
+        action.sendKeys(Keys.ENTER).build().perform();
+        Common.waitSec(3);
+
+        System.out.println("-------------------------Done Approve----------------------------");
+        Common.waitSec(7);
+
+//        driver.findElement(By.className("rf-btn-close")).click();
+//        Common.waitSec(3);
     }
 }
