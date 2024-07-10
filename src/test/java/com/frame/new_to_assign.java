@@ -1,9 +1,6 @@
 package com.frame;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
 import com.Common;
@@ -11,6 +8,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 public class new_to_assign {
 	protected static WebDriver driver;
@@ -18,8 +17,7 @@ public class new_to_assign {
 	public new_to_assign(WebDriver driver) {
 		this.driver = driver;
 	}
-
-//	public String id;
+	public String getID= "return document.querySelectorAll('[class*=\"rce-btn btn-minw-120\"]')";
 
 	public static String find_id() {
 		WebElement id_case = driver.findElement(By.xpath(".//span[@class='rf-code']"));
@@ -30,6 +28,15 @@ public class new_to_assign {
 		String id = id_case.getText();
 		return id;
 	}
+	public List<String> findName() {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		List<WebElement> ID = (List<WebElement>) js.executeScript(getID);
+		List<String> id = new ArrayList<String>();
+		id.add(ID.get(0).getText());
+		id.add(ID.get(1).getText());
+		return id;
+	}
+
 
 
 	public void Genetics_to_assign() {

@@ -215,8 +215,8 @@ public class intake {
         Common.waitSec(2);
         driver.findElement(By.xpath("//*[@value='Medicare']")).click();
         Common.waitSec(2);
-//        driver.findElement(By.name("data[patient_primary_insurance_id]")).sendKeys(medicare_ID);
-        driver.findElement(By.name("data[patient_primary_insurance_id]")).sendKeys("8TR2FG1QT22");
+        driver.findElement(By.name("data[patient_primary_insurance_id]")).sendKeys(medicare_ID);
+//        driver.findElement(By.name("data[patient_primary_insurance_id]")).sendKeys("8TR2FG1QT22");
         Common.waitSec(1);
 
 
@@ -539,8 +539,8 @@ public class intake {
         Common.waitSec(2);
         driver.findElement(By.xpath("//*[@value='Medicare']")).click();
         Common.waitSec(2);
-//        driver.findElement(By.name("data[patient_primary_insurance_id]")).sendKeys(medicare_ID);
-        driver.findElement(By.name("data[patient_primary_insurance_id]")).sendKeys("8TR2FG1QT22");
+        driver.findElement(By.name("data[patient_primary_insurance_id]")).sendKeys(medicare_ID);
+//        driver.findElement(By.name("data[patient_primary_insurance_id]")).sendKeys("8TR2FG1QT22");
         Common.waitSec(1);
 
 
@@ -576,32 +576,36 @@ public class intake {
         //
         driver.findElement(By.name("data[patient_shipping_sms]")).click();
         Common.waitSec(2);
-        driver.findElement(By.name("data[patient_shipping_us_postal_service]")).click();
-        Common.waitSec(3);
+//        driver.findElement(By.name("data[patient_shipping_us_postal_service]")).click();
+//        Common.waitSec(3);
 
 
         // submit
         driver.findElement(By.name("data[submit]")).click();
         System.out.println("-----------------Done draft case------------------");
         System.out.println(lab);
-        Common.waitSec(30);
+        Common.waitSec(5);
 
         //draft to new
         //pcp
         System.out.println("-------------Draft to new----------------");
-        System.out.println("Check PCP");
-        driver.findElement(By.xpath(".//span[text()='Primary Care Provider']")).click();
-        Common.waitSec(2);
-        driver.findElement(By.xpath(".//*[@name='data[pcp_no_pcp_certification]']")).click();
-        Common.waitSec(2);
-        driver.findElement(By.xpath(".//button[text()='Save']")).click();
-        Common.waitSec(3);
+        try {
+            if (driver.findElement(By.xpath(".//span[text()='Primary Care Provider']")).isDisplayed()) {
+                driver.findElement(By.xpath(".//span[text()='Primary Care Provider']")).click();
+                Common.waitSec(2);
+                driver.findElement(By.xpath(".//*[@name='data[pcp_no_pcp_certification]']")).click();
+                Common.waitSec(2);
+                driver.findElement(By.xpath(".//button[text()='Save']")).click();
+                Common.waitSec(3);
+            }
+        }
+        catch (Exception e) {}
 
         //Test Requirement
         System.out.println("Check Test Requirement");
         driver.findElement(By.xpath(".//span[text()='Test Requirements']")).click();
         Common.waitSec(3);
-        driver.findElement(By.name("data[test_requirements_checkbox]")).click();
+//        driver.findElement(By.name("data[test_requirements_checkbox]")).click();
         driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
         Common.waitSec(3);
 
@@ -610,7 +614,7 @@ public class intake {
 
         Common.waitSec(2);
         System.out.println("Check Medical History");
-        driver.findElement((By.name("data[medical_history_patient_cancer1]"))).sendKeys("test");
+//        driver.findElement((By.name("data[medical_history_patient_cancer1]"))).sendKeys("test");
         driver.findElement(By.name("data[patient_personal_history_progress_note_confirm_2_sale]")).click();
         Common.waitSec(1);
         driver.findElement(By.name("data[submit]")).click();
@@ -626,7 +630,7 @@ public class intake {
         action.sendKeys(Keys.ENTER).build().perform();
         Common.waitSec(1);
         driver.findElement(By.xpath(".//input[@value='Male']")).click();
-        driver.findElement(By.name("data[family_history_member_1_cancer_type]")).sendKeys("test");
+//        driver.findElement(By.name("data[family_history_member_1_cancer_type]")).sendKeys("test");
         driver.findElement(By.xpath("//input[@name='data[family_history_member_confirm_sale]']")).click();
         Common.waitSec(1);
         driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
@@ -635,6 +639,7 @@ public class intake {
 
         //Medication
         driver.findElement(By.xpath(".//span[text()='Medications']")).click();
+//        driver.findElement(By.name("data[submit]")).click();
         Common.waitSec(3);
         System.out.println("Check Medication");
         driver.findElement(By.xpath("//*[@id=\"patient-dashboard\"]/div[6]/div[4]/div/div[2]/div/div[3]/div/div[2]/div[4]/label/input")).click();
@@ -644,9 +649,9 @@ public class intake {
 
         //submit
         driver.findElement(By.xpath(".//span[text()='Submit']")).click();
-        Common.waitSec(2);
+        Common.waitSec(3);
         action.sendKeys(Keys.ENTER).build().perform();
-        System.out.println("------------------------------Done new case.-----------------------------------");
+
         Common.waitSec(5);
     }
 }

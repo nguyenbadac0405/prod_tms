@@ -288,4 +288,20 @@ public class login {
 		driver.findElement(By.xpath(".//span[text()='Export CSV']")).click();
 		Common.waitSec(20);
 	}
+
+	public void lobURL() {
+		driver.get("https://dashboard.lob.com/");
+	}
+
+	public void changelinktoletter() {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.location='https://dashboard.lob.com/letters';");
+	}
+
+	public void lob() {
+		driver.findElement(By.id("login-email")).sendKeys("top@gkxim.com");
+		Common.waitSec(1);
+		driver.findElement(By.id("login-password")).sendKeys("TOPtms$052023", Keys.ENTER);
+		Common.waitSec(1);
+	}
 }

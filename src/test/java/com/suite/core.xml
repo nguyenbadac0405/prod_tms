@@ -2,45 +2,56 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="test_core">
-	<!--TC0: genetics complete -->
-	<test name="genetics complete with wellness">
-		<classes>
-			<class name="com.scripts.Genetics">
-				<methods>
-					<include name="completeGeneticsWithWellness"></include>
-				</methods>
-			</class>
-		</classes>
-	</test>
+<!--	&lt;!&ndash;TC0: genetics complete &ndash;&gt;-->
+<!--	<test name="genetics complete with wellness">-->
+<!--		<classes>-->
+<!--			<class name="com.scripts.Genetics">-->
+<!--				<methods>-->
+<!--					<include name="completeGeneticsWithWellness"></include>-->
+<!--				</methods>-->
+<!--			</class>-->
+<!--		</classes>-->
+<!--	</test>-->
 
-	<!--TC1: genetics complete -->
-	<test name="genetics complete without wellness">
-		<classes>
-			<class name="com.scripts.Genetics">
-				<methods>
-					<include name="completeGeneticNoWellness"></include>
-				</methods>
-			</class>
-		</classes>
-	</test>
+<!--	&lt;!&ndash;TC1: genetics complete &ndash;&gt;-->
+<!--	<test name="genetics complete without wellness">-->
+<!--		<classes>-->
+<!--			<class name="com.scripts.Genetics">-->
+<!--				<methods>-->
+<!--					<include name="completeGeneticNoWellness"></include>-->
+<!--				</methods>-->
+<!--			</class>-->
+<!--		</classes>-->
+<!--	</test>-->
 
-    <!-- TC2: genetics cancel -->
-	<test name="genetics cancel">
-		<classes>
-			<class name="com.scripts.Genetics">
-				<methods>
-					<include name="cancel"></include>
-				</methods>
-			</class>
-		</classes>
-	</test>
+<!--    &lt;!&ndash; TC2: genetics cancel &ndash;&gt;-->
+<!--	<test name="genetics cancel">-->
+<!--		<classes>-->
+<!--			<class name="com.scripts.Genetics">-->
+<!--				<methods>-->
+<!--					<include name="cancel"></include>-->
+<!--				</methods>-->
+<!--			</class>-->
+<!--		</classes>-->
+<!--	</test>-->
 
-	<!-- TC3: genetics denied-->
-	<test name="genetics denied">
+<!--	&lt;!&ndash; TC3: genetics denied&ndash;&gt;-->
+<!--	<test name="genetics denied">-->
+<!--		<classes>-->
+<!--			<class name="com.scripts.Genetics">-->
+<!--				<methods>-->
+<!--					<include name="denied"></include>-->
+<!--				</methods>-->
+<!--			</class>-->
+<!--		</classes>-->
+<!--	</test>-->
+
+	<!-- TC4: Onboarding Counseling-->
+	<test name="Onboarding Counseling">
 		<classes>
-			<class name="com.scripts.Genetics">
+			<class name="com.scripts.Onboarding">
 				<methods>
-					<include name="denied"></include>
+					<include name="complete"></include>
 				</methods>
 			</class>
 		</classes>

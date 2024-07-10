@@ -37,13 +37,36 @@ public class provider {
     //Medical History
     protected static String medical_history = "return document.querySelectorAll('[name*=\"medical_history_patient_question1\"]')";
 
-    //general health
+    //general health section
+        //Marital status
+    @FindBy(className = "formio-select-autocomplete-input")
+    protected WebElement fiMaritalStatus;
+    protected static String optionMaritalStatus = "return document.querySelectorAll('[class*=\"choices__item choices__item--choice choices__item--selectable\"]')";
     protected static String immunizations = "return document.querySelectorAll('[name*=\"screening_questionnaire_vision_imm\"]')";
+    protected static String generalHealth = "return document.querySelectorAll('[name*=\"test_requirements_general_your_health\"]')";
+    @FindBy(name = "data[test_requirements_general_hours_sleep]")
+    protected WebElement hourSleep;
+    @FindBy(name = "data[test_requirements_day_exercice]")
+    protected WebElement dayExercice;
+    @FindBy(name = "data[test_requirements_usually_exercice]")
+    protected WebElement usuallyExercice;
+    protected static String typicalExercise = "return document.querySelectorAll('[name*=\"test_requirements_usually_exercice_not_apply_check_one\"]')";
+    protected static String specialDiet = "return document.querySelectorAll('[name*=\"test_requirements_nutrition_special_diet\"]')";
+    protected static String stressScreen = "return document.querySelectorAll('[name*=\"test_requirements_general_stress\"]')";
+    protected static String vehicleSadety = "return document.querySelectorAll('[name*=\"test_requirements_content_motor\"]')";
+    protected static String preventativeScreening_Vision = "return document.querySelectorAll('[name*=\"screening_questionnaire_vision\"]')";
+    protected static String Hearing = "return document.querySelectorAll('[name*=\"screening_questionnaire_hearing\"]')";
+    protected static String painScreen = "return document.querySelectorAll('[name*=\"screening_questionnaire_pain_question\"]')";
+    protected static String balanceScreen = "return document.querySelectorAll('[name*=\"test_requirements_balance\"]')";
+    protected static String safetyScreen = "return document.querySelectorAll('[name*=\"test_requirements_safety\"]')";
+    protected static String aaaMenScreen = "return document.querySelectorAll('[name*=\"test_requirements_aaa_men\"]')";
+    protected static String elderAbuse = "return document.querySelectorAll('[name*=\"test_requirements_elder\"]')";
+
 
     //Depression Screening
     protected static String depressionScreening = "return document.querySelectorAll('[name*=\"test_requirements_depression_screening\"]')";
     //Alcohol Screening
-    protected static String alcoholScreening = "return document.querySelectorAll('[name*=\"alcohol_screening\"]')";
+    protected static String alcoholScreening = "return document.querySelectorAll('[name*=\"alcohol_screening_question\"]')";
     //Tobacco Screening
     protected static String tobaccoScreening = "return document.querySelectorAll('[name*=\"tobacco_screening\"]')";
     //Advance Directive
@@ -431,15 +454,105 @@ public class provider {
         Common.waitSec(5);
         WebElement id_wellness = (WebElement) js.executeScript("return document.querySelector('body .rce-mb-15 strong');");
         id_wellness.click();
-        Common.waitSec(5);
+        Common.waitSec(10);
 
         //general health
         driver.findElement(By.xpath(".//span[text()='General Health']")).click();
         Common.waitSec(3);
-        List<WebElement> listImmunizations = (List<WebElement>) js.executeScript(immunizations);
-        action.moveToElement(listImmunizations.get(1)).click().build().perform();
-        action.moveToElement(listImmunizations.get(5)).click().build().perform();
-        action.moveToElement(listImmunizations.get(9)).click().build().perform();
+//        List<WebElement> listImmunizations = (List<WebElement>) js.executeScript(immunizations);
+            //marital status
+        driver.findElement(By.xpath(".//div[@class='form-control ui fluid selection dropdown']")).click();
+        Common.waitSec(1);
+        action.sendKeys(Keys.ENTER).build().perform();
+
+        List<WebElement> healthGeneral = (List<WebElement>) js.executeScript(generalHealth);
+        action.moveToElement(healthGeneral.get(0)).click().build().perform();
+
+        driver.findElement(By.name("data[test_requirements_general_hours_sleep]")).sendKeys("8");
+        driver.findElement(By.name("data[test_requirements_day_exercice]")).sendKeys("3");
+        driver.findElement(By.name("data[test_requirements_usually_exercice]")).sendKeys("2h");
+
+        List<WebElement> exerciseTypical  = (List<WebElement>) js.executeScript(typicalExercise);
+        action.moveToElement(exerciseTypical.get(1)).click().build().perform();
+
+        List<WebElement> dietSpecial = (List<WebElement>) js.executeScript(specialDiet);
+        action.moveToElement(dietSpecial.get(1)).click().build().perform();
+
+        List<WebElement> Stress  = (List<WebElement>) js.executeScript(stressScreen);
+        action.moveToElement(Stress.get(0)).click().build().perform();
+        action.moveToElement(Stress.get(4)).click().build().perform();
+        action.moveToElement(Stress.get(7)).click().build().perform();
+        action.moveToElement(Stress.get(12)).click().build().perform();
+        Common.waitSec(2);
+
+        List<WebElement> safetyVehicle = (List<WebElement>) js.executeScript(vehicleSadety);
+        action.moveToElement(safetyVehicle.get(0)).click().build().perform();
+        action.moveToElement(safetyVehicle.get(3)).click().build().perform();
+        action.moveToElement(safetyVehicle.get(6)).click().build().perform();
+        Common.waitSec(2);
+
+        List<WebElement> preventativeScreeningVision = (List<WebElement>) js.executeScript(preventativeScreening_Vision);
+        action.moveToElement(preventativeScreeningVision.get(0)).click().build().perform();
+        action.moveToElement(preventativeScreeningVision.get(4)).click().build().perform();
+        action.moveToElement(preventativeScreeningVision.get(8)).click().build().perform();
+        action.moveToElement(preventativeScreeningVision.get(12)).click().build().perform();
+        action.moveToElement(preventativeScreeningVision.get(16)).click().build().perform();
+        action.moveToElement(preventativeScreeningVision.get(20)).click().build().perform();
+        action.moveToElement(preventativeScreeningVision.get(24)).click().build().perform();
+        Common.waitSec(2);
+        action.moveToElement(preventativeScreeningVision.get(28)).click().build().perform();
+        action.moveToElement(preventativeScreeningVision.get(32)).click().build().perform();
+        action.moveToElement(preventativeScreeningVision.get(36)).click().build().perform();
+        action.moveToElement(preventativeScreeningVision.get(40)).click().build().perform();
+        action.moveToElement(preventativeScreeningVision.get(44)).click().build().perform();
+        Common.waitSec(2);
+
+
+        List<WebElement> Hear = (List<WebElement>) js.executeScript(Hearing);
+        action.moveToElement(Hear.get(1)).click().build().perform();
+        Common.waitSec(2);
+
+        List<WebElement> Pain  = (List<WebElement>) js.executeScript(painScreen);
+        action.moveToElement(Pain.get(0)).click().build().perform();
+        Common.waitSec(2);
+
+        List<WebElement> balance = (List<WebElement>) js.executeScript(balanceScreen);
+        action.moveToElement(balance.get(0)).click().build().perform();
+        action.moveToElement(balance.get(3)).click().build().perform();
+        action.moveToElement(balance.get(6)).click().build().perform();
+        action.moveToElement(balance.get(9)).click().build().perform();
+        Common.waitSec(2);
+        action.moveToElement(balance.get(12)).click().build().perform();
+        action.moveToElement(balance.get(15)).click().build().perform();
+        action.moveToElement(balance.get(18)).click().build().perform();
+        action.moveToElement(balance.get(21)).click().build().perform();
+
+        List<WebElement> safety = (List<WebElement>) js.executeScript(safetyScreen);
+        action.moveToElement(safety.get(0)).click().build().perform();
+        action.moveToElement(safety.get(2)).click().build().perform();
+        action.moveToElement(safety.get(5)).click().build().perform();
+        action.moveToElement(safety.get(7)).click().build().perform();
+        Common.waitSec(2);
+        action.moveToElement(safety.get(9)).click().build().perform();
+        action.moveToElement(safety.get(11)).click().build().perform();
+        action.moveToElement(safety.get(13)).click().build().perform();
+        action.moveToElement(safety.get(17)).click().build().perform();
+        Common.waitSec(2);
+
+        List<WebElement> aaaMen = (List<WebElement>) js.executeScript(aaaMenScreen);
+        action.moveToElement(aaaMen.get(0)).click().build().perform();
+        action.moveToElement(aaaMen.get(3)).click().build().perform();
+        action.moveToElement(aaaMen.get(6)).click().build().perform();
+        Common.waitSec(2);
+
+        List<WebElement> elderabuse = (List<WebElement>) js.executeScript(elderAbuse);
+        action.moveToElement(elderabuse.get(0)).click().build().perform();
+        action.moveToElement(elderabuse.get(3)).click().build().perform();
+        action.moveToElement(elderabuse.get(6)).click().build().perform();
+        action.moveToElement(elderabuse.get(9)).click().build().perform();
+        action.moveToElement(elderabuse.get(12)).click().build().perform();
+        Common.waitSec(2);
+
         driver.findElement(By.name("data[submit]")).click();
         Common.waitSec(3);
 
@@ -482,8 +595,9 @@ public class provider {
         driver.findElement(By.xpath(".//span[text()='Alcohol Screening']")).click();
         Common.waitSec(3);
         List<WebElement> preAlcohol = (List<WebElement>) js.executeScript(alcoholScreening);
-        action.moveToElement(preAlcohol.get(1)).click().build().perform();
-        action.moveToElement(preAlcohol.get(3)).click().build().perform();
+        action.moveToElement(preAlcohol.get(0)).click().build().perform();
+        action.moveToElement(preAlcohol.get(40)).click().build().perform();
+        action.moveToElement(preAlcohol.get(43)).click().build().perform();
         driver.findElement(By.name("data[submit]")).click();
         Common.waitSec(3);
 
@@ -533,7 +647,11 @@ public class provider {
 //        driver.findElement(By.xpath(".//button[@class='rce-btn btn-outline btn-main btn-md']")).click();
 //        Common.waitSec(3);
         //close service option popup
-        driver.findElement(By.className("rf-btn-close")).click();
+        try
+        {
+            driver.findElement(By.className("rf-btn-close")).click();
+        }
+        catch (Exception e){}
         Common.waitSec(3);
 
         //close the popup hidden the approve button

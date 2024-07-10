@@ -7,6 +7,9 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Onboarding extends DriverFactory {
     com.frame.login login;
     GetDriver link;
@@ -36,7 +39,7 @@ public class Onboarding extends DriverFactory {
     medication medication;
     familyHistory famHis;
     caseDetail caseDetail;
-
+    runAPI API;
     @Override
     public void setUpforTest() {
         link = new GetDriver(driver1);
@@ -67,6 +70,7 @@ public class Onboarding extends DriverFactory {
         medication = PageFactory.initElements(driver1, medication.class);
         famHis = PageFactory.initElements(driver1, familyHistory.class);
         caseDetail = PageFactory.initElements(driver1, caseDetail.class);
+        API = PageFactory.initElements(driver1, runAPI.class);
 
     }
 
@@ -84,16 +88,20 @@ public class Onboarding extends DriverFactory {
         String last_name = render.lastname();
         String DOB = excel.getCellData("DOB", 1);
 //		String medicare_ID = render.medicare_ID();
-        String medicare_ID = "6TR7FG7RT96";
+        String medicare_ID = "8TR2FG1QT21";
 //		String zipcode = excel.getCellData("zipcode", 1);
         login.URL_TMS();
         login.intake("123456");
         Common.waitSec(6);
-        intake.create_case_genetics(business, vertical, MG, lab, type, first_name, last_name, DOB, medicare_ID);
+        intake.createOnboarding(business, vertical, MG, lab, type, first_name, last_name, DOB, medicare_ID);
 
         String id = to_assign.find_id();
+//        List<String> patientName = to_assign.findName();
+//        String patientID = patientName.get(1);
         excel.setCellData(id, 1, 0);
+//        excel.setCellData(patientID, 2, 0);
         System.out.println("Case-ID: " + id);
+//        System.out.println("Patient-ID: " + patientID);
 
         Common.waitSec(10);
         if (search.compareStatus("Draft") ){
@@ -121,7 +129,7 @@ public class Onboarding extends DriverFactory {
         search.search_from_intake(id);
         Common.waitSec(5);
 
-        pss.assignNoWellness();
+        pss.to_pending();
         Common.waitSec(10);
 
         //input status result
@@ -146,15 +154,37 @@ public class Onboarding extends DriverFactory {
         //to RTS
 
         login.provider("123456");
-        Common.waitSec(10);
+        Common.waitSec(5);
 
+        Common.waitSec(3);
         search.search_from_intake(id);
         Common.waitSec(5);
 
+        doctor.complete_wellness();
+        System.out.println("Waiting time config");
+        Common.waitSec(60);
+        System.out.println("Done waiting time config");
+        Common.waitSec(5);
+        logout.provider();
+        Common.waitSec(3);
+        login.pss("111111");
+        Common.waitSec(5);
+        search.search_from_intake(id);
+        Common.waitSec(5);
+        pss.assignProvider();
+        Common.waitSec(5);
+        logout.pss();
+        Common.waitSec(5);
+        login.provider("123456");
+        Common.waitSec(5);
+        search.search_from_intake(id);
+        Common.waitSec(5);
         doctor.to_RTS();
-        Common.waitSec(10);
+        Common.waitSec(5);
+
+
         if (search.compareStatus("Ready to send")) {
-            System.out.println("------------------Done Approved.-----------------------");
+            System.out.println("Done Approved");
             excel.setCellData("Pass", 10, 3);
         }
         else {
@@ -168,14 +198,21 @@ public class Onboarding extends DriverFactory {
         search.search_from_intake(id);
         Common.waitSec(5);
         pss.completeOnboarding();
-        Common.waitSec(120);
-        if (search.compareStatus("Completed By PSS")) {
-            System.out.println("-----------------Done Case Onboarding.----------------------");
-            excel.setCellData("Pass", 11, 3);
-        }
-        else {
-            System.out.println("Status is "+ search.getStatus());
-        }
+
+        //get result ID
+        login.changelinktoletter();
+		Common.waitSec(3);
+		login.lob();
+		Common.waitSec(3);
+		login.changelinktoletter();
+
+        String resultID = API.getResultID();
+        API.changeStatusResult(resultID);
+
+        login.change_link_to_pss();
+        Common.waitSec(5);
+        search.searchCounseling(medicare_ID);
+        Common.waitSec(3);
 
         pss.assignProvider();
         Common.waitSec(5);
@@ -184,9 +221,21 @@ public class Onboarding extends DriverFactory {
         Common.waitSec(5);
         login.provider("123456");
         Common.waitSec(5);
+        search.searchCounseling(medicare_ID);
+        Common.waitSec(5);
         doctor.approvedCounseling();
         Common.waitSec(10);
 
+    }
+
+    @Test
+    public void test() throws Exception {
+        String id = "6TR7FG7RT34";
+        login.URL_TMS();
+        login.pss("11111111");
+        Common.waitSec(5);
+        search.searchCounseling(id);
+        Common.waitSec(5);
     }
 
 }

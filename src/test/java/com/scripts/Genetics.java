@@ -46,6 +46,7 @@ public class Genetics extends DriverFactory {
 	medication medication;
 	familyHistory famHis;
 	caseDetail caseDetail;
+	runAPI API;
 
 
 	@Override
@@ -78,6 +79,7 @@ public class Genetics extends DriverFactory {
 		medication = PageFactory.initElements(driver1, medication.class);
 		famHis = PageFactory.initElements(driver1, familyHistory.class);
 		caseDetail = PageFactory.initElements(driver1, caseDetail.class);
+		API = PageFactory.initElements(driver1, runAPI.class);
 
 	}
 
@@ -276,7 +278,7 @@ public class Genetics extends DriverFactory {
 		String last_name = render.lastname();
 		String DOB = excel.getCellData("DOB", 1);
 //		String medicare_ID = render.medicare_ID();
-		String medicare_ID = "6TR7FG7RT96";
+		String medicare_ID = "8TR2FG1QT22";
 //		String zipcode = excel.getCellData("zipcode", 1);
 		login.URL_TMS();
 		login.intake("123456");
@@ -414,7 +416,7 @@ public class Genetics extends DriverFactory {
 		String last_name = render.lastname();
 		String DOB = excel.getCellData("DOB", 1);
 //		String medicare_ID = render.medicare_ID();
-		String medicare_ID = "6TR7FG7RT92";
+		String medicare_ID = "8TR2FG1QT22";
 //		String zipcode = excel.getCellData("zipcode", 1);
 		login.URL_TMS();
 		login.intake("123456");
@@ -509,7 +511,7 @@ public class Genetics extends DriverFactory {
 		String last_name = render.lastname();
 		String DOB = excel.getCellData("DOB", 1);
 //		String medicare_ID = render.medicare_ID();
-		String medicare_ID = "6TR7FG7RT93";
+		String medicare_ID = "8TR2FG1QT22";
 //		String zipcode = excel.getCellData("zipcode", 1);
 		login.URL_TMS();
 		login.intake("123456");
@@ -657,7 +659,7 @@ public class Genetics extends DriverFactory {
 		String last_name = render.lastname();
 		String DOB = excel.getCellData("DOB", 1);
 //		String medicare_ID = render.medicare_ID();
-		String medicare_ID = "6TR7FG7RT96";
+		String medicare_ID = "8TR2FG1QT22";
 //		String zipcode = excel.getCellData("zipcode", 1);
 		login.URL_TMS();
 		login.intake("123456");
@@ -719,7 +721,6 @@ public class Genetics extends DriverFactory {
 		login.provider("123456");
 		Common.waitSec(10);
 
-//		search.pin();
 		Common.waitSec(3);
 		search.search_from_intake(id);
 		Common.waitSec(5);
@@ -808,7 +809,7 @@ public class Genetics extends DriverFactory {
 		login.URL_ADMIN();
 		login.admin();
 
-		driver1.findElement(By.id("searchbar")).sendKeys("8TR2FG1QT22", Keys.ENTER);
+		driver1.findElement(By.id("searchbar")).sendKeys("8TR2FG1QT2", Keys.ENTER);
 		Common.waitSec(5);
 		driver1.findElement(By.id("action-toggle")).click();
 		Common.waitSec(2);
@@ -821,6 +822,45 @@ public class Genetics extends DriverFactory {
 		driver1.findElement(By.xpath(".//*[@value=\"Yes, I’m sure\"]")).click();
 		Common.waitSec(10);
 
+	}
+
+	@Test
+	public void wellness() throws Exception {
+//		excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
+		login.URL_TMS();
+		login.provider("123456");
+		Common.waitSec(5);
+		search.search_from_intake("CA-YON4U1YB");
+		doctor.complete_wellness();
+	}
+
+	@Test
+	public void getID() throws Exception {
+		login.lobURL();
+		login.lob();
+		Common.waitSec(3);
+		login.changelinktoletter();
+		String resultID = API.getResultID();
+		System.out.println(resultID);
+	}
+
+	@Test
+	public void completecase() {
+//		String id = "CA-10BEXTI8";
+//		login.URL_TMS();
+//		login.pss("11111111");
+//		Common.waitSec(3);
+//		search.search_from_intake(id);
+//		Common.waitSec(5);
+//		pss.to_AFU();
+//		Common.waitSec(5);
+//		login.changelinktoletter();
+//		Common.waitSec(3);
+//		login.lob();
+//		Common.waitSec(3);
+//		login.changelinktoletter();
+		String resultID = "ltr_1fdb400c5c95d0b7";
+		API.changeStatusResult(resultID);
 	}
 }
 
