@@ -386,11 +386,13 @@ public class provider {
         driver.findElement(By.xpath(".//*[text()='Diagnosis']")).click();
         Common.waitSec(3);
 
-        driver.findElement(By.xpath(".//div[text()='I129']")).click();
-        Common.waitSec(1);
-        driver.findElement(By.xpath(".//div[text()='I10']")).click();
-        Common.waitSec(1);
-
+        try {
+            driver.findElement(By.xpath(".//div[text()='I129']")).click();
+            Common.waitSec(1);
+            driver.findElement(By.xpath(".//div[text()='I10']")).click();
+            Common.waitSec(1);
+        }
+        catch (Exception e) {}
         driver.findElement(By.xpath(".//button[text()='Save']")).click();
         Common.waitSec(3);
         // medication
@@ -505,6 +507,7 @@ public class provider {
         action.moveToElement(preventativeScreeningVision.get(36)).click().build().perform();
         action.moveToElement(preventativeScreeningVision.get(40)).click().build().perform();
         action.moveToElement(preventativeScreeningVision.get(44)).click().build().perform();
+        action.moveToElement(preventativeScreeningVision.get(49)).click().build().perform();
         Common.waitSec(2);
 
 
@@ -526,6 +529,7 @@ public class provider {
         action.moveToElement(balance.get(15)).click().build().perform();
         action.moveToElement(balance.get(18)).click().build().perform();
         action.moveToElement(balance.get(21)).click().build().perform();
+        Common.waitSec(2);
 
         List<WebElement> safety = (List<WebElement>) js.executeScript(safetyScreen);
         action.moveToElement(safety.get(0)).click().build().perform();
@@ -539,11 +543,15 @@ public class provider {
         action.moveToElement(safety.get(17)).click().build().perform();
         Common.waitSec(2);
 
-        List<WebElement> aaaMen = (List<WebElement>) js.executeScript(aaaMenScreen);
-        action.moveToElement(aaaMen.get(0)).click().build().perform();
-        action.moveToElement(aaaMen.get(3)).click().build().perform();
-        action.moveToElement(aaaMen.get(6)).click().build().perform();
-        Common.waitSec(2);
+        try {
+            List<WebElement> aaaMen = (List<WebElement>) js.executeScript(aaaMenScreen);
+            action.moveToElement(aaaMen.get(0)).click().build().perform();
+            action.moveToElement(aaaMen.get(3)).click().build().perform();
+            action.moveToElement(aaaMen.get(6)).click().build().perform();
+            Common.waitSec(2);
+        }
+        catch (Exception e)
+        {}
 
         List<WebElement> elderabuse = (List<WebElement>) js.executeScript(elderAbuse);
         action.moveToElement(elderabuse.get(0)).click().build().perform();
@@ -643,9 +651,6 @@ public class provider {
         action.sendKeys(Keys.ENTER).build().perform();
         Common.waitSec(3);
 
-        //open the genetic case
-//        driver.findElement(By.xpath(".//button[@class='rce-btn btn-outline btn-main btn-md']")).click();
-//        Common.waitSec(3);
         //close service option popup
         try
         {
@@ -654,8 +659,6 @@ public class provider {
         catch (Exception e){}
         Common.waitSec(3);
 
-        //close the popup hidden the approve button
-//        driver.findElement(By.xpath(".//div[@class='sp-close']")).click();
     }
 
     public void approveOnboarding() {
@@ -767,15 +770,16 @@ public class provider {
         // approved
         driver.findElement(By.xpath(".//span[text()='Approve']")).click();
         Common.waitSec(3);
-//        actions.sendKeys(Keys.ENTER).build().perform();
-        driver.findElement(By.xpath(".//button[text()='Yes']")).click();
+        try {
+            driver.findElement(By.xpath(".//button[text()='Yes']")).click();
+        }
+        catch (Exception e) {}
+
         action.sendKeys(Keys.ENTER).build().perform();
         Common.waitSec(3);
 
         System.out.println("-------------------------Done Approve----------------------------");
         Common.waitSec(7);
 
-//        driver.findElement(By.className("rf-btn-close")).click();
-//        Common.waitSec(3);
     }
 }

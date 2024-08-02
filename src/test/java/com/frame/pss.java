@@ -2,6 +2,8 @@ package com.frame;
 
 import com.Common;
 import org.openqa.selenium.*;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -9,8 +11,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Factory;
 
+import java.io.File;
 import java.time.Duration;
-import java.util.List;
+import java.util.*;
 
 public class pss {
     protected static WebDriver driver;
@@ -251,14 +254,14 @@ public class pss {
 
         //qs7
         List<WebElement> completed_wellness = (List<WebElement>) js.executeScript(wellness_completed);
-        if (completed_wellness.get(0).isEnabled()) {
-            action.moveToElement(completed_wellness.get(0)).click().build().perform();
+        if (completed_wellness.get(1).isEnabled()) {
+            action.moveToElement(completed_wellness.get(1)).click().build().perform();
         }
 
         //qs8
         List<WebElement> past_wellness = (List<WebElement>) js.executeScript(wellness_past);
-        if (past_wellness.get(0).isEnabled()) {
-            action.moveToElement(past_wellness.get(0)).click().build().perform();
+        if (past_wellness.get(1).isEnabled()) {
+            action.moveToElement(past_wellness.get(1)).click().build().perform();
         }
 
         //qs9
@@ -510,12 +513,12 @@ public class pss {
         action.moveToElement(medical.get(1)).click().build().perform();
 
         //qs7
-        List<WebElement> completed_wellness = (List<WebElement>) js.executeScript(wellness_completed);
-        action.moveToElement(completed_wellness.get(0)).click().build().perform();
+//        List<WebElement> completed_wellness = (List<WebElement>) js.executeScript(wellness_completed);
+//        action.moveToElement(completed_wellness.get(0)).click().build().perform();
 
         //qs8
-        List<WebElement> past_wellness = (List<WebElement>) js.executeScript(wellness_past);
-        action.moveToElement(past_wellness.get(0)).click().build().perform();
+//        List<WebElement> past_wellness = (List<WebElement>) js.executeScript(wellness_past);
+//        action.moveToElement(past_wellness.get(0)).click().build().perform();
 
         //qs9
         List<WebElement> health_additional = (List<WebElement>) js.executeScript(additional_health);
@@ -595,6 +598,124 @@ public class pss {
         Common.waitSec(3);
 
 
+    }
+
+    public void downloadPDF() {
+//        // Directory where you want to save the downloaded files
+//        String downloadDirectory = "src\\test\\resources";
+//
+//        // Configure Chrome options
+//        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("start-maximized");
+//        options.addArguments("disable-infobars");
+//        options.addArguments("--disable-extensions");
+//
+//        // Set Chrome preferences
+//        Map<String, Object> prefs = new HashMap<>();
+//        prefs.put("download.default_directory", downloadDirectory);
+//        prefs.put("download.prompt_for_download", false);
+//        prefs.put("download.directory_upgrade", true);
+//        prefs.put("safebrowsing.enabled", true);
+//        options.setExperimentalOption("prefs", prefs);
+
+        try {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            Actions action = new Actions(driver);
+            // get element of patient cons and lab cons
+            String PDF = "return document.querySelectorAll('[class=\"rce-pdf-title\"]')";
+            List<WebElement> pdf = (List<WebElement>) js.executeScript(PDF);
+            int size = pdf.size();
+            List<WebElement> patientcons = pdf.get(size-1).findElements(By.tagName("button"));
+            action.moveToElement(patientcons.get(1)).click().build().perform();
+
+            // Optional: Wait for the download to complete (you may need to adjust the time)
+            Common.waitSec(10); // Wait for 10 seconds (adjust as needed)
+
+            List<WebElement> labcons = pdf.get(size-2).findElements(By.tagName("button"));
+            action.moveToElement(labcons.get(1)).click().build().perform();
+            Common.waitSec(10);
+
+            // Optional: Verify that the file has been downloaded
+//            File downloadedFile = new File(downloadDirectory + "/patientcon"); // Adjust filename and extension
+//            if (downloadedFile.exists()) {
+//                System.out.println("Download successful: " + downloadedFile.getAbsolutePath());
+//            } else {
+//                System.out.println("Download failed.");
+//            }
+
+        } catch (Exception e) {
+//            e.printStackTrace();
+        }
+    }
+
+    public void testdownload() {
+        // Directory where you want to save the downloaded files
+        String downloadDirectory = "src\\test\\resources";
+
+        // Configure Chrome options
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("start-maximized");
+        options.addArguments("disable-infobars");
+        options.addArguments("--disable-extensions");
+
+        // Set Chrome preferences
+        Map<String, Object> prefs = new HashMap<>();
+        prefs.put("download.default_directory", downloadDirectory);
+        prefs.put("download.prompt_for_download", false);
+        prefs.put("download.directory_upgrade", true);
+        prefs.put("safebrowsing.enabled", true);
+        options.setExperimentalOption("prefs", prefs);
+
+        driver.get("https://stag.tms.partners/#/");
+        List<String> caselist = Arrays.asList("CA-B931VXEL", "CA-QPV6QPQM", "CA-FNJBSFUQ");
+        //login pss
+        driver.findElement(By.xpath("//*[@id='username']")).sendKeys("dac+3@gkxim.com");
+        driver.findElement(By.xpath("//*[@id='pwd']")).sendKeys("11111111");
+        driver.findElement(By.xpath("//*[@id='submit_login']/div/div[4]/button")).click();
+        System.out.println("--------------------Login PSS success.------------------------");
+        Common.waitSec(5);
+        //pin case list
+        driver.findElement(By.xpath("//*[@id=\"patient-dashboard\"]/div[6]/div[2]/div/div[1]/div[1]/div[2]/button")).click();
+        try {
+            driver.findElement(By.xpath(".//button[text()='Close']")).click();
+        }
+        catch (Exception e) {}
+
+        for (int i=0; i<caselist.size(); i++)
+        {
+            driver.findElement(By.xpath(".//input[@placeholder='I want to search for…']")).clear();
+            driver.findElement(By.xpath(".//input[@placeholder='I want to search for…']")).sendKeys(caselist.get(i), Keys.ENTER);
+            Common.waitSec(3);
+            driver.findElement(By.className("gk-cs-top")).click();
+            try {
+                JavascriptExecutor js = (JavascriptExecutor) driver;
+                Actions action = new Actions(driver);
+                // get element of patient cons and lab cons
+                String PDF = "return document.querySelectorAll('[class=\"rce-pdf-title\"]')";
+                List<WebElement> pdf = (List<WebElement>) js.executeScript(PDF);
+                List<WebElement> patientcons = pdf.get(9).findElements(By.tagName("button"));
+                action.moveToElement(patientcons.get(1)).click().build().perform();
+
+
+                // Optional: Wait for the download to complete (you may need to adjust the time)
+                Common.waitSec(10); // Wait for 10 seconds (adjust as needed)
+
+                List<WebElement> labcons = pdf.get(10).findElements(By.tagName("button"));
+                action.moveToElement(labcons.get(1)).click().build().perform();
+                Common.waitSec(10);
+
+                // Optional: Verify that the file has been downloaded
+//                File downloadedFile = new File(downloadDirectory + "/patientcon"); // Adjust filename and extension
+//                if (downloadedFile.exists()) {
+//                    System.out.println("Download successful: " + downloadedFile.getAbsolutePath());
+//                } else {
+//                    System.out.println("Download failed.");
+//                }
+
+            } catch (Exception e) {
+//            e.printStackTrace();
+            }
+        }
     }
 
 }

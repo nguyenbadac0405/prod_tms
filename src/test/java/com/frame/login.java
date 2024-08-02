@@ -84,8 +84,15 @@ public class login {
 	public void URL_telehealth() {
 		driver.get("https://telehealth.gkim.digital/");
 	}
+	public void pdflink() {
+        driver.get("https://prod-tms-reqform-viewer.web.app/c71e7cef-228f-4d0e-b7a1-5dceeb0eb70b/40484fc2-b62d-4712-b26d-49c34667d8a9?role=ADMIN_MEDICAL&recform_id=f436df31-118e-4419-8196-a0b13ebcb984&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU0MTE3MDgxLCJpYXQiOjE3MjI1ODEwODEsImp0aSI6IjI1NDFhZjI5YTU4NDQ1NGNhYTQxNDQyYWMxNGMyYmI5IiwidXNlcl9pZCI6ImRmOTFlNzM0LTNmZTgtNDYyNS05NTJjLTJjYjllMTdhMDA2NCJ9.HpKYBFAK9-szBzFBE_13oQ43b7QJQrTjrOZJ_WeNOj0&redirect=&data-json-merge=%7B%7D");
+
+    }
 	public void URL_TMS() {
 		driver.get("https://dashboard.tms.partners/#/");
+	}
+	public void URL_TMS_STAG() {
+		driver.get("https://stag.tms.partners/#/");
 	}
 	public void URL_MDL() {
 		driver.get("https://mydoctorslive.com/gkim-telehealth/");

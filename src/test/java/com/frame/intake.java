@@ -223,6 +223,8 @@ public class intake {
         //submit 1
         driver.findElement(By.name("data[submit]")).click();
         Common.waitSec(5);
+        action.sendKeys(Keys.ENTER).build().perform();
+        Common.waitSec(2);
 
         //gender & ethnicity
         driver.findElement(By.xpath("//*[@value='Male']")).click();
@@ -547,6 +549,8 @@ public class intake {
         //submit 1
         driver.findElement(By.name("data[submit]")).click();
         Common.waitSec(5);
+        action.sendKeys(Keys.ENTER).build().perform();
+        Common.waitSec(2);
 
         //gender & ethnicity
         driver.findElement(By.xpath("//*[@value='Male']")).click();

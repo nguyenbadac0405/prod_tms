@@ -2,56 +2,35 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="test_core">
-<!--	&lt;!&ndash;TC0: genetics complete &ndash;&gt;-->
-<!--	<test name="genetics complete with wellness">-->
-<!--		<classes>-->
-<!--			<class name="com.scripts.Genetics">-->
-<!--				<methods>-->
-<!--					<include name="completeGeneticsWithWellness"></include>-->
-<!--				</methods>-->
-<!--			</class>-->
-<!--		</classes>-->
-<!--	</test>-->
 
-<!--	&lt;!&ndash;TC1: genetics complete &ndash;&gt;-->
-<!--	<test name="genetics complete without wellness">-->
-<!--		<classes>-->
-<!--			<class name="com.scripts.Genetics">-->
-<!--				<methods>-->
-<!--					<include name="completeGeneticNoWellness"></include>-->
-<!--				</methods>-->
-<!--			</class>-->
-<!--		</classes>-->
-<!--	</test>-->
-
-<!--    &lt;!&ndash; TC2: genetics cancel &ndash;&gt;-->
-<!--	<test name="genetics cancel">-->
-<!--		<classes>-->
-<!--			<class name="com.scripts.Genetics">-->
-<!--				<methods>-->
-<!--					<include name="cancel"></include>-->
-<!--				</methods>-->
-<!--			</class>-->
-<!--		</classes>-->
-<!--	</test>-->
-
-<!--	&lt;!&ndash; TC3: genetics denied&ndash;&gt;-->
-<!--	<test name="genetics denied">-->
-<!--		<classes>-->
-<!--			<class name="com.scripts.Genetics">-->
-<!--				<methods>-->
-<!--					<include name="denied"></include>-->
-<!--				</methods>-->
-<!--			</class>-->
-<!--		</classes>-->
-<!--	</test>-->
-
-	<!-- TC4: Onboarding Counseling-->
+	<!-- TC1: Onboarding Counseling-->
 	<test name="Onboarding Counseling">
 		<classes>
 			<class name="com.scripts.Onboarding">
 				<methods>
 					<include name="complete"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+    <!-- TC2: genetics cancel -->
+	<test name="Onboarding cancel">
+		<classes>
+			<class name="com.scripts.Genetics">
+				<methods>
+					<include name="cancel"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<!-- TC3: genetics denied-->
+	<test name="Onboarding denied">
+		<classes>
+			<class name="com.scripts.Genetics">
+				<methods>
+					<include name="denied"></include>
 				</methods>
 			</class>
 		</classes>
@@ -68,7 +47,7 @@
 		</classes>
 	</test>
 
-	<!-- TC4: RPM Smartmed complete-->
+	<!-- TC5: RPM Smartmed complete-->
 	<test name="RPM SmartMed complete">
 		<classes>
 			<class name="com.scripts.RPM">
@@ -79,7 +58,7 @@
 		</classes>
 	</test>
 
-	<!-- TC5: RPM SmartMed cancel-->
+	<!-- TC6: RPM SmartMed cancel-->
 	<test name="RPM SmartMed cancel">
 		<classes>
 			<class name="com.scripts.RPM">
@@ -90,7 +69,7 @@
 		</classes>
 	</test>
 
-	<!-- TC6: RPM SmartMed denied -->
+	<!-- TC7: RPM SmartMed denied -->
 	<test name="RPM SmartMed">
 		<classes>
 			<class name="com.scripts.RPM">

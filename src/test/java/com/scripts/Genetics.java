@@ -10,6 +10,9 @@ import org.testng.annotations.Test;
 
 import com.Common;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Genetics extends DriverFactory {
 	login login;
 	GetDriver link;
@@ -47,7 +50,8 @@ public class Genetics extends DriverFactory {
 	familyHistory famHis;
 	caseDetail caseDetail;
 	runAPI API;
-
+	changeStatus changeStatus;
+	compliance compliance;
 
 	@Override
 	public void setUpforTest() {
@@ -80,6 +84,8 @@ public class Genetics extends DriverFactory {
 		famHis = PageFactory.initElements(driver1, familyHistory.class);
 		caseDetail = PageFactory.initElements(driver1, caseDetail.class);
 		API = PageFactory.initElements(driver1, runAPI.class);
+		changeStatus = PageFactory.initElements(driver1, changeStatus.class);
+		compliance = PageFactory.initElements(driver1, compliance.class);
 
 	}
 
@@ -615,7 +621,7 @@ public class Genetics extends DriverFactory {
 		//open the dashboard
 		login.URL_TMS();
 		//login intake
-		login.intake("123456");
+		login.intake("12345678");
 		//create case
 
 		//set up case detail
@@ -641,8 +647,49 @@ public class Genetics extends DriverFactory {
 		famHis.intakeSubmit(vertical);
 
 		//submit to new
+		changeStatus.toNew();
+		Common.waitSec(3);
 
+		if (search.compareStatus("Draft") ){
+			action.sendKeys(Keys.ENTER).build().perform();
+		}
+		else {
+			System.out.println("It is not Draft");
+		}
+		if (search.compareStatus("New (Not Yet Called)")) {
+			System.out.println("Done new case.");
+			excel.setCellData("Pass", 7, 3);
+			excel.setCellData("Pass", 8, 3);
+		}
+		else {
+			System.out.println("Status is "+ search.getStatus());
+		}
 
+		String caseID = caseDetail.getCaseID();
+		excel.setCellData(caseID, 1, 0);
+
+		logout.intake();
+		login.pss("11111111");
+		caseDetail.searchbyCaseID(caseID);
+
+		compliance.pssSubmit(vertical);
+		changeStatus.toAssigned();
+
+		if (search.compareStatus("Pending (Not Yet Called)") ){
+			action.sendKeys(Keys.ENTER).build().perform();
+		}
+		else {
+			System.out.println("It is not Pending");
+		}
+		if (search.compareStatus("Assigned (Not Yet Called)")) {
+			System.out.println("------------------Done Assigned.-----------------------");
+			excel.setCellData("Pass", 9, 3);
+			excel.setCellData("Pass", 10, 3);
+		}
+		else {
+			System.out.println("Status is "+ search.getStatus());
+		}
+		logout.pss();
 	}
 
 	@Test
@@ -830,7 +877,7 @@ public class Genetics extends DriverFactory {
 		login.URL_TMS();
 		login.provider("123456");
 		Common.waitSec(5);
-		search.search_from_intake("CA-YON4U1YB");
+		search.search_from_intake("CA-E5OQC9MY");
 		doctor.complete_wellness();
 	}
 
@@ -861,6 +908,129 @@ public class Genetics extends DriverFactory {
 //		login.changelinktoletter();
 		String resultID = "ltr_1fdb400c5c95d0b7";
 		API.changeStatusResult(resultID);
+	}
+
+	@Test
+	public void change_state() throws Exception {
+		excel.setExcelFile("src/test/resources/UHLA_after.xlsx", "Sheet3");
+		for(int i=1; i < 7738; i++)
+		{
+			String state = excel.getCellData("state_alias", i);
+			System.out.println(i);
+			System.out.println(state);
+			if (state.equals("INTAKE-DRAFT")) {
+				excel.setCellData("Draft",i, 4);
+			}
+			if (state.equals("PRECONSULT-INCOMPLETE")) {
+				excel.setCellData("New",i, 4);
+			}
+			if (state.equals("PRECONSULT-COMPLETED")) {
+				excel.setCellData("Pending",i, 4);
+			}
+			if (state.equals("CONSULT-INITIAL")) {
+				excel.setCellData("Assigned",i, 4);
+			}
+			if (state.equals("FULFILL-READY_SENT_TO_LAB")) {
+				excel.setCellData("Ready To Send",i, 4);
+			}
+			if (state.equals("FULFILL-SENT_TO_LAB")) {
+				excel.setCellData("Awaiting Results",i, 4);
+			}
+			if (state.equals("FULFILL-RESULT_UPLOADED")) {
+				excel.setCellData("Result Sending",i, 4);
+			}
+			if (state.equals("PRECONSULT-COMPLETED_FOLLOW_UP")) {
+				excel.setCellData("Pending Results Follow Up",i, 4);
+			}
+			if (state.equals("CONSULT-INITIAL_FOLLOW_UP")) {
+				excel.setCellData("Assigned Follow Up",i, 4);
+			}
+			if (state.equals("COMPLETED-BY_PROVIDER")) {
+				excel.setCellData("Assigned Follow Up",i, 4);
+			}
+			if (state.equals("CANCELLED")) {
+				excel.setCellData("Cancelled",i, 4);
+			}
+			if (state.equals("FULFILL-FOR_CORRECTION_READY_TO_SEND")) {
+				excel.setCellData("For QC Correction",i, 4);
+			}
+			if (state.equals("INTAKE-FOR_CORRECTION")) {
+				excel.setCellData("For Correction",i, 4);
+			}
+			if (state.equals("CONSULT-FOR_CORRECTION")) {
+				excel.setCellData("For Provider Correction",i, 4);
+			}
+			if (state.equals("INTAKE-FOR_RECONNECTING")) {
+				excel.setCellData("For Reconnecting",i, 4);
+			}
+			if (state.equals("REJECTED_ACCEPTED")) {
+				excel.setCellData("Denial Approved",i, 4);
+			}
+		}
+	}
+
+	@Test
+	public void checkdata() throws Exception {
+		excel.setExcelFile("src/test/resources/RPM.xlsx", "Sheet7");
+		for (int i = 1; i < 15000; i++) {
+			String state = excel.getCellData("state_alias", i);
+			String result = excel.getCellData("results_shiping_status", i);
+			String id = excel.getCellData("name", i);
+//
+			if (result.equals("RECEIVED") && state.equals("COMPLETED-BY_PSS")) {
+				excel.setCellData("true",i, 5);
+			}
+
+			if (result.equals("RECEIVED")) {
+				if (state.equals("COMPLETED-BY_PSS")) {}
+				else {
+					System.out.println(id);
+				}
+			}
+
+			if (result.equals("DELIVERING") || result.equals("PRINTING") || result.equals("RETURNING")) {
+				if (state.equals("FULFILL-RESULT_UPLOADED")) {
+					excel.setCellData("true",i, 5);
+				}
+			}
+
+//			if (state.equals("FULFILL-RESULT_UPLOADED") || result.equals("")){
+//				System.out.println(id);
+//			}
+
+
+		}
+	}
+	@Test
+	public void test() throws Exception {
+		excel.setExcelFile("src/test/resources/UHLA_after.xlsx", "Sheet1");
+		for (int i = 1; i < 10000; i++) {
+//			String state = excel.getCellData("results_shiping_status", i);
+			String id = excel.getCellData("name", i);
+			String state = excel.getCellData("state_alias", i);
+			String result = excel.getCellData("results_shiping_status", i);
+			if (result.equals("PRINTING")|| result.equals("DELIVERING")) {
+				if (state.equals("FULFILL-SENT_TO_LAB")) {
+					System.out.println(id);
+				}
+			}
+		}
+	}
+
+	@Test
+	public void testpdf() throws Exception {
+		login.URL_TMS_STAG();
+		login.pss("11111111");
+		Common.waitSec(5);
+		search.pin();
+		Common.waitSec(3);
+		List<String> caselist = Arrays.asList("CA-B931VXEL", "CA-QPV6QPQM", "CA-FNJBSFUQ");
+		for (int i = 0; i < caselist.size(); i++) {
+			search.search_from_intake(caselist.get(i));
+			pss.downloadPDF();
+			Common.waitSec(5);
+		}
+
 	}
 }
 

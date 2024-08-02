@@ -21,10 +21,6 @@ public class new_to_assign {
 
 	public static String find_id() {
 		WebElement id_case = driver.findElement(By.xpath(".//span[@class='rf-code']"));
-//		System.out.println(id_case.getAttribute("value"));
-//		System.out.println("1");
-
-//		System.out.println(id_case);
 		String id = id_case.getText();
 		return id;
 	}

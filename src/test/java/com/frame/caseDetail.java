@@ -1,10 +1,7 @@
 package com.frame;
 
 import com.Common;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -39,7 +36,7 @@ public class caseDetail extends Section {
     @FindBy(id = "react-select-13-input")
     public WebElement fLab;
 
-    public void createCase(String business, String vertical, String MG, String testtype, String lab) throws Exception {
+    public void createCase(String business, String vertical, String MG, String testtype, String lab) {
         Actions action = new Actions(driver);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         //        clickBtnCheckbox(btnPin);   //pin case list
@@ -76,5 +73,16 @@ public class caseDetail extends Section {
 
             enterText(fMg, MG);
         }
+    }
+    public String getCaseID()  {
+        WebElement id_case = driver.findElement(By.xpath(".//span[@class='rf-code']"));
+        String id = id_case.getText();
+        return id;
+    }
+
+    public void searchbyCaseID(String id) {
+        driver.findElement(By.xpath(".//input[@placeholder='I want to search for…']")).sendKeys(id, Keys.ENTER);
+        Common.waitSec(3);
+        driver.findElement(By.className("gk-cs-top")).click();
     }
 }

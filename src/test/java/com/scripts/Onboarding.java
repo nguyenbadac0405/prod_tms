@@ -88,7 +88,7 @@ public class Onboarding extends DriverFactory {
         String last_name = render.lastname();
         String DOB = excel.getCellData("DOB", 1);
 //		String medicare_ID = render.medicare_ID();
-        String medicare_ID = "8TR2FG1QT21";
+        String medicare_ID = "8TR2FG1QT22";
 //		String zipcode = excel.getCellData("zipcode", 1);
         login.URL_TMS();
         login.intake("123456");
@@ -201,11 +201,11 @@ public class Onboarding extends DriverFactory {
 
         //get result ID
         login.changelinktoletter();
-		Common.waitSec(3);
+		Common.waitSec(5);
 		login.lob();
-		Common.waitSec(3);
+		Common.waitSec(5);
 		login.changelinktoletter();
-
+        Common.waitSec(10);
         String resultID = API.getResultID();
         API.changeStatusResult(resultID);
 
