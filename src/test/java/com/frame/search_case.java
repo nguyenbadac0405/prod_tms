@@ -19,6 +19,14 @@ public class search_case {
 		Common.waitSec(3);
 		driver.findElement(By.className("gk-cs-top")).click();
 	}
+	public void search_openform(String id) {
+		driver.findElement(By.xpath(".//input[@placeholder='I want to search for…']")).clear();
+		driver.findElement(By.xpath(".//input[@placeholder='I want to search for…']")).sendKeys(id, Keys.ENTER);
+		Common.waitSec(3);
+		driver.findElement(By.className("gk-cs-top")).click();
+		Common.waitSec(3);
+		driver.findElement(By.xpath("//*[@id=\"patient-dashboard\"]/div[6]/div[4]/div/div[1]/div[5]/div/div[1]")).click();
+	}
 
 	public void searchCounseling(String id) {
 		driver.findElement(By.xpath(".//input[@placeholder='I want to search for…']")).sendKeys(id, Keys.ENTER);

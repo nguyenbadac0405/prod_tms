@@ -625,13 +625,13 @@ public class pss {
             String PDF = "return document.querySelectorAll('[class=\"rce-pdf-title\"]')";
             List<WebElement> pdf = (List<WebElement>) js.executeScript(PDF);
             int size = pdf.size();
-            List<WebElement> patientcons = pdf.get(size-1).findElements(By.tagName("button"));
+            List<WebElement> patientcons = pdf.get(size-2).findElements(By.tagName("button"));
             action.moveToElement(patientcons.get(1)).click().build().perform();
 
             // Optional: Wait for the download to complete (you may need to adjust the time)
             Common.waitSec(10); // Wait for 10 seconds (adjust as needed)
 
-            List<WebElement> labcons = pdf.get(size-2).findElements(By.tagName("button"));
+            List<WebElement> labcons = pdf.get(size-1).findElements(By.tagName("button"));
             action.moveToElement(labcons.get(1)).click().build().perform();
             Common.waitSec(10);
 

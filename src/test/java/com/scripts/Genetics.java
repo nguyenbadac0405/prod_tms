@@ -1026,7 +1026,7 @@ public class Genetics extends DriverFactory {
 		Common.waitSec(3);
 		List<String> caselist = Arrays.asList("CA-B931VXEL", "CA-QPV6QPQM", "CA-FNJBSFUQ");
 		for (int i = 0; i < caselist.size(); i++) {
-			search.search_from_intake(caselist.get(i));
+			search.search_openform(caselist.get(i));
 			pss.downloadPDF();
 			Common.waitSec(5);
 		}
