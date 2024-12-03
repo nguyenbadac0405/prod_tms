@@ -2,11 +2,16 @@ package com.scripts;
 
 import com.Common;
 import com.frame.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
 public class RPM extends DriverFactory {
+    private static final Logger log = LoggerFactory.getLogger(RPM.class);
     com.frame.login login;
     GetDriver link;
     create_new_case_intake new_case_intake;
@@ -65,7 +70,7 @@ public class RPM extends DriverFactory {
     public void RPM_complete() throws Exception {
         excel.setExcelFile("src/test/resources/RPM.xlsx", "Sheet1");
         login.URL_telehealth();
-        login.provider("123456");
+        login.provider("12345678");
         Common.waitSec(5);
 
         String id = excel.getCellData("id", 1);
@@ -102,7 +107,7 @@ public class RPM extends DriverFactory {
 
         login.URL_telehealth();
 
-        login.intake("123456");
+        login.intake("12345678");
         Common.waitSec(6);
         new_case_intake.RPM_create_new_case(business, vertical, MG, lab, type, first_name, last_name, DOB, medicare_ID, zipcode);
         Common.waitSec(3);
@@ -112,7 +117,7 @@ public class RPM extends DriverFactory {
         System.out.println("Case-ID: " + id);
 
         logout.logout();
-        login.pss("111111");
+        login.pss("11111111");
         Common.waitSec(5);
 
         search.search_from_intake(id);
@@ -122,7 +127,7 @@ public class RPM extends DriverFactory {
         Common.waitSec(5);
 
         logout.logout();
-        login.provider("123456");
+        login.provider("12345678");
         Common.waitSec(3);
 
         search.search_from_intake(id);
@@ -155,7 +160,7 @@ public class RPM extends DriverFactory {
 
         login.URL_telehealth();
 
-        login.intake("123456");
+        login.intake("12345678");
         Common.waitSec(6);
         new_case_intake.RPM_create_new_case(business, vertical, MG, lab, type, first_name, last_name, DOB, medicare_ID, zipcode);
         Common.waitSec(3);
@@ -165,7 +170,7 @@ public class RPM extends DriverFactory {
         System.out.println("Case-ID: " + id);
 
         logout.logout();
-        login.pss("111111");
+        login.pss("11111111");
         Common.waitSec(5);
 
         search.search_from_intake(id);
@@ -175,7 +180,7 @@ public class RPM extends DriverFactory {
         Common.waitSec(5);
 
         logout.logout();
-        login.provider("123456");
+        login.provider("12345678");
         Common.waitSec(3);
 
         search.search_from_intake(id);
@@ -211,7 +216,7 @@ public class RPM extends DriverFactory {
 
         login.URL_telehealth();
 
-        login.intake("123456");
+        login.intake("12345678");
         Common.waitSec(6);
         new_case_intake.RPM_create_new_case(business, vertical, MG, lab, type, first_name, last_name, DOB, medicare_ID, zipcode);
         Common.waitSec(3);
@@ -221,7 +226,7 @@ public class RPM extends DriverFactory {
         System.out.println("Case-ID: " + id);
 
         logout.logout();
-        login.pss("111111");
+        login.pss("11111111");
         Common.waitSec(5);
 
         search.search_from_intake(id);
@@ -231,7 +236,7 @@ public class RPM extends DriverFactory {
         Common.waitSec(5);
 
         logout.logout();
-        login.provider("123456");
+        login.provider("12345678");
         Common.waitSec(3);
 
         search.search_from_intake(id);
@@ -261,7 +266,7 @@ public class RPM extends DriverFactory {
 
         login.URL_telehealth();
 
-        login.intake("123456");
+        login.intake("12345678");
         Common.waitSec(6);
         intake.create_RPM(business, vertical, MG, first_name, last_name, DOB, medicare_ID);
         Common.waitSec(30);
@@ -271,7 +276,7 @@ public class RPM extends DriverFactory {
     public void assigned() throws Exception {
         excel.setExcelFile("src/test/resources/RPM.xlsx", "Sheet1");
         login.URL_telehealth();
-        login.pss("111111");
+        login.pss("11111111");
         Common.waitSec(10);
 
         String id = excel.getCellData("id", 1);
@@ -288,7 +293,7 @@ public class RPM extends DriverFactory {
     public void to_complete() throws Exception {
         excel.setExcelFile("src/test/resources/RPM.xlsx", "Sheet1");
         login.URL_telehealth();
-        login.provider("123456");
+        login.provider("12345678");
         Common.waitSec(15);
 
         String id = excel.getCellData("id", 1);
@@ -308,16 +313,16 @@ public class RPM extends DriverFactory {
         String vertical = excel.getCellData("vertical", 1);
 
         String MG = excel.getCellData("MG", 1);
-        String first_name = "GK test " + render.firtname();
+        String first_name = "GKIM TEST " + render.firtname();
 
         String last_name = render.lastname();
         String DOB = excel.getCellData("DOB", 1);
 //        String medicare_ID = render.medicare_ID();
-        String medicare_ID = "6TR7FG7RT98";
+        String medicare_ID = "8TR2FG1QT22";
 
-        login.URL_TMS();
+        login.URL_NEW_PROD();
 
-        login.intake("123456");
+        login.intake("12345678");
         Common.waitSec(6);
         intake.create_RPM(business, vertical, MG, first_name, last_name, DOB, medicare_ID);
         String id = to_assign.find_id();
@@ -325,7 +330,7 @@ public class RPM extends DriverFactory {
 
         logout.intake();
 
-        login.pss("111111");
+        login.pss("11111111");
         Common.waitSec(10);
 
         search.search_from_intake(id);
@@ -335,9 +340,20 @@ public class RPM extends DriverFactory {
         Common.waitSec(10);
 
         logout.pss();
-        Common.waitSec(10);
+        Common.waitSec(5);
 
-        login.provider("123456");
+        login.providerRPM("12345678");
+        Common.waitSec(5);
+
+        search.searchWellness(medicare_ID);
+        Common.waitSec(5);
+
+
+        provider.complete_wellnessRPM();
+        Common.waitSec(5);
+
+        logout.provider();
+        login.providerRPM("12345678");
         Common.waitSec(10);
 
         search.search_from_intake(id);
@@ -355,16 +371,16 @@ public class RPM extends DriverFactory {
         String vertical = excel.getCellData("vertical", 1);
 
         String MG = excel.getCellData("MG", 1);
-        String first_name = "test " + render.firtname();
+        String first_name = "GKIM TEST" + render.firtname();
 
         String last_name = render.lastname();
         String DOB = excel.getCellData("DOB", 1);
 //        String medicare_ID = render.medicare_ID();
-        String medicare_ID = "6TR7FG7RT95";
+        String medicare_ID = "8TR2FG1QT22";
 
-        login.URL_telehealth();
+        login.URL_NEW_PROD();
 
-        login.intake("123456");
+        login.intake("12345678");
         Common.waitSec(6);
         intake.create_RPM(business, vertical, MG, first_name, last_name, DOB, medicare_ID);
         String id = to_assign.find_id();
@@ -372,7 +388,7 @@ public class RPM extends DriverFactory {
 
         logout.intake();
 
-        login.pss("111111");
+        login.pss("11111111");
         Common.waitSec(10);
 
         search.search_from_intake(id);
@@ -384,7 +400,7 @@ public class RPM extends DriverFactory {
         logout.pss();
         Common.waitSec(10);
 
-        login.provider("123456");
+        login.providerRPM("12345678");
         Common.waitSec(10);
 
         search.search_from_intake(id);
@@ -402,16 +418,16 @@ public class RPM extends DriverFactory {
         String vertical = excel.getCellData("vertical", 1);
 
         String MG = excel.getCellData("MG", 1);
-        String first_name = "test " + render.firtname();
+        String first_name = "GKIM TEST " + render.firtname();
 
         String last_name = render.lastname();
         String DOB = excel.getCellData("DOB", 1);
 //        String medicare_ID = render.medicare_ID();
-        String medicare_ID = "6TR7FG7RT96";
+        String medicare_ID = "8TR2FG1QT22";
 
-        login.URL_telehealth();
+        login.URL_NEW_PROD();
 
-        login.intake("123456");
+        login.intake("12345678");
         Common.waitSec(6);
         intake.create_RPM(business, vertical, MG, first_name, last_name, DOB, medicare_ID);
         String id = to_assign.find_id();
@@ -419,7 +435,7 @@ public class RPM extends DriverFactory {
 
         logout.intake();
 
-        login.pss("111111");
+        login.pss("11111111");
         Common.waitSec(10);
 
         search.search_from_intake(id);
@@ -429,6 +445,46 @@ public class RPM extends DriverFactory {
         Common.waitSec(10);
     }
 
+    @Test
+    public void deleteCaseRPM() throws Exception {
+        Actions action = new Actions(driver1);
+        login.URL_ADMIN();
+        login.admin();
+
+        driver1.findElement(By.id("searchbar")).sendKeys("8TR2FG1QT2", Keys.ENTER);
+        Common.waitSec(5);
+        try {
+            driver1.findElement(By.xpath("//*[@id=\"changelist-form\"]/div/div[2]/p/a[6]")).clear();
+        }
+        catch (Exception e) {}
+        driver1.findElement(By.id("action-toggle")).click();
+        Common.waitSec(2);
+        driver1.findElement(By.name("action")).click();
+        Common.waitSec(2);
+        action.sendKeys(Keys.DOWN, Keys.ENTER).build().perform();
+        Common.waitSec(2);
+        driver1.findElement(By.name("index")).click();
+        Common.waitSec(2);
+        driver1.findElement(By.xpath(".//*[@value=\"Yes, I’m sure\"]")).click();
+        Common.waitSec(10);
+
+    }
+
+    @Test
+    public void searchcaseRPM() throws Exception {
+        Actions action = new Actions(driver1);
+        String medicare_ID = "PT-27027914";
+        login.URL_NEW_PROD();
+        login.provider("12345678");
+        Common.waitSec(5);
+
+        search.searchWellness(medicare_ID);
+        Common.waitSec(3);
+
+        provider.complete_wellness();
+        Common.waitSec(3);
+
+    }
 
 
 }

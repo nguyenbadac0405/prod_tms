@@ -76,7 +76,7 @@ public class Onboarding extends DriverFactory {
 
     @Test
     public void complete() throws Exception {
-        //create new case
+//        //create new case
         Actions action = new Actions(driver1);
         excel.setExcelFile("src/test/resources/Onboarding.xlsx", "Sheet1");
         String business = excel.getCellData("business", 1);
@@ -88,10 +88,10 @@ public class Onboarding extends DriverFactory {
         String last_name = render.lastname();
         String DOB = excel.getCellData("DOB", 1);
 //		String medicare_ID = render.medicare_ID();
-        String medicare_ID = "8TR2FG1QT22";
-//		String zipcode = excel.getCellData("zipcode", 1);
+        String medicare_ID = "9TR2FG1NT07";
+		String zipcode = excel.getCellData("zipcode", 1);
         login.URL_TMS();
-        login.intake("123456");
+        login.intake("12345678");
         Common.waitSec(6);
         intake.createOnboarding(business, vertical, MG, lab, type, first_name, last_name, DOB, medicare_ID);
 
@@ -122,7 +122,7 @@ public class Onboarding extends DriverFactory {
 
 
         //to_assign
-        login.pss("111111");
+        login.pss("11111111");
         Common.waitSec(5);
 
 
@@ -150,32 +150,33 @@ public class Onboarding extends DriverFactory {
         }
 
         logout.pss();
-
+        Common.waitSec(30);
         //to RTS
 
-        login.provider("123456");
+        login.provider("12345678");
         Common.waitSec(5);
 
         Common.waitSec(3);
-        search.search_from_intake(id);
+        search.searchWellness(medicare_ID);
         Common.waitSec(5);
 
         doctor.complete_wellness();
-        System.out.println("Waiting time config");
-        Common.waitSec(60);
-        System.out.println("Done waiting time config");
+//        System.out.println("Waiting time config");
+//        Common.waitSec(60);
+//        System.out.println("Done waiting time config");
         Common.waitSec(5);
         logout.provider();
-        Common.waitSec(3);
-        login.pss("111111");
-        Common.waitSec(5);
-        search.search_from_intake(id);
-        Common.waitSec(5);
-        pss.assignProvider();
-        Common.waitSec(5);
-        logout.pss();
-        Common.waitSec(5);
-        login.provider("123456");
+//        Common.waitSec(3);
+//        String id = "CA-29HP5VEU";
+//        login.pss("11111111");
+//        Common.waitSec(5);
+//        search.search_from_intake(id);
+//        Common.waitSec(5);
+//        pss.assignProvider();
+//        Common.waitSec(5);
+//        logout.pss();
+//        Common.waitSec(5);
+        login.provider("12345678");
         Common.waitSec(5);
         search.search_from_intake(id);
         Common.waitSec(5);
@@ -193,7 +194,8 @@ public class Onboarding extends DriverFactory {
 
         logout.provider();
 
-        login.pss("111111");
+
+        login.pss("11111111");
         Common.waitSec(5);
         search.search_from_intake(id);
         Common.waitSec(5);
@@ -219,7 +221,7 @@ public class Onboarding extends DriverFactory {
 
         logout.pss();
         Common.waitSec(5);
-        login.provider("123456");
+        login.provider("12345678");
         Common.waitSec(5);
         search.searchCounseling(medicare_ID);
         Common.waitSec(5);
@@ -229,13 +231,191 @@ public class Onboarding extends DriverFactory {
     }
 
     @Test
+    public void completeGeneticNoWellness() throws Exception {
+        //create new case
+        Actions action = new Actions(driver1);
+        excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
+        String business = excel.getCellData("business", 1);
+        String vertical = excel.getCellData("vertical", 1);
+        String MG = excel.getCellData("MG", 2);
+        String lab = excel.getCellData("lab", 1);
+        String type = excel.getCellData("type", 1);
+        String first_name = "test GK " + render.firtname();
+        String last_name = render.lastname();
+        String DOB = excel.getCellData("DOB", 1);
+//		String medicare_ID = render.medicare_ID();
+        String medicare_ID = "8TR2FG1QT22";
+//		String zipcode = excel.getCellData("zipcode", 1);
+        login.URL_TMS();
+        login.intake("12345678");
+        Common.waitSec(6);
+        intake.create_case_genetics(business, vertical, MG, lab, type, first_name, last_name, DOB, medicare_ID);
+
+        String id = to_assign.find_id();
+        excel.setCellData(id, 1, 0);
+        System.out.println("Case-ID: " + id);
+
+        Common.waitSec(10);
+        if (search.compareStatus("Draft") ){
+            action.sendKeys(Keys.ENTER).build().perform();
+        }
+        else {
+            System.out.println("It is not Draft");
+        }
+        if (search.compareStatus("New (Not Yet Called)")) {
+            System.out.println("------------------Done new case.-----------------------");
+            excel.setCellData("Pass", 6, 3);
+            excel.setCellData("Pass", 7, 3);
+        }
+        else {
+            System.out.println("Status is "+ search.getStatus());
+        }
+        logout.intake();
+
+
+        //to_assign
+        login.pss("11111111");
+        Common.waitSec(5);
+
+
+        search.search_from_intake(id);
+        Common.waitSec(5);
+
+        pss.assignNoWellness();
+        Common.waitSec(10);
+
+        //input status result
+
+        if (search.compareStatus("Pending (Not Yet Called)") ){
+            action.sendKeys(Keys.ENTER).build().perform();
+        }
+        else {
+            System.out.println("It is not Pending");
+        }
+        if (search.compareStatus("Assigned (Not Yet Called)")) {
+            System.out.println("------------------Done Assigned.-----------------------");
+            excel.setCellData("Pass", 8, 3);
+            excel.setCellData("Pass", 9, 3);
+        }
+        else {
+            System.out.println("Status is "+ search.getStatus());
+        }
+
+        logout.pss();
+
+        //to RTS
+
+        login.provider("12345678");
+        Common.waitSec(10);
+
+        search.search_from_intake(id);
+        Common.waitSec(5);
+
+        doctor.to_RTS();
+        Common.waitSec(10);
+        if (search.compareStatus("Ready To Send")) {
+            System.out.println("Done Approved.");
+            excel.setCellData("Pass", 10, 3);
+        }
+        else {
+            System.out.println("Status is "+ search.getStatus());
+        }
+
+        logout.provider();
+
+
+        //to AFU
+        login.pss("11111111");
+        Common.waitSec(5);
+
+        search.search_from_intake(id);
+        Common.waitSec(5);
+        pss.completeOnboarding();
+
+        //get result ID
+        login.changelinktoletter();
+        Common.waitSec(5);
+        login.lob();
+        Common.waitSec(5);
+        login.changelinktoletter();
+        Common.waitSec(10);
+        String resultID = API.getResultID();
+        API.changeStatusResult(resultID);
+
+        login.change_link_to_pss();
+        Common.waitSec(5);
+        search.searchCounseling(medicare_ID);
+        Common.waitSec(3);
+
+        pss.assignProvider();
+        Common.waitSec(5);
+
+        logout.pss();
+        Common.waitSec(5);
+        login.provider("12345678");
+        Common.waitSec(5);
+        search.searchCounseling(medicare_ID);
+        Common.waitSec(5);
+        doctor.approvedCounseling();
+        Common.waitSec(10);
+
+
+    }
+
+    @Test
     public void test() throws Exception {
         String id = "6TR7FG7RT34";
         login.URL_TMS();
-        login.pss("11111111");
+        login.pss("1111111111");
         Common.waitSec(5);
         search.searchCounseling(id);
         Common.waitSec(5);
     }
+
+    @Test
+    public void newCaseUnity() throws Exception {
+        Actions action = new Actions(driver1);
+        excel.setExcelFile("src/test/resources/Unity.xlsx", "Sheet1");
+        String business = excel.getCellData("business", 1);
+        String vertical = excel.getCellData("vertical", 1);
+        String MG = excel.getCellData("MG", 2);
+        String lab = excel.getCellData("lab", 1);
+        String type = excel.getCellData("type", 1);
+        String first_name = "GKIM TEST " + render.firtname();
+        String last_name = render.lastname();
+        String DOB = excel.getCellData("DOB", 1);
+//		String medicare_ID = render.medicare_ID();
+        String medicare_ID = "9TR2FG1NT08";
+        String zipcode = excel.getCellData("zipcode", 1);
+        login.URL_TMS();
+        login.intake("12345678");
+        Common.waitSec(6);
+        intake.createOnboarding(business, vertical, MG, lab, type, first_name, last_name, DOB, medicare_ID);
+
+        String id = to_assign.find_id();
+//        List<String> patientName = to_assign.findName();
+//        String patientID = patientName.get(1);
+        excel.setCellData(id, 1, 0);
+//        excel.setCellData(patientID, 2, 0);
+        System.out.println("Case-ID: " + id);
+//        System.out.println("Patient-ID: " + patientID);
+
+        Common.waitSec(10);
+        if (search.compareStatus("Draft") ){
+            action.sendKeys(Keys.ENTER).build().perform();
+        }
+        else {
+            System.out.println("It is not Draft");
+        }
+        if (search.compareStatus("New (Not Yet Called)")) {
+            System.out.println("------------------Done new case.-----------------------");
+            excel.setCellData("Pass", 6, 3);
+            excel.setCellData("Pass", 7, 3);
+        }
+        else {
+            System.out.println("Status is "+ search.getStatus());
+        }
+    }
+
 
 }

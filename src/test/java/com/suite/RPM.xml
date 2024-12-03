@@ -3,37 +3,36 @@
 
 <suite name="test_core">
 <!-- TC4: RPM Smartmed complete-->
-<test name="RPM SmartMed complete">
-    <classes>
-        <class name="com.scripts.RPM">
-            <methods>
-                <include name="complete"></include>
-            </methods>
-        </class>
-    </classes>
-</test>
+    <test name="RPM SmartMed complete">
+        <classes>
+            <class name="com.scripts.RPM">
+                <methods>
+                    <include name="complete"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
 
         <!-- TC4: RPM SmartMed cancel-->
-<test name="RPM SmartMed cancel">
-<classes>
-    <class name="com.scripts.RPM">
-        <methods>
-            <include name="cancel"></include>
-        </methods>
-    </class>
-</classes>
-</test>
+    <test name="RPM SmartMed cancel">
+        <classes>
+            <class name="com.scripts.RPM">
+                <methods>
+                    <include name="cancel"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
 
         <!-- TC4: RPM SmartMed denied-->
-<test name="RPM SmartMed">
-<classes>
-    <class name="com.scripts.RPM">
-        <methods>
-            <include name="denied"></include>
-        </methods>
-    </class>
-</classes>
-</test>
+    <test name="RPM SmartMed">
+        <classes>
+            <class name="com.scripts.RPM">
+                <methods>
+                    <include name="denied"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
 
-
-        </suite>
+</suite>

@@ -82,7 +82,7 @@ public class login {
 	
 	
 	public void URL_telehealth() {
-		driver.get("https://telehealth.gkim.digital/");
+		driver.get("https://dashboard.gkim.digital/");
 	}
 	public void pdflink() {
         driver.get("https://prod-tms-reqform-viewer.web.app/c71e7cef-228f-4d0e-b7a1-5dceeb0eb70b/40484fc2-b62d-4712-b26d-49c34667d8a9?role=ADMIN_MEDICAL&recform_id=f436df31-118e-4419-8196-a0b13ebcb984&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU0MTE3MDgxLCJpYXQiOjE3MjI1ODEwODEsImp0aSI6IjI1NDFhZjI5YTU4NDQ1NGNhYTQxNDQyYWMxNGMyYmI5IiwidXNlcl9pZCI6ImRmOTFlNzM0LTNmZTgtNDYyNS05NTJjLTJjYjllMTdhMDA2NCJ9.HpKYBFAK9-szBzFBE_13oQ43b7QJQrTjrOZJ_WeNOj0&redirect=&data-json-merge=%7B%7D");
@@ -93,6 +93,9 @@ public class login {
 	}
 	public void URL_TMS_STAG() {
 		driver.get("https://stag.tms.partners/#/");
+	}
+	public void URL_NEW_PROD() {
+		driver.get("https://dashboard.gkim.digital/#/");
 	}
 	public void URL_MDL() {
 		driver.get("https://mydoctorslive.com/gkim-telehealth/");
@@ -147,8 +150,22 @@ public class login {
 		driver.findElement(By.xpath("//*[@id='pwd']")).sendKeys(password);
 		driver.findElement(By.xpath("//*[@id='submit_login']/div/div[4]/button")).click();
 		System.out.println("-------------------Provider login success---------------------");
-		Common.waitSec(10);
-		driver.findElement(By.xpath(".//*[text()='Dismiss']")).click();
+		Common.waitSec(5);
+		try{
+			driver.findElement(By.xpath(".//*[text()='Dismiss']")).click();
+		}
+		catch (Exception e) {}
+	}
+	public void providerRPM(String password) {
+		driver.findElement(By.xpath("//*[@id='username']")).sendKeys("dacprovider@gkxim.com");
+		driver.findElement(By.xpath("//*[@id='pwd']")).sendKeys(password);
+		driver.findElement(By.xpath("//*[@id='submit_login']/div/div[4]/button")).click();
+		System.out.println("-------------------Provider login success---------------------");
+		Common.waitSec(5);
+		try{
+			driver.findElement(By.xpath(".//*[text()='Dismiss']")).click();
+		}
+		catch (Exception e) {}
 //		Common.waitSec(5);
 		try {
 			driver.findElement(By.xpath(".//button[text()='Close']")).click();
@@ -308,7 +325,7 @@ public class login {
 	public void lob() {
 		driver.findElement(By.id("login-email")).sendKeys("top@gkxim.com");
 		Common.waitSec(1);
-		driver.findElement(By.id("login-password")).sendKeys("TOPtms$052023", Keys.ENTER);
+		driver.findElement(By.id("password")).sendKeys("TOPtms$052023", Keys.ENTER);
 		Common.waitSec(1);
 	}
 }

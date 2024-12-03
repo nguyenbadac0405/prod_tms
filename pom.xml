@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com</groupId>
-    <artifactId>TrainingTestNG</artifactId>
+    <artifactId>prodTMS</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>
@@ -94,6 +94,13 @@
             <artifactId>httpclient</artifactId>
             <version>4.5.13</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.github.sukgu/automation -->
+        <dependency>
+            <groupId>io.github.sukgu</groupId>
+            <artifactId>automation</artifactId>
+            <version>0.1.4</version>
+        </dependency>
+
 
     </dependencies>
 </project>

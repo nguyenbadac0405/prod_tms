@@ -3,7 +3,7 @@
 
 <suite name="test_core">
 
-	<!-- TC1: Onboarding Counseling-->
+	<!--TC1: Onboarding Counseling-->
 	<test name="Onboarding Counseling">
 		<classes>
 			<class name="com.scripts.Onboarding">
@@ -36,8 +36,10 @@
 		</classes>
 	</test>
 
+
+
 	<!-- : Delete case-->
-	<test name="Delete case">
+	<test name="Delete case Genetics">
 		<classes>
 			<class name="com.scripts.Genetics">
 				<methods>
@@ -46,6 +48,7 @@
 			</class>
 		</classes>
 	</test>
+
 
 	<!-- TC5: RPM Smartmed complete-->
 	<test name="RPM SmartMed complete">
@@ -70,11 +73,22 @@
 	</test>
 
 	<!-- TC7: RPM SmartMed denied -->
-	<test name="RPM SmartMed">
+	<test name="RPM SmartMed deny">
 		<classes>
 			<class name="com.scripts.RPM">
 				<methods>
 					<include name="denied"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<!-- : Delete case RPM-->
+	<test name="Delete case RPM">
+		<classes>
+			<class name="com.scripts.RPM">
+				<methods>
+					<include name="deleteCaseRPM"></include>
 				</methods>
 			</class>
 		</classes>

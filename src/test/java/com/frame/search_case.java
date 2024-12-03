@@ -17,7 +17,16 @@ public class search_case {
 		driver.findElement(By.xpath(".//input[@placeholder='I want to search for…']")).clear();
 		driver.findElement(By.xpath(".//input[@placeholder='I want to search for…']")).sendKeys(id, Keys.ENTER);
 		Common.waitSec(3);
+		try {
+			driver.findElement(By.cssSelector("button[class$='swal-button--confirm']")).click();
+		}
+		catch (Exception e) {}
+		Common.waitSec(3);
 		driver.findElement(By.className("gk-cs-top")).click();
+		Common.waitSec(3);
+		Actions action = new Actions(driver);
+		action.sendKeys(Keys.ENTER).build().perform();
+
 	}
 	public void search_openform(String id) {
 		driver.findElement(By.xpath(".//input[@placeholder='I want to search for…']")).clear();
@@ -32,6 +41,17 @@ public class search_case {
 		driver.findElement(By.xpath(".//input[@placeholder='I want to search for…']")).sendKeys(id, Keys.ENTER);
 		Common.waitSec(3);
 		driver.findElement(By.xpath(".//*[text()='Genetic Counseling']")).click();
+	}
+	public void searchWellness(String id) {
+		driver.findElement(By.xpath(".//input[@placeholder='I want to search for…']")).sendKeys(id, Keys.ENTER);
+		Common.waitSec(3);
+		try {
+//			driver.findElement(By.cssSelector("button[class$='swal-button--confirm']")).click();
+			driver.findElement(By.xpath(".//*[text()='assigned']")).click();
+		}
+		catch (Exception e) {}
+		Common.waitSec(3);
+
 	}
 
 	public void search(String id) {

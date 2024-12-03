@@ -94,7 +94,7 @@ public class Genetics extends DriverFactory {
 		excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
 		String vertical = excel.getCellData("vertical", 1);
 		login.URL_TMS();
-		login.intake("123456");
+		login.intake("12345678");
 		Common.waitSec(5);
 
 		String id = excel.getCellData("id", 1);
@@ -111,7 +111,7 @@ public class Genetics extends DriverFactory {
 		//login intake
 		login.URL_TMS();
 		Common.waitSec(5);
-		login.intake("123456");
+		login.intake("12345678");
 		Common.waitSec(5);
 
 		login.MG_dashboard();
@@ -124,7 +124,7 @@ public class Genetics extends DriverFactory {
 		logout.logout();
 
 
-		login.pss("111111");
+		login.pss("11111111");
 		Common.waitSec(10);
 
 		login.PSS_dashboard();
@@ -165,7 +165,7 @@ public class Genetics extends DriverFactory {
 		String medicare_ID = render.medicare_ID();
 //		String zipcode = excel.getCellData("zipcode", 1);
 		login.URL_TMS();
-		login.intake("123456");
+		login.intake("12345678");
 		Common.waitSec(6);
 		intake.create_case_genetics(business, vertical, MG, lab, type, first_name, last_name, DOB, medicare_ID);
 		Common.waitSec(30);
@@ -176,7 +176,7 @@ public class Genetics extends DriverFactory {
 	public void assign() throws Exception {
 		excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
 		login.URL_TMS();
-		login.pss("111111");
+		login.pss("11111111");
 		Common.waitSec(5);
 
 		String id = excel.getCellData("id", 1);
@@ -191,7 +191,7 @@ public class Genetics extends DriverFactory {
 	public void to_RTS() throws Exception {
 		excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
 		login.URL_TMS();
-		login.provider("123456");
+		login.provider("12345678");
 		Common.waitSec(15);
 
 		String id = excel.getCellData("id", 1);
@@ -213,7 +213,7 @@ public class Genetics extends DriverFactory {
 	public void to_Awaiting_Result() throws Exception {
 		excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
 		login.URL_TMS();
-		login.intake("123456");
+		login.intake("12345678");
 		Common.waitSec(15);
 
 		String id = excel.getCellData("id", 1);
@@ -229,7 +229,7 @@ public class Genetics extends DriverFactory {
 	public void to_AFU() throws Exception {
 		excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
 		login.URL_TMS();
-		login.pss("111111");
+		login.pss("11111111");
 		Common.waitSec(5);
 
 		String id = excel.getCellData("id", 1);
@@ -244,7 +244,7 @@ public class Genetics extends DriverFactory {
 	public void to_approved3() throws Exception {
 		excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
 		login.URL_TMS();
-		login.provider("123456");
+		login.provider("12345678");
 		Common.waitSec(15);
 
 		String id = excel.getCellData("id", 1);
@@ -259,7 +259,7 @@ public class Genetics extends DriverFactory {
 	public void to_completed() throws Exception {
 		excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
 		login.URL_TMS();
-		login.pss("111111");
+		login.pss("11111111");
 		Common.waitSec(5);
 
 		String id = excel.getCellData("id", 1);
@@ -287,7 +287,7 @@ public class Genetics extends DriverFactory {
 		String medicare_ID = "8TR2FG1QT22";
 //		String zipcode = excel.getCellData("zipcode", 1);
 		login.URL_TMS();
-		login.intake("123456");
+		login.intake("12345678");
 		Common.waitSec(6);
 		intake.create_case_genetics(business, vertical, MG, lab, type, first_name, last_name, DOB, medicare_ID);
 
@@ -314,7 +314,7 @@ public class Genetics extends DriverFactory {
 
 
 		//to_assign
-		login.pss("111111");
+		login.pss("11111111");
 		Common.waitSec(5);
 
 
@@ -345,7 +345,7 @@ public class Genetics extends DriverFactory {
 
 		//to RTS
 
-		login.provider("123456");
+		login.provider("12345678");
 		Common.waitSec(10);
 
 		search.search_from_intake(id);
@@ -365,7 +365,7 @@ public class Genetics extends DriverFactory {
 
 
 		//to AFU
-		login.pss("111111");
+		login.pss("11111111");
 		Common.waitSec(10);
 
 		search.search_from_intake(id);
@@ -387,7 +387,7 @@ public class Genetics extends DriverFactory {
 		logout.pss();
 
 		//to Follow up
-		login.provider("123456");
+		login.provider("12345678");
 		Common.waitSec(10);
 
 		search.search_from_intake(id);
@@ -418,14 +418,14 @@ public class Genetics extends DriverFactory {
 		String MG = excel.getCellData("MG", 1);
 		String lab = excel.getCellData("lab", 1);
 		String type = excel.getCellData("type", 1);
-		String first_name = "test GK" + render.firtname();
+		String first_name = "GKIM TEST" + render.firtname();
 		String last_name = render.lastname();
 		String DOB = excel.getCellData("DOB", 1);
 //		String medicare_ID = render.medicare_ID();
-		String medicare_ID = "8TR2FG1QT22";
+		String medicare_ID = "9TR2FG1NT08";
 //		String zipcode = excel.getCellData("zipcode", 1);
 		login.URL_TMS();
-		login.intake("123456");
+		login.intake("12345678");
 		Common.waitSec(5);
 		intake.create_case_genetics(business, vertical, MG, lab, type, first_name, last_name, DOB, medicare_ID);
 
@@ -454,14 +454,14 @@ public class Genetics extends DriverFactory {
 
 
 		//to_assign
-		login.pss("111111");
+		login.pss("11111111");
 		Common.waitSec(5);
 
 
 		search.search_from_intake(id);
 		Common.waitSec(5);
 
-		pss.to_pending();
+		pss.assignNoWellness();
 		Common.waitSec(5);
 		if (search.compareStatus("Pending (Not Yet Called)") ){
 			action.sendKeys(Keys.ENTER).build().perform();
@@ -483,7 +483,7 @@ public class Genetics extends DriverFactory {
 
 		//to denied
 
-		login.provider("123456");
+		login.providerRPM("12345678");
 		Common.waitSec(5);
 
 		search.search_from_intake(id);
@@ -513,14 +513,14 @@ public class Genetics extends DriverFactory {
 		String MG = excel.getCellData("MG", 1);
 		String lab = excel.getCellData("lab", 1);
 		String type = excel.getCellData("type", 1);
-		String first_name = "test GK" + render.firtname();
+		String first_name = "GKIM TEST" + render.firtname();
 		String last_name = render.lastname();
 		String DOB = excel.getCellData("DOB", 1);
 //		String medicare_ID = render.medicare_ID();
-		String medicare_ID = "8TR2FG1QT22";
+		String medicare_ID = "9TR2FG1NT08";
 //		String zipcode = excel.getCellData("zipcode", 1);
 		login.URL_TMS();
-		login.intake("123456");
+		login.intake("12345678");
 		Common.waitSec(10);
 		intake.create_case_genetics(business, vertical, MG, lab, type, first_name, last_name, DOB, medicare_ID);
 
@@ -528,7 +528,7 @@ public class Genetics extends DriverFactory {
 		String id = to_assign.find_id();
 		excel.setCellData(id, 1, 0);
 		System.out.println("Case-ID: " + id);
-		Common.waitSec(30);
+		Common.waitSec(10);
 		if (search.compareStatus("Draft") ){
 			action.sendKeys(Keys.ENTER).build().perform();
 		}
@@ -547,7 +547,7 @@ public class Genetics extends DriverFactory {
 
 
 		//to_assign
-		login.pss("111111");
+		login.pss("11111111");
 		Common.waitSec(5);
 
 
@@ -572,7 +572,7 @@ public class Genetics extends DriverFactory {
 	public void check_change_DOB() throws Exception {
 		excel.setExcelFile("src/test/resources/case_dob_not_fix_20240124.xlsx", "Sheet1");
 		login.URL_TMS();
-		login.pss("111111");
+		login.pss("11111111");
 		Common.waitSec(10);
 		search.pin();
 		Common.waitSec(3);
@@ -593,7 +593,7 @@ public class Genetics extends DriverFactory {
 	public void check_change_DOB_intake() throws Exception {
 		excel.setExcelFile("src/test/resources/case_dob_not_fix_20240124.xlsx", "Sheet1");
 		login.URL_TMS();
-		login.intake("123456");
+		login.intake("12345678");
 		Common.waitSec(10);
 		search.pin();
 		Common.waitSec(3);
@@ -621,7 +621,7 @@ public class Genetics extends DriverFactory {
 		//open the dashboard
 		login.URL_TMS();
 		//login intake
-		login.intake("12345678");
+		login.intake("1234567878");
 		//create case
 
 		//set up case detail
@@ -669,7 +669,7 @@ public class Genetics extends DriverFactory {
 		excel.setCellData(caseID, 1, 0);
 
 		logout.intake();
-		login.pss("11111111");
+		login.pss("1111111111");
 		caseDetail.searchbyCaseID(caseID);
 
 		compliance.pssSubmit(vertical);
@@ -709,7 +709,7 @@ public class Genetics extends DriverFactory {
 		String medicare_ID = "8TR2FG1QT22";
 //		String zipcode = excel.getCellData("zipcode", 1);
 		login.URL_TMS();
-		login.intake("123456");
+		login.intake("12345678");
 		Common.waitSec(6);
 		intake.create_case_genetics(business, vertical, MG, lab, type, first_name, last_name, DOB, medicare_ID);
 
@@ -736,7 +736,7 @@ public class Genetics extends DriverFactory {
 
 
 		//to_assign
-		login.pss("111111");
+		login.pss("11111111");
 		Common.waitSec(5);
 
 
@@ -765,7 +765,7 @@ public class Genetics extends DriverFactory {
 
 		//to RTS
 
-		login.provider("123456");
+		login.provider("12345678");
 		Common.waitSec(10);
 
 		Common.waitSec(3);
@@ -779,7 +779,7 @@ public class Genetics extends DriverFactory {
 
 		//
 		logout.provider();
-		login.pss("111111");
+		login.pss("11111111");
 		Common.waitSec(5);
 
 		//assign case again
@@ -789,7 +789,7 @@ public class Genetics extends DriverFactory {
 		Common.waitSec(3);
 
 		logout.pss();
-		login.provider("123456");
+		login.provider("12345678");
 		Common.waitSec(5);
 		search.search_from_intake(id);
 		Common.waitSec(5);
@@ -807,7 +807,7 @@ public class Genetics extends DriverFactory {
 
 
 		//to AFU
-		login.pss("111111");
+		login.pss("11111111");
 		Common.waitSec(10);
 
 		search.search_from_intake(id);
@@ -829,7 +829,7 @@ public class Genetics extends DriverFactory {
 		logout.pss();
 
 		//to Follow up
-		login.provider("123456");
+		login.provider("12345678");
 		Common.waitSec(10);
 
 		search.search_from_intake(id);
@@ -856,8 +856,12 @@ public class Genetics extends DriverFactory {
 		login.URL_ADMIN();
 		login.admin();
 
-		driver1.findElement(By.id("searchbar")).sendKeys("8TR2FG1QT2", Keys.ENTER);
+		driver1.findElement(By.id("searchbar")).sendKeys("9TR2FG1NT0", Keys.ENTER);
 		Common.waitSec(5);
+		try {
+			driver1.findElement(By.xpath("//*[@id=\"changelist-form\"]/div/div[2]/p/a[6]")).clear();
+		}
+		catch (Exception e) {}
 		driver1.findElement(By.id("action-toggle")).click();
 		Common.waitSec(2);
 		driver1.findElement(By.name("action")).click();
@@ -875,9 +879,9 @@ public class Genetics extends DriverFactory {
 	public void wellness() throws Exception {
 //		excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
 		login.URL_TMS();
-		login.provider("123456");
+		login.provider("12345678");
 		Common.waitSec(5);
-		search.search_from_intake("CA-E5OQC9MY");
+		search.search_from_intake("CA-2HTPM335");
 		doctor.complete_wellness();
 	}
 
@@ -893,21 +897,22 @@ public class Genetics extends DriverFactory {
 
 	@Test
 	public void completecase() {
-//		String id = "CA-10BEXTI8";
-//		login.URL_TMS();
-//		login.pss("11111111");
-//		Common.waitSec(3);
-//		search.search_from_intake(id);
-//		Common.waitSec(5);
+		String id = "CA-4VFNH43G";
+		login.URL_TMS();
+		login.pss("11111111");
+		Common.waitSec(3);
+		search.search_from_intake(id);
+		Common.waitSec(5);
 //		pss.to_AFU();
+		pss.completeOnboarding();
 //		Common.waitSec(5);
 //		login.changelinktoletter();
 //		Common.waitSec(3);
 //		login.lob();
 //		Common.waitSec(3);
 //		login.changelinktoletter();
-		String resultID = "ltr_1fdb400c5c95d0b7";
-		API.changeStatusResult(resultID);
+//		String resultID = "ltr_1fdb400c5c95d0b7";
+//		API.changeStatusResult(resultID);
 	}
 
 	@Test
@@ -1020,7 +1025,7 @@ public class Genetics extends DriverFactory {
 	@Test
 	public void testpdf() throws Exception {
 		login.URL_TMS_STAG();
-		login.pss("11111111");
+		login.pss("1111111111");
 		Common.waitSec(5);
 		search.pin();
 		Common.waitSec(3);
@@ -1030,8 +1035,31 @@ public class Genetics extends DriverFactory {
 			pss.downloadPDF();
 			Common.waitSec(5);
 		}
+	}
+
+	@Test
+	public void login_logout() throws Exception {
+		login.URL_TMS();
+		login.provider("12345678");
+		Common.waitSec(3);
+		Common.waitSec(10);
+		logout.provider();
+		Common.waitSec(30);
+	}
+
+	@Test
+	public void openWellness() throws Exception {
+		login.URL_telehealth();
+		login.providerRPM("12345678");
+		Common.waitSec(5);
+		search.searchWellness("PT-08409700");
+		Common.waitSec(5);
+		doctor.complete_wellness();
 
 	}
+
+
+
 }
 
 

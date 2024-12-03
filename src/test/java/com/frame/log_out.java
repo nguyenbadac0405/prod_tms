@@ -40,17 +40,23 @@ public class log_out {
 	}
 
 	public void pss(){
-		try {driver.findElement(By.xpath("//*[@id='patient-dashboard']/div[2]/div[3]/div[3]/button")).click();}
+		try {driver.findElement(By.xpath("//button[@type='button'][.//i[contains(@class, 'fa-gear')]]")).click();}
 		catch (Exception e) {}
 
-		try {driver.findElement(By.xpath("//*[@id='patient-dashboard']/div[2]/div[3]/div[3]/div/div/div[2]/button")).click();}
+		try {driver.findElement(By.xpath("//div[@class='gk-con-right']/button")).click();}
 		catch (Exception e) {}
 	}
 	public void provider(){
-		try {driver.findElement(By.xpath("//*[@id='patient-dashboard']/div[3]/div[3]/div[3]/button")).click();}
+		try {
+			System.out.println(driver.findElement(By.xpath("//button[.//i[contains(@class, 'fa-gear')]]")).isDisplayed());
+			driver.findElement(By.xpath("//button[.//i[contains(@class, 'fa-gear')]]")).click();
+		}
 		catch (Exception e) {}
-		try {driver.findElement(By.xpath("//*[@id='patient-dashboard']/div[3]/div[3]/div[3]/div/div/div[2]/button")).click();}
-		catch (Exception e) {}
+		try {
+			driver.findElement(By.xpath("//div[@class='gk-con-right']/button")).click();}
+		catch (Exception e) {
+			System.out.println("Can not logout");
+		}
 	}
 
 
