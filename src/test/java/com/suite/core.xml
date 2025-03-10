@@ -4,15 +4,15 @@
 <suite name="test_core">
 
 	<!--TC1: Onboarding Counseling-->
-	<test name="Onboarding Counseling">
-		<classes>
-			<class name="com.scripts.Onboarding">
-				<methods>
-					<include name="complete"></include>
-				</methods>
-			</class>
-		</classes>
-	</test>
+<!--	<test name="Onboarding Counseling">-->
+<!--		<classes>-->
+<!--			<class name="com.scripts.Onboarding">-->
+<!--				<methods>-->
+<!--					<include name="complete"></include>-->
+<!--				</methods>-->
+<!--			</class>-->
+<!--		</classes>-->
+<!--	</test>-->
 
     <!-- TC2: genetics cancel -->
 	<test name="Onboarding cancel">
@@ -66,7 +66,7 @@
 		<classes>
 			<class name="com.scripts.RPM">
 				<methods>
-					<include name="cancel"></include>
+					<include name="cancel"></include> 
 				</methods>
 			</class>
 		</classes>

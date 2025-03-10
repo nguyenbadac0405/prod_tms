@@ -216,7 +216,7 @@ public class login {
 	public void admin() {
 		driver.findElement(By.name("username")).sendKeys("dac@gkim.vn");
 		Common.waitSec(2);
-		driver.findElement(By.name("password")).sendKeys("dac_admin_qc12345");
+		driver.findElement(By.name("password")).sendKeys("Tms@12345"); //dac_admin_qc12345
 		driver.findElement(By.xpath(".//input[@value='Log in']")).click();
 		Common.waitSec(10);
 	}
@@ -327,5 +327,21 @@ public class login {
 		Common.waitSec(1);
 		driver.findElement(By.id("password")).sendKeys("TOPtms$052023", Keys.ENTER);
 		Common.waitSec(1);
+	}
+
+	public void patient() {
+		driver.findElement(By.xpath(".//input[@class='gkc-form-control ']")).sendKeys("dac+core@gkim.vn");
+		Common.waitSec(3);
+		Actions action = new Actions(driver);
+		action.sendKeys("123456",Keys.ENTER).build().perform();
+		Common.waitSec(1);
+	}
+
+	public void URLpatientDashboard() {
+		driver.get("https://openeyemed.web.app/");
+	}
+	public void booking() {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.location='https://openeyemed.web.app/?invite_booking_with_mss=736587d9-c090-4a71-ad7e-7582b8903269&marketing_group_id=169ab724-07b1-417c-9a42-88eea6c59d68&medical_speciality=cf2b0e93-d2c7-41b2-bb25-0692c98c35da&cf=1';");
 	}
 }

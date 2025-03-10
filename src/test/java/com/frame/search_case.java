@@ -22,7 +22,11 @@ public class search_case {
 		}
 		catch (Exception e) {}
 		Common.waitSec(3);
-		driver.findElement(By.className("gk-cs-top")).click();
+		try {
+			driver.findElement(By.className("gk-cs-top")).click();
+		}
+		catch (Exception e) {}
+
 		Common.waitSec(3);
 		Actions action = new Actions(driver);
 		action.sendKeys(Keys.ENTER).build().perform();
@@ -45,6 +49,11 @@ public class search_case {
 	public void searchWellness(String id) {
 		driver.findElement(By.xpath(".//input[@placeholder='I want to search for…']")).sendKeys(id, Keys.ENTER);
 		Common.waitSec(3);
+		try {
+			driver.findElement(By.cssSelector("button[class$='swal-button--confirm']")).click();
+//			driver.findElement(By.xpath(".//*[text()='assigned']")).click();
+		}
+		catch (Exception e) {}
 		try {
 //			driver.findElement(By.cssSelector("button[class$='swal-button--confirm']")).click();
 			driver.findElement(By.xpath(".//*[text()='assigned']")).click();

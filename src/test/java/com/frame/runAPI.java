@@ -67,10 +67,10 @@ public class runAPI {
         }
     }
 
-    public String getResultID() {
+    public String getResultID(String patientFullname) {
         driver.findElement(By.xpath(".//span[text()='Live']")).click();
         Common.waitSec(2);
-        driver.findElement(By.xpath("//*[@id=\"app\"]/div/div/main/div[2]/div[1]/table/tbody/tr[1]/td[3]")).click();
+        driver.findElement(By.xpath(".//td[text()='"+patientFullname.toUpperCase()+"']")).click();
         Common.waitSec(3);
         driver.findElement(By.xpath(".//span[text()=\"Cancel Send\"]")).click();
         Common.waitSec(2);

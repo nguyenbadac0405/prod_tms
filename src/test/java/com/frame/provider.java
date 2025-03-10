@@ -1,11 +1,13 @@
 package com.frame;
 
+
 import com.Common;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -62,6 +64,7 @@ public class provider {
     protected static String safetyScreen = "return document.querySelectorAll('[name*=\"test_requirements_safety\"]')";
     protected static String aaaMenScreen = "return document.querySelectorAll('[name*=\"test_requirements_aaa_men\"]')";
     protected static String elderAbuse = "return document.querySelectorAll('[name*=\"test_requirements_elder\"]')";
+    protected static String medicalHistoryICDCode = "return document.querySelectorAll('[class*=\"rf-icd-tag-item\"]')";
 
 
     //Depression Screening
@@ -143,44 +146,55 @@ public class provider {
         Common.waitSec(3);
 
         // Medical History
-//        System.out.println("Check Medical History");
-//        driver.findElement(By.xpath(".//span[text()='Medical History']")).click();
-//        Common.waitSec(2);
-//        driver.findElement(By.name("data[patient_personal_history_progress_note_phmx]")).sendKeys("test");
-//        driver.findElement(By.name("data[submit]")).click();
-//        Common.waitSec(3);
+        System.out.println("Check Medical History");
+        driver.findElement(By.xpath(".//span[text()='Medical History']")).click();
+        Common.waitSec(3);
+        driver.findElement(By.name("data[patient_personal_history_progress_note_confirm1_sale]")).click();
+        Common.waitSec(3);
+        driver.findElement(By.xpath("//div[@disabled='disabled']")).click();
+        Common.waitSec(3);
+        List <WebElement> medicalICDCode = (List<WebElement>) js.executeScript(medicalHistoryICDCode);
+        System.out.println(medicalICDCode.size());
+        action.moveToElement(medicalICDCode.get(10)).click().build().perform();
+        Common.waitSec(1);
+        driver.findElement(By.name("data[submit]")).click();
+        Common.waitSec(3);
 
         // medication
         System.out.println("Check Medications");
         driver.findElement(By.xpath(".//span[text()='Medications']")).click();
         Common.waitSec(3);
         List<WebElement> medication = (List<WebElement>) js.executeScript(medications);
-        action.moveToElement(medication.get(1)).click().build().perform();
-        action.moveToElement(medication.get(2)).click().build().perform();
+//        action.moveToElement(medication.get(1)).click().build().perform();
+//        action.moveToElement(medication.get(2)).click().build().perform();
 //        driver.findElement(By.xpath("//*[@id=\"patient-dashboard\"]/div[7]/div[4]/div/div[2]/div/div[3]/div/div[2]/div[4]/label/input")).click();
         driver.findElement(By.xpath(".//button[text()='Save']")).click();
         Common.waitSec(5);
 
         // Family History
         Actions actions = new Actions(driver);
-        System.out.println("Check Family History");
-        driver.findElement(By.xpath(".//span[text()='Family History']")).click();
-        Common.waitSec(3);
-        driver.findElement(By.name("data[family_history_member_1_related_health_issue]")).sendKeys("test");
-        driver.findElement(By.xpath("//*[@name='data[family_history_member_confirm_doctor]']")).click();
-        driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
-        Common.waitSec(3);
+//        System.out.println("Check Family History");
+//        driver.findElement(By.xpath(".//span[text()='Family History']")).click();
+//        Common.waitSec(3);
+//        driver.findElement(By.name("data[family_history_member_1_related_health_issue]")).sendKeys("test");
+//        driver.findElement(By.xpath("//*[@name='data[family_history_member_confirm_doctor]']")).click();
+//        driver.findElement(By.xpath("//*[@name='data[submit]']")).click();
+//        Common.waitSec(3);
 
 
 
-        // Diagnosis
+        // Diagnosis\
+
         driver.findElement(By.xpath(".//span[text()='Diagnosis']")).click();
-        Common.waitSec(3);
+        Common.waitSec(10);
         System.out.println("Set Diagnosis");
-        driver.findElement(By.xpath(".//div[text()='Z13.79']")).click();
+//        driver.findElement(By.xpath(".//div[text()='Z13.79']")).click();
 //        driver.findElement(By.xpath(".//div[text()='Z13.89']")).click();
-        driver.findElement(By.xpath(".//div[text()='I25.9']")).click();
-        driver.findElement(By.xpath(".//button[text()='Save']")).click();
+//        driver.findElement(By.xpath(".//div[text()='I25.9']")).click();
+//        driver.findElement(By.xpath(".//button[text()='Save']"))
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(10000));
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(".//button[text()='Save']")));
+        element.click();
         Common.waitSec(5);
 
         // review of systems
@@ -209,7 +223,14 @@ public class provider {
         driver.findElement(By.xpath(".//span[text()='Approve']")).click();
         Common.waitSec(3);
 //        actions.sendKeys(Keys.ENTER).build().perform();
-        driver.findElement(By.xpath(".//button[text()='Yes']")).click();
+        try{
+            driver.findElement(By.xpath(".//button[text()='Continue']")).click();
+        }
+        catch(Exception e){}
+        try{
+            driver.findElement(By.xpath(".//button[text()='Yes']")).click();
+        }
+        catch(Exception e){}
         actions.sendKeys(Keys.ENTER).build().perform();
         Common.waitSec(3);
 
@@ -567,10 +588,21 @@ public class provider {
         driver.findElement(By.name("data[submit]")).click();
         Common.waitSec(3);
 
+        //medication
+        System.out.println("Check Medications");
+        driver.findElement(By.xpath(".//span[text()='Medications']")).click();
+        Common.waitSec(3);
+        List<WebElement> medication = (List<WebElement>) js.executeScript(medications);
+        action.moveToElement(medication.get(1)).click().build().perform();
+//        action.moveToElement(medication.get(2)).click().build().perform();
+//        driver.findElement(By.xpath("//*[@id=\"patient-dashboard\"]/div[7]/div[4]/div/div[2]/div/div[3]/div/div[2]/div[4]/label/input")).click();
+        driver.findElement(By.xpath(".//button[text()='Save']")).click();
+        Common.waitSec(5);
+
         //medical history
         driver.findElement(By.xpath(".//span[text()='Medical History']")).click();
         Common.waitSec(3);
-        driver.findElement(By.name("data[patient_personal_history_progress_note_phmx]")).sendKeys("test");
+        driver.findElement(By.name("data[patient_personal_history_progress_note_phmx]")).sendKeys("test 123");
         driver.findElement(By.name("data[patient_personal_history_progress_note_allergies_side_eff_pshx_confirm_null]")).click();
         driver.findElement(By.name("data[patient_personal_history_progress_provider_history_confirm_null]")).click();
         driver.findElement(By.name("data[patient_personal_history_progress_note_vitals_confirm_null]")).click();
@@ -583,10 +615,11 @@ public class provider {
         Common.waitSec(3);
         driver.findElement(By.name("data[patient_personal_history_progress_note_sochx_confirm]")).click();
         driver.findElement(By.name("data[submit]")).click();
-        Common.waitSec(3);
+        Common.waitSec(5);
 
         // review of systems
         System.out.println("Review of Systems");
+        driver.findElement(By.xpath(".//span[text()='Review of Systems']")).click();
         Common.waitSec(3);
         driver.findElement(By.name("data[review_of_system_confirm_no_ros]")).click();
         driver.findElement(By.name("data[submit]")).click();
@@ -594,18 +627,20 @@ public class provider {
 
         //family history
         driver.findElement(By.xpath(".//span[text()='Family History']")).click();
+        Common.waitSec(3);
         driver.findElement(By.name("data[family_history_member_1_related_health_issue]")).sendKeys("test");
+        driver.findElement(By.name("data[family_history_member_confirm_doctor]")).click();
 		driver.findElement(By.name("data[submit]")).click();
 		Common.waitSec(3);
 
         //Depression Screening
-        driver.findElement(By.xpath(".//span[text()='Depression Screening']")).click();
-        Common.waitSec(3);
-        List<WebElement> PHQ2 = (List<WebElement>) js.executeScript(depressionScreening);
-        action.moveToElement(PHQ2.get(1)).click().build().perform();
-        action.moveToElement(PHQ2.get(5)).click().build().perform();
-        driver.findElement(By.name("data[submit]")).click();
-        Common.waitSec(3);
+//        driver.findElement(By.xpath(".//span[text()='Depression Screening']")).click();
+//        Common.waitSec(3);
+//        List<WebElement> PHQ2 = (List<WebElement>) js.executeScript(depressionScreening);
+//        action.moveToElement(PHQ2.get(1)).click().build().perform();
+//        action.moveToElement(PHQ2.get(5)).click().build().perform();
+//        driver.findElement(By.name("data[submit]")).click();
+//        Common.waitSec(3);
 
         //Alcohol Screening
         driver.findElement(By.xpath(".//span[text()='Alcohol Screening']")).click();
@@ -1041,5 +1076,24 @@ public class provider {
         System.out.println("-------------------------Done Approve----------------------------");
         Common.waitSec(7);
 
+    }
+
+
+    public void pmhxField() {
+        Actions action = new Actions(driver);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        System.out.println("Check Medical History");
+        driver.findElement(By.xpath(".//span[text()='Medical History']")).click();
+        Common.waitSec(3);
+        driver.findElement(By.name("data[patient_personal_history_progress_note_confirm1_sale]")).click();
+        Common.waitSec(3);
+        driver.findElement(By.xpath("//div[@disabled='disabled']")).click();
+        Common.waitSec(3);
+        List <WebElement> medicalICDCode = (List<WebElement>) js.executeScript(medicalHistoryICDCode);
+        medicalICDCode.size();
+        action.moveToElement(medicalICDCode.get(0)).click().build().perform();
+        Common.waitSec(1);
+        driver.findElement(By.name("data[submit]")).click();
+        Common.waitSec(30);
     }
 }

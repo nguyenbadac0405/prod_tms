@@ -42,53 +42,53 @@ public class Onboarding extends DriverFactory {
     runAPI API;
     @Override
     public void setUpforTest() {
-        link = new GetDriver(driver1);
-        login = PageFactory.initElements(driver1, login.class);
-        new_case_intake = PageFactory.initElements(driver1, create_new_case_intake.class);
-        to_assign = PageFactory.initElements(driver1, new_to_assign.class);
-        to_approved = PageFactory.initElements(driver1, assign_to_approved.class);
-        to_complete = PageFactory.initElements(driver1, approved_to_complete.class);
-        search = PageFactory.initElements(driver1, search_case.class);
-        ass = PageFactory.initElements(driver1, assign_provider.class);
-        logout = PageFactory.initElements(driver1, log_out.class);
+        link = new GetDriver(driver);
+        login = PageFactory.initElements(driver, login.class);
+        new_case_intake = PageFactory.initElements(driver, create_new_case_intake.class);
+        to_assign = PageFactory.initElements(driver, new_to_assign.class);
+        to_approved = PageFactory.initElements(driver, assign_to_approved.class);
+        to_complete = PageFactory.initElements(driver, approved_to_complete.class);
+        search = PageFactory.initElements(driver, search_case.class);
+        ass = PageFactory.initElements(driver, assign_provider.class);
+        logout = PageFactory.initElements(driver, log_out.class);
         excel = new ExcelHelpers();
-        getinfo = PageFactory.initElements(driver1, getInfo.class);
-        to_AFU = PageFactory.initElements(driver1, approve_to_assign_follow_up.class);
-        billing = PageFactory.initElements(driver1, billing.class);
-        fpc = PageFactory.initElements(driver1, FPC_Approved.class);
-        render = PageFactory.initElements(driver1, render_name_medicare_ID.class);
-        create_PSS = PageFactory.initElements(driver1, create_PSS.class);
-        sendback = PageFactory.initElements(driver1, sendback.class);
-        intake = PageFactory.initElements(driver1, intake.class);
-        doctor = PageFactory.initElements(driver1, provider.class);
-        pss = PageFactory.initElements(driver1, pss.class);
-        section = PageFactory.initElements(driver1, Section.class);
-        paInfor = PageFactory.initElements(driver1, patientInformation.class);
-        pcp = PageFactory.initElements(driver1, PCP.class);
-        testRes = PageFactory.initElements(driver1, testRequirement.class);
-        medHis = PageFactory.initElements(driver1, medicalHistory.class);
-        medication = PageFactory.initElements(driver1, medication.class);
-        famHis = PageFactory.initElements(driver1, familyHistory.class);
-        caseDetail = PageFactory.initElements(driver1, caseDetail.class);
-        API = PageFactory.initElements(driver1, runAPI.class);
+        getinfo = PageFactory.initElements(driver, getInfo.class);
+        to_AFU = PageFactory.initElements(driver, approve_to_assign_follow_up.class);
+        billing = PageFactory.initElements(driver, billing.class);
+        fpc = PageFactory.initElements(driver, FPC_Approved.class);
+        render = PageFactory.initElements(driver, render_name_medicare_ID.class);
+        create_PSS = PageFactory.initElements(driver, create_PSS.class);
+        sendback = PageFactory.initElements(driver, sendback.class);
+        intake = PageFactory.initElements(driver, intake.class);
+        doctor = PageFactory.initElements(driver, provider.class);
+        pss = PageFactory.initElements(driver, pss.class);
+        section = PageFactory.initElements(driver, Section.class);
+        paInfor = PageFactory.initElements(driver, patientInformation.class);
+        pcp = PageFactory.initElements(driver, PCP.class);
+        testRes = PageFactory.initElements(driver, testRequirement.class);
+        medHis = PageFactory.initElements(driver, medicalHistory.class);
+        medication = PageFactory.initElements(driver, medication.class);
+        famHis = PageFactory.initElements(driver, familyHistory.class);
+        caseDetail = PageFactory.initElements(driver, caseDetail.class);
+        API = PageFactory.initElements(driver, runAPI.class);
 
     }
 
     @Test
     public void complete() throws Exception {
 //        //create new case
-        Actions action = new Actions(driver1);
+        Actions action = new Actions(driver);
         excel.setExcelFile("src/test/resources/Onboarding.xlsx", "Sheet1");
         String business = excel.getCellData("business", 1);
         String vertical = excel.getCellData("vertical", 1);
         String MG = excel.getCellData("MG", 2);
         String lab = excel.getCellData("lab", 1);
         String type = excel.getCellData("type", 1);
-        String first_name = "test GK " + render.firtname();
+        String first_name = "GKIM TEST " + render.firtname();
         String last_name = render.lastname();
         String DOB = excel.getCellData("DOB", 1);
 //		String medicare_ID = render.medicare_ID();
-        String medicare_ID = "9TR2FG1NT07";
+        String medicare_ID = "9TK2FG1TT09";
 		String zipcode = excel.getCellData("zipcode", 1);
         login.URL_TMS();
         login.intake("12345678");
@@ -101,6 +101,9 @@ public class Onboarding extends DriverFactory {
         excel.setCellData(id, 1, 0);
 //        excel.setCellData(patientID, 2, 0);
         System.out.println("Case-ID: " + id);
+//        System.out.println("Patient fullname:" +first_name+last_name);
+        String fullname = first_name + last_name;
+        System.out.println(fullname.toUpperCase());
 //        System.out.println("Patient-ID: " + patientID);
 
         Common.waitSec(10);
@@ -208,7 +211,7 @@ public class Onboarding extends DriverFactory {
 		Common.waitSec(5);
 		login.changelinktoletter();
         Common.waitSec(10);
-        String resultID = API.getResultID();
+        String resultID = API.getResultID(fullname.toUpperCase());
         API.changeStatusResult(resultID);
 
         login.change_link_to_pss();
@@ -233,7 +236,7 @@ public class Onboarding extends DriverFactory {
     @Test
     public void completeGeneticNoWellness() throws Exception {
         //create new case
-        Actions action = new Actions(driver1);
+        Actions action = new Actions(driver);
         excel.setExcelFile("src/test/resources/Genetics.xlsx", "Sheet1");
         String business = excel.getCellData("business", 1);
         String vertical = excel.getCellData("vertical", 1);
@@ -242,6 +245,7 @@ public class Onboarding extends DriverFactory {
         String type = excel.getCellData("type", 1);
         String first_name = "test GK " + render.firtname();
         String last_name = render.lastname();
+        String fullname = first_name+last_name;
         String DOB = excel.getCellData("DOB", 1);
 //		String medicare_ID = render.medicare_ID();
         String medicare_ID = "8TR2FG1QT22";
@@ -339,7 +343,7 @@ public class Onboarding extends DriverFactory {
         Common.waitSec(5);
         login.changelinktoletter();
         Common.waitSec(10);
-        String resultID = API.getResultID();
+        String resultID = API.getResultID(fullname);
         API.changeStatusResult(resultID);
 
         login.change_link_to_pss();
@@ -374,7 +378,7 @@ public class Onboarding extends DriverFactory {
 
     @Test
     public void newCaseUnity() throws Exception {
-        Actions action = new Actions(driver1);
+        Actions action = new Actions(driver);
         excel.setExcelFile("src/test/resources/Unity.xlsx", "Sheet1");
         String business = excel.getCellData("business", 1);
         String vertical = excel.getCellData("vertical", 1);
@@ -415,6 +419,18 @@ public class Onboarding extends DriverFactory {
         else {
             System.out.println("Status is "+ search.getStatus());
         }
+    }
+
+    @Test
+    public void test2() throws Exception {
+        String id = "CA-YF88E9ZN";
+        login.URL_TMS();
+        login.providerRPM("12345678");
+        Common.waitSec(5);
+        search.search_from_intake(id);
+        Common.waitSec(5);
+        doctor.pmhxField();
+        Common.waitSec(5);
     }
 
 

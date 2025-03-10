@@ -18,11 +18,11 @@ public class call extends DriverFactory {
     @Override
     public void setUpforTest(){
 
-        login1 = PageFactory.initElements(driver1, login.class);
+        login1 = PageFactory.initElements(driver, login.class);
         login2 = PageFactory.initElements(driver2, login.class);
 
-        pss = PageFactory.initElements(driver1, pss.class);
-        logout = PageFactory.initElements(driver1, log_out.class);
+        pss = PageFactory.initElements(driver, pss.class);
+        logout = PageFactory.initElements(driver, log_out.class);
 
         provider = PageFactory.initElements(driver2,provider.class);
     }

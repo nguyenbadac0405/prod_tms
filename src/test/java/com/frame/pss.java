@@ -675,15 +675,15 @@ public class pss {
         System.out.println(driver.findElement(By.xpath("/html/body/div[2]/div[8]/div[4]/div/div[1]/div[6]/div/div/div[1]/div")).isDisplayed());
         driver.findElement(By.xpath("/html/body/div[2]/div[8]/div[4]/div/div[1]/div[6]/div/div/div[1]")).click();
         Common.waitSec(3);
-        WebElement chooseFile = driver.findElement(By.xpath(".//input[@type='file']"));
-        chooseFile.sendKeys("C:/Users/antes/Downloads/file.pdf");
+        List<WebElement> chooseFile = driver.findElements(By.xpath(".//input[@type='file']"));
+        chooseFile.get(1).sendKeys("C:/Users/antes/Downloads/file.pdf");
         Common.waitSec(5);
         //to assign follow up
         driver.findElement(By.xpath(".//div[text()='Select ...']")).click();
         Common.waitSec(1);
         action.sendKeys(Keys.ENTER).build().perform();
         Common.waitSec(1);
-        driver.findElement(By.xpath(".//button[text()='Upload ']")).click();
+        driver.findElement(By.xpath(".//button[text()='Upload']")).click();
         Common.waitSec(10);
         System.out.println("chekc");
         try {

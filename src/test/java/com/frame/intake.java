@@ -137,6 +137,9 @@ public class intake {
     @FindBy(xpath = ".//span[text()='Submit']")
     public WebElement btnSubmit;
 
+    protected String qualificationQuestion = "return document.querySelectorAll('[name*=\"qualifying_questionaire_question\"]')";
+    protected String questionRating = "return document.querySelectorAll('[name*=\"radio_medical_questionnaire_rating\"]')";
+
 
 
     public intake(WebDriver driver) {
@@ -334,6 +337,7 @@ public class intake {
         Common.waitSec(3);
         System.out.println("Check Medication");
         driver.findElement(By.xpath("//*[@id=\"patient-dashboard\"]/div[7]/div[4]/div/div[2]/div/div[3]/div/div[2]/div[4]/label/input")).click();
+        Common.waitSec(1);
         driver.findElement(By.xpath(".//button[text()='Save']")).click();
         Common.waitSec(3);
 
@@ -687,7 +691,143 @@ public class intake {
         Common.waitSec(5);
     }
 
+    public void createOpeneye() {
+        Actions action = new Actions(driver);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        driver.findElement(By.className("intro-btn-next")).click();
+        Common.waitSec(3);
+        //patient infor
+        driver.findElement(By.name("data[patient_full_name]")).sendKeys("test core", Keys.ENTER);
+        Common.waitSec(1);
+        //dob
 
+        driver.findElement(By.xpath(".//span[text()='Male']")).click();
+        action.sendKeys(Keys.ENTER).build().perform();
+        Common.waitSec(1);
+
+        driver.findElement(By.name("data[patient_weight]")).sendKeys("1234", Keys.ENTER);
+        Common.waitSec(1);
+        driver.findElement(By.name("data[patient_height]")).sendKeys("12", Keys.ENTER);
+        Common.waitSec(1);
+
+        driver.findElement(By.xpath(".//span[text()='Single']")).click();
+        action.sendKeys(Keys.ENTER).build().perform();
+        Common.waitSec(1);
+
+        driver.findElement(By.name("data[patient_phone]")).sendKeys("8458094618", Keys.ENTER);
+        Common.waitSec(1);
+
+        driver.findElement(By.name("data[patient_email]")).sendKeys("8458094618", Keys.ENTER);
+        Common.waitSec(1);
+
+        driver.findElement(By.xpath(".//span[text()='Yes']")).click();
+        action.sendKeys(Keys.ENTER).build().perform();
+        Common.waitSec(1);
+
+        driver.findElement(By.xpath(".//span[@class='col-form-label']")).click();
+        action.sendKeys(Keys.ENTER).build().perform();
+        Common.waitSec(1);
+
+        //qualification form
+        driver.findElement(By.className("intro-btn-next")).click();
+        Common.waitSec(3);
+
+        List <WebElement> qualification1 = (List <WebElement>) js.executeScript(qualificationQuestion);
+        qualification1.get(qualification1.size() - 1).click();
+        action.sendKeys(Keys.ENTER).build().perform();
+        Common.waitSec(1);
+
+        List<WebElement> qualification2 = (List <WebElement>) js.executeScript(qualificationQuestion);
+        qualification2.get(qualification2.size() - 1).click();
+        action.sendKeys(Keys.ENTER).build().perform();
+        Common.waitSec(1);
+
+        List<WebElement> qualification3 = (List <WebElement>) js.executeScript(qualificationQuestion);
+        qualification3.get(qualification3.size() - 1).click();
+        action.sendKeys(Keys.ENTER).build().perform();
+        Common.waitSec(1);
+
+        List<WebElement> qualification4 = (List <WebElement>) js.executeScript(qualificationQuestion);
+        qualification4.get(qualification4.size() - 1).click();
+        action.sendKeys(Keys.ENTER).build().perform();
+        Common.waitSec(1);
+
+        List<WebElement> qualification5 = (List <WebElement>) js.executeScript(qualificationQuestion);
+        qualification5.get(qualification5.size() - 1).click();
+        action.sendKeys(Keys.ENTER).build().perform();
+        Common.waitSec(1);
+
+        List<WebElement> qualification6 = (List <WebElement>) js.executeScript(qualificationQuestion);
+        qualification5.get(qualification6.size() - 1).click();
+        action.sendKeys(Keys.ENTER).build().perform();
+        Common.waitSec(1);
+
+        List<WebElement> qualification7 = (List <WebElement>) js.executeScript(qualificationQuestion);
+        qualification5.get(qualification7.size() - 1).click();
+        action.sendKeys(Keys.ENTER).build().perform();
+        Common.waitSec(1);
+
+        driver.findElement(By.xpath(".//button[text()='Next Step →']")).click();
+        Common.waitSec(3);
+
+        //medical profile
+        driver.findElement(By.name("data[medical_questionnaire_reason]")).sendKeys("test core", Keys.ENTER);
+        Common.waitSec(1);
+        driver.findElement(By.name("data[medical_questionnaire_contact_fullname]")).sendKeys("test core", Keys.ENTER);
+        Common.waitSec(1);
+        driver.findElement(By.name("data[medical_questionnaire_contact_relationship]")).sendKeys("test core", Keys.ENTER);
+        Common.waitSec(1);
+        driver.findElement(By.name("data[medical_questionnaire_contact_phone]")).sendKeys("8458094618", Keys.ENTER);
+        Common.waitSec(1);
+        driver.findElement(By.name("data[medical_questionnaire_contact_phone_alternate]")).sendKeys("8458094618", Keys.ENTER);
+        Common.waitSec(1);
+
+        List<WebElement> rating = (List <WebElement>) js.executeScript(questionRating);
+        rating.get(rating.size() - 1).click();
+        action.sendKeys(Keys.ENTER).build().perform();
+        Common.waitSec(1);
+
+        driver.findElement(By.name("data[medical_questionnaire_illnesses]")).sendKeys("test core", Keys.ENTER);
+        Common.waitSec(1);
+
+        action.sendKeys(Keys.ENTER).build().perform();
+        Common.waitSec(1);
+
+        driver.findElement(By.name("data[medical_questionnaire_chronic_conditions]")).sendKeys("test core", Keys.ENTER);
+        Common.waitSec(1);
+
+        action.sendKeys(Keys.ENTER).build().perform();
+        Common.waitSec(1);
+
+        action.sendKeys(Keys.ENTER).build().perform();
+        Common.waitSec(1);
+
+        action.sendKeys(Keys.ENTER).build().perform();
+        Common.waitSec(1);
+
+        driver.findElement(By.name("data[medical_questionnaire_allergies]")).sendKeys("test core", Keys.ENTER);
+        Common.waitSec(1);
+
+        action.sendKeys(Keys.ENTER).build().perform();
+        Common.waitSec(1);
+
+        driver.findElement(By.name("data[medical_questionnaire_family_history]")).sendKeys("test core", Keys.ENTER);
+        Common.waitSec(5);
+
+        //treatments
+        driver.findElement(By.id("monthly_subcription_basic_package-medication")).click();
+        Common.waitSec(2);
+        driver.findElement(By.xpath(".//button[text()='Shipping Info →']")).click();
+        Common.waitSec(3);
+
+
+
+
+
+
+
+
+    }
 
 }
 

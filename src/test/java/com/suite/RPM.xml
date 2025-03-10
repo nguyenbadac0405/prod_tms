@@ -2,7 +2,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="test_core">
-<!-- TC4: RPM Smartmed complete-->
+    <listeners>
+        <listener class-name="org.testng.reporters.XMLReporter"/>    <!-- Thêm các listeners khác nếu cần -->
+    </listeners>
+<!-- TC1: RPM Smartmed complete-->
     <test name="RPM SmartMed complete">
         <classes>
             <class name="com.scripts.RPM">
@@ -13,7 +16,7 @@
         </classes>
     </test>
 
-        <!-- TC4: RPM SmartMed cancel-->
+        <!-- TC2: RPM SmartMed cancel-->
     <test name="RPM SmartMed cancel">
         <classes>
             <class name="com.scripts.RPM">
@@ -24,12 +27,23 @@
         </classes>
     </test>
 
-        <!-- TC4: RPM SmartMed denied-->
+        <!-- TC3: RPM SmartMed denied-->
     <test name="RPM SmartMed">
         <classes>
             <class name="com.scripts.RPM">
                 <methods>
                     <include name="denied"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <!-- : Delete case RPM-->
+    <test name="Delete case RPM">
+        <classes>
+            <class name="com.scripts.RPM">
+                <methods>
+                    <include name="deleteCaseRPM"></include>
                 </methods>
             </class>
         </classes>

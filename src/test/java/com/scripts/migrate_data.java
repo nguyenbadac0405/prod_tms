@@ -35,26 +35,26 @@ public class migrate_data extends DriverFactory {
 
     @Override
     public void setUpforTest() {
-        link = new GetDriver(driver1);
-        login = PageFactory.initElements(driver1, login.class);
-        new_case_intake = PageFactory.initElements(driver1, create_new_case_intake.class);
-        to_assign = PageFactory.initElements(driver1, new_to_assign.class);
-        to_approved = PageFactory.initElements(driver1, assign_to_approved.class);
-        to_complete = PageFactory.initElements(driver1, approved_to_complete.class);
-        search = PageFactory.initElements(driver1, search_case.class);
-        ass = PageFactory.initElements(driver1, assign_provider.class);
-        logout = PageFactory.initElements(driver1, log_out.class);
+        link = new GetDriver(driver);
+        login = PageFactory.initElements(driver, login.class);
+        new_case_intake = PageFactory.initElements(driver, create_new_case_intake.class);
+        to_assign = PageFactory.initElements(driver, new_to_assign.class);
+        to_approved = PageFactory.initElements(driver, assign_to_approved.class);
+        to_complete = PageFactory.initElements(driver, approved_to_complete.class);
+        search = PageFactory.initElements(driver, search_case.class);
+        ass = PageFactory.initElements(driver, assign_provider.class);
+        logout = PageFactory.initElements(driver, log_out.class);
         excel = new ExcelHelpers();
-        getinfo = PageFactory.initElements(driver1, getInfo.class);
-        to_AFU = PageFactory.initElements(driver1, approve_to_assign_follow_up.class);
-        billing = PageFactory.initElements(driver1, billing.class);
-        fpc = PageFactory.initElements(driver1, FPC_Approved.class);
-        render = PageFactory.initElements(driver1, render_name_medicare_ID.class);
-        create_PSS = PageFactory.initElements(driver1, create_PSS.class);
-        sendback = PageFactory.initElements(driver1, sendback.class);
-        intake = PageFactory.initElements(driver1, intake.class);
-        doctor = PageFactory.initElements(driver1, provider.class);
-        pss = PageFactory.initElements(driver1, pss.class);
+        getinfo = PageFactory.initElements(driver, getInfo.class);
+        to_AFU = PageFactory.initElements(driver, approve_to_assign_follow_up.class);
+        billing = PageFactory.initElements(driver, billing.class);
+        fpc = PageFactory.initElements(driver, FPC_Approved.class);
+        render = PageFactory.initElements(driver, render_name_medicare_ID.class);
+        create_PSS = PageFactory.initElements(driver, create_PSS.class);
+        sendback = PageFactory.initElements(driver, sendback.class);
+        intake = PageFactory.initElements(driver, intake.class);
+        doctor = PageFactory.initElements(driver, provider.class);
+        pss = PageFactory.initElements(driver, pss.class);
     }
     @Test
     public void check_migrate_data() {
