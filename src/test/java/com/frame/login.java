@@ -304,6 +304,7 @@ public class login {
 
 		wait.until(ExpectedConditions.elementToBeClickable(go_back));
 		Common.waitSec(10);
+		System.out.println("test cicd");
 	}
 
 	public void PSS_dashboard() {
