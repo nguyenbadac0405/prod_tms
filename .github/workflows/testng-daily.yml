@@ -2,7 +2,7 @@ name: Run TestNG Daily
 
 on:
   schedule:
-    - cron: '0 9 * * *' # Chạy vào 03:00 AM UTC (tức 10:00 AM giờ Việt Nam)
+    - cron: '0 9 * * *' # Chạy vào 09:00 AM UTC (tức 16:00 AM giờ Việt Nam)
   workflow_dispatch: # Cho phép chạy thủ công nếu cần
 
 jobs:
@@ -24,7 +24,7 @@ jobs:
           sudo apt-get install -y maven
 
       - name: Run TestNG Tests
-        run: mvn test -DsuiteXmlFile=test.xml
+        run: mvn test -DsuiteXmlFile=core.xml
 
       - name: Upload Test Reports
         if: always()
