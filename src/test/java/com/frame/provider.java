@@ -236,8 +236,11 @@ public class provider {
 
 
         Common.waitSec(7);
+        try {
+            driver.findElement(By.className("rf-btn-close")).click();
+        }
+        catch(Exception e){}
 
-        driver.findElement(By.className("rf-btn-close")).click();
         Common.waitSec(3);
     }
 

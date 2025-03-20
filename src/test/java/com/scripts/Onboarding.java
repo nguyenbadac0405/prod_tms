@@ -215,7 +215,7 @@ public class Onboarding extends DriverFactory {
         API.changeStatusResult(resultID);
 
         login.change_link_to_pss();
-        Common.waitSec(5);
+        Common.waitSec(30);
         search.searchCounseling(medicare_ID);
         Common.waitSec(3);
 

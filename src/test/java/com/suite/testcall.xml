@@ -8,6 +8,7 @@
             <class name='com.scripts.Genetics'>
                 <methods>
                     <include name='test'></include>
+                    <include name="test"></include>
                 </methods>
             </class>
         </classes>

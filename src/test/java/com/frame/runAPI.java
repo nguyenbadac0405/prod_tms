@@ -68,6 +68,10 @@ public class runAPI {
     }
 
     public String getResultID(String patientFullname) {
+        try {
+            driver.findElement(By.xpath("//button[contains(@class, \"absolute\")]")).click();
+        }
+        catch (Exception e) {}
         driver.findElement(By.xpath(".//span[text()='Live']")).click();
         Common.waitSec(2);
         driver.findElement(By.xpath(".//td[text()='"+patientFullname.toUpperCase()+"']")).click();

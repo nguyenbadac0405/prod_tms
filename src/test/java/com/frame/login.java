@@ -89,7 +89,7 @@ public class login {
 
     }
 	public void URL_TMS() {
-		driver.get("https://dashboard.tms.partners/#/");
+		driver.get("https://dashboard.gkim.digital/#/");
 	}
 	public void URL_TMS_STAG() {
 		driver.get("https://stag.tms.partners/#/");
@@ -184,7 +184,7 @@ public class login {
 
 	public void change_link_to_pss() {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.location='https://dashboard.tms.partners/#/';");
+		js.executeScript("window.location='https://dashboard.gkim.digital/#/';");
 	}
 
 	public void change_link_to_MDL() {
